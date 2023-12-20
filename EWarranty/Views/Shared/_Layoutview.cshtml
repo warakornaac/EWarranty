@@ -1,0 +1,183 @@
+﻿@{
+    var user = ViewBag.UserId;
+    var userType = ViewBag.UserType;
+}
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>E-Warranty Claim</title>
+
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
+    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/css/shared/style.css">
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/css/demo_1/style.css">
+    <!-- End Layout styles -->
+    <link rel="shortcut icon" href="~/BootstrapTemplate/src/assets/images/favicon.ico" />
+
+
+
+    <script src="~/Scripts/jquery-validation-1.19.5/lib/jquery.js"></script>
+    <script src="~/Scripts/jquery-validation-1.19.5/dist/jquery.validate.js"></script>
+  <style>
+      body {
+          font-size: calc(0.75em + 1vmin);
+      }
+      .content-wrapper {
+          background: #F3F3F3;
+          padding: 0.5pc 0.7pc;
+          width: 100%;
+          flex-grow: 1;
+      }
+  </style>
+  
+</head>
+
+<body>
+    <!-- partial -->
+    <div class="main-panel_reg">
+        <!-- partial -->
+        <div class="col-md-12">
+            <div class="page-header-toolbar">
+                <div class="btn-group toolbar-item" role="group" aria-label="Basic example">
+                    <div class="d-flex py-2 border-bottom">
+                        <span class="img-sm rounded-circle bg-warning text-white text-avatar">User</span>
+                        <div class="wrapper ml-2">
+                            <p class="mb-n1 font-weight-semibold">login:@user</p>
+                            @*<small>E-mail:test1@gmail.com</small>*@
+                        </div>
+                        @*<small class="text-muted ml-auto">4 Hours ago</small>*@
+                    </div>
+                </div>
+
+                @*<div class="sort-wrapper">
+
+                    </div>*@
+            </div>
+        </div>
+        @*<div class="content-wrapper">*@
+        <div>
+            <div class="content-wrapper">
+                <!-- Page Title Header Starts-->
+                @if (userType == "14")
+                {
+                   <!-- <div class="row page-title-header">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <h4 class="page-title"></h4>
+                                <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+                                    <ul class="quick-links">
+                                        <li><a id="Inquiryid" href="~/Inquiry/Index">ตรวจสอบสถานะ</a></li>
+                                        <li><a id="regid" href="~/Warrantyregister/Index">ลงทะเบียนสินค้า</a></li>
+                                        @*<li><a href="~/ClaimRequest/Index">แจ้งเคลมสินค้า</a></li>*@
+                                        <li><a id="regeditid"></a></li>
+                                    </ul>
+                                    <ul class="quick-links ml-auto">
+                                        <li><a id="regeditid" href="~/EditWarrantyregister/Index">แก้ไขข้อมูลส่วนตัว</a></li>
+                                        @*<li><a id="changeid" href="~/Account/Changepassword" >เปลี่ยนรหัสผ่าน</a></li>*@
+                                        <li><a  href="~/Account/LogIn" >ออกจากระบบ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>-->
+                    <div class="row page-title-header">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <h4 class="page-title"></h4>
+                                <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+                                  
+                                    <ul class="quick-links ml-auto">
+                                        <li><a href="~/Menubar/Index">กลับสู่หน้าหลัก</a></li>
+                                        @*<li><a id="changeid" href="~/Account/Changepassword" >เปลี่ยนรหัสผ่าน</a></li>*@
+                                        <li><a  href="~/Account/LogIn" >ออกจากระบบ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+                else
+                {
+                     <div class="row page-title-header">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <h4 class="page-title"></h4>
+                                <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+                                  
+                                    <ul class="quick-links ml-auto">
+                                        <li><a href="~/Menubar/Index">กลับสู่หน้าหลัก</a></li>
+                                        @*<li><a id="changeid" href="~/Account/Changepassword" >เปลี่ยนรหัสผ่าน</a></li>*@
+                                        <li><a  href="~/Account/LogIn" >ออกจากระบบ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                   <!-- <div class="row page-title-header">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <h4 class="page-title"></h4>
+                                <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+                                    <ul class="quick-links">
+                                        <li><a id="Inquiryid" href="~/Inquiry/Index">ตรวจสอบสถานะ</a></li>
+                                        <li><a id="regid" href="~/Warrantyregister/Index">ลงทะเบียนสินค้า</a></li>
+                                        @*<li><a href="~/ClaimRequest/Index">แจ้งเคลมสินค้า</a></li>*@
+                                        <li><a id="regeditid"></a></li>
+                                    </ul>
+                                   
+                                    <ul class="quick-links ml-auto">
+                                       
+                                        <li><a id="regeditid" href="~/EditWarrantyregister/Index">แก้ไขข้อมูลส่วนตัว</a></li>
+                                      
+                                        <li><a href="~/Account/LogIn">ออกจากระบบ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>-->
+                }
+            </div>
+            @*<div class="container-fluid">*@
+              <div>
+
+                <div >
+                    @*<div class="content-wrapper d-flex ">*@
+                    @RenderBody()
+
+                </div>
+                <!-- content-wrapper ends -->
+            </div>
+           
+        </div>
+        <!-- content-wrapper ends -->
+        
+    </div>
+    <!-- partial:partials/_footer.html -->
+    <footer class="footer">
+        <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">TRU&AAC</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"></span>
+        </div>
+    </footer>
+    <!-- partial -->
+   
+   
+</body>
+</html>
+

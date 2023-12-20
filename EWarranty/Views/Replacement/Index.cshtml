@@ -1,0 +1,1249 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layoutview.cshtml";
+
+    var user = ViewBag.UserId;
+    var userType = ViewBag.UserType;
+    var SN_no = ViewBag.Snno;
+
+
+
+    var CarMaker = ViewBag.CarMaker;
+    var CarModel = ViewBag.CarModel;
+    var CarYear = ViewBag.CarYear;
+    var CarLicense = ViewBag.CarLicense;
+    var CarMileage = ViewBag.CarMileage;
+    var WarrantyStartDate = ViewBag.WarrantyStartDate;
+    var WarrantyEndDate = ViewBag.WarrantyEndDate;
+    var ItemNo = ViewBag.ItemNo;
+    var STKDES = ViewBag.STKDES;
+    var UsrID_string = ViewBag.UsrID_string;
+    var SN = ViewBag.SN;
+    var ExpectedReceiptDate = ViewBag.ExpectedReceiptDate;
+    var Warranty_ID = ViewBag.Warranty_ID;
+    var Claim_ID = ViewBag.Claim_ID;
+
+    var Symptomname = ViewBag.Symptomname;
+    var MileageClaim = ViewBag.MileageClaim;
+
+    var Symptom_ID = ViewBag.Symptom_ID;
+    var Note = ViewBag.Note;
+    var Result = ViewBag.Result;
+    var ResultDate = ViewBag.ResultDate;
+    var ReplacementSN = ViewBag.ReplacementSN;
+    var ClaimStatus = ViewBag.ClaimStatus;
+    var Name = ViewBag.Name;
+    var LastNameuser = ViewBag.LastName;
+    var Tel = ViewBag.Tel;
+    var LineID = ViewBag.LineID;
+    var EMail = ViewBag.EMail;
+    var CustomerNote = ViewBag.CustomerNote;
+    List<EWarranty.Models.GroupClass.DefineCode> List_Sympto = ViewBag.List_Sympto;
+    List<EWarranty.Models.GroupClass.DefineCode> List = ViewBag.Status;
+}
+
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>E-Warranty Claim</title>
+
+  
+    <script src="~/Scripts/jquery-validation-1.19.5/lib/jquery.js"></script>
+    <script src="~/Scripts/jquery-validation-1.19.5/dist/jquery.validate.js"></script>
+    <style>
+        #myImg {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            #myImg:hover {
+                opacity: 0.7;
+            }
+
+        /* The Modal (background) */
+        .modalx {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+
+        /* Modal Content (Image) */
+        .modal-contentx {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        /* Caption of Modal Image (Image Text) - Same Width as the Image */
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        /* Add Animation - Zoom in the Modal */
+        .modal-content, #caption {
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+        /* The Close Button */
+        .close {
+            position: absolute;
+            top: 56px;
+            right: 20px;
+            color: #f1f1f1;
+            font-size: 57px;
+            font-weight: bold;
+            /* transition: 0.3s; */
+            left: 1656px;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .preserveLineBreaks {
+            white-space: pre-line; /*or pre-wrap*/
+        }
+        /* Style all input fields */
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+
+            /* Style the submit button */
+            input[type=submit] {
+                background-color: #04AA6D;
+                color: white;
+            }
+
+        /* Style the container for inputs */
+        .container {
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        /* The message box is shown when the user clicks on the password field */
+        #message {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+            #message p {
+                padding: 10px 35px;
+                font-size: 18px;
+            }
+
+
+        #messagecf {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+            #messagecf p {
+                padding: 10px 35px;
+                font-size: 18px;
+            }
+
+        /* Add a green text color and a checkmark when the requirements are right */
+        .valid {
+            color: green;
+        }
+
+            .valid:before {
+                position: relative;
+                left: -35px;
+                content: "✔";
+            }
+
+        /* Add a red text color and an "x" when the requirements are wrong */
+        .invalid {
+            color: red;
+        }
+
+            .invalid:before {
+                position: relative;
+                left: -35px;
+                content: "✖";
+            }
+
+        .field-icon {
+            float: right;
+            margin-left: -41px;
+            margin-top: 12px;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+    <style>
+        form.cmxform label.error, label.error {
+            color: red;
+            font-style: italic;
+        }
+
+        #commentForm {
+            width: 500px;
+        }
+
+            #commentForm label {
+                width: 250px;
+            }
+
+                #commentForm label.error, #commentForm input.submit {
+                    margin-left: 253px;
+                }
+
+
+
+        #signupForm label.error {
+            margin-left: 10px;
+            width: auto;
+            display: inline;
+        }
+
+        #newsletter_topics label.error {
+            display: none;
+            margin-left: 103px;
+        }
+        /* This is copied from https://github.com/blueimp/jQuery-File-Upload/blob/master/css/jquery.fileupload.css */
+        .fileinput-button {
+            position: relative;
+            overflow: hidden;
+        }
+
+            .fileinput-button input {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                opacity: 0;
+                -ms-filter: 'alpha(opacity=0)';
+                font-size: 200px;
+                direction: ltr;
+                cursor: pointer;
+            }
+
+        .thumb {
+            height: 80px;
+            width: 100px;
+            border: 1px solid #000;
+        }
+
+        ul.thumb-Images li {
+            width: 120px;
+            float: left;
+            display: inline-block;
+            vertical-align: top;
+            height: 120px;
+        }
+
+        .img-wrap {
+            position: relative;
+            display: inline-block;
+            font-size: 0;
+        }
+
+            .img-wrap .close {
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                z-index: 100;
+                background-color: #D0E5F5;
+                padding: 5px 2px 2px;
+                color: #000;
+                font-weight: bolder;
+                cursor: pointer;
+                opacity: .5;
+                font-size: 23px;
+                line-height: 10px;
+                border-radius: 50%;
+            }
+
+            .img-wrap:hover .close {
+                opacity: 1;
+                background-color: #ff0000;
+            }
+
+        .FileNameCaptionStyle {
+            font-size: 12px;
+        }
+        .w3-codespan {
+            color: green;
+            background-color: #f1f1f1;
+            padding-left: 4px;
+            padding-right: 4px;
+          
+        }
+    </style>
+    <style>
+        .thumb {
+            height: 75px;
+            border: 1px solid #000;
+            margin: 10px 5px 0 0;
+        }
+
+        /*Copied from bootstrap to handle input file multiple*/
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        /*Also */
+        .btn-success {
+            border: 1px solid #c5dbec;
+            background: #D0E5F5;
+            font-weight: bold;
+            color: #2e6e9e;
+        }
+        /* This is copied from https://github.com/blueimp/jQuery-File-Upload/blob/master/css/jquery.fileupload.css */
+        .fileinput-button {
+            position: relative;
+            overflow: hidden;
+        }
+
+            .fileinput-button input {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                opacity: 0;
+                -ms-filter: 'alpha(opacity=0)';
+                font-size: 200px;
+                direction: ltr;
+                cursor: pointer;
+            }
+
+        .thumb {
+            height: 80px;
+            width: 100px;
+            border: 1px solid #000;
+        }
+
+        ul.thumb-Images li {
+            width: 120px;
+            float: left;
+            display: inline-block;
+            vertical-align: top;
+            height: 120px;
+        }
+
+        .img-wrap {
+            position: relative;
+            display: inline-block;
+            font-size: 0;
+        }
+
+            .img-wrap .close {
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                z-index: 100;
+                background-color: #D0E5F5;
+                padding: 5px 2px 2px;
+                color: #000;
+                font-weight: bolder;
+                cursor: pointer;
+                opacity: .5;
+                font-size: 23px;
+                line-height: 10px;
+                border-radius: 50%;
+            }
+
+            .img-wrap:hover .close {
+                opacity: 1;
+                background-color: #ff0000;
+            }
+
+        .FileNameCaptionStyle {
+            font-size: 12px;
+        }
+    </style>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-33058582-1', 'auto', {
+            'name': 'Main'
+        });
+        ga('Main.send', 'event', 'jquery.Thailand.js', 'GitHub', 'Visit');
+    </script>
+</head>
+
+
+
+<body>
+    <input type="hidden" value="@Warranty_ID" id="bid" />
+    <input type="hidden" value="@Claim_ID" id="b_Claim_ID>" />
+    <input type="hidden" value="@userType" id="b_userType>" />
+    <!-- partial:partials/_navbar.html -->
+    @*<div class="container-scroller">*@
+    <div class="content-wrapper">
+
+
+        <div class="row w-100">
+
+            <div class="col-lg-12 mx-auto">
+                <h2 class="text-center mb-4">
+                   ทดแทนสินค้า
+                </h2>
+                @*<div class="auto-form-wrapper">*@
+                <div>
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-description">  </p>
+                                <form class="cmxform" id="signupForm" method="post" action="">
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+
+                                                    <label class="col-sm-3 col-form-label">S/N</label>
+                                                    <div class="col-sm-9">
+
+                                                        <input type="text" class="form-control" id="b_SNno" name="b_SNno" value="@SN" disabled="disabled" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @if (userType != "14")
+                                            {
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+
+                                                        <label class="col-sm-3 col-form-label"> ชื่อลูกค้า</label>
+                                                        <div class="col-sm-9">
+
+                                                            <input type="text" class="form-control" id="b_namecus" name="b_namecus" value="@Name  @LastNameuser" disabled="disabled" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                      
+                  
+
+
+                            @if (userType != "14")
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+
+                                            <label class="col-sm-3 col-form-label">เบอร์โทรลูกค้า</label>
+                                            <div class="col-sm-9">
+
+                                                <input type="text" class="form-control" id="b_tel" name="b_tel" value="@Tel" disabled="disabled" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+
+                                            <label class="col-sm-3 col-form-label">Line ลูกค้า</label>
+                                            <div class="col-sm-9">
+
+                                                <input type="text" class="form-control" id="b_line" name="b_line" value="@LineID" disabled="disabled" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+
+                                            <label class="col-sm-3 col-form-label">Email ลูกค้า</label>
+                                            <div class="col-sm-9">
+
+                                                <input type="text" class="form-control" id="b_EMail" name="b_EMail" value="@EMail" disabled="disabled" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+
+                                        <label class="col-sm-3 col-form-label">ยี่ห้อรถ</label>
+                                        <div class="col-sm-9">
+
+                                            <input type="text" class="form-control" id="b_CarMaker" name="b_CarMaker" value="@CarMaker" disabled="disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">รุ่น</label>
+                                        <div class="col-sm-9">
+
+                                            <input type="text" class="form-control" id="b_CarModel" name="b_CarModel" value="@CarModel" disabled="disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">
+                                            ทะเบียน*
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="b_CarLicense" name="b_CarLicense" value="@CarLicense" disabled="disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label" for="password">ปี</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="b_CarYear" name="b_CarYear" value="@CarYear" disabled="disabled" />
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">เลขไมล์ </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="b_CarMileage" name="b_CarMileage" value="@CarMileage" disabled="disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">เลขไมล์ปัจจุบัน*</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="b_CarMileage_now" name="b_CarMileage_now" value="@MileageClaim" disabled="disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">item</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="b_item" name="b_item" value="@ItemNo" disabled="disabled" />
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Description</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="b_Description" name="b_Description" value="@STKDES" disabled="disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">วันที่ลงทะเบียน</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="b_datereg" name="b_datereg" value="@WarrantyStartDate" disabled="disabled" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">วันสิ้นสุดรับประกัน</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="b_enddatereg" name="b_enddatereg" value="@WarrantyEndDate" disabled="disabled" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">อาการ*</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" id="b_symptom" name="b_symptom" disabled="disabled">
+                                                <option value="0">เลือกอาการแจ้งเคลม </option>
+                                                @foreach (var row in ViewBag.List_Sympto)
+                                                {
+                                                    <option value=@row.TYPE>
+                                                        @row.Desc_Thai
+
+                                                    </option>
+
+                                                }
+                                            </select>
+
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">ผลการพิจารณา*</label>
+                                        <div class="col-sm-9">
+
+                                            <textarea rows="4" cols="80" class="form-control" id="b_results" name="b_results" disabled="disabled">@Result</textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">โน้ตเพิ่มเติม(ลูกค้า)</label>
+                                        <div class="col-sm-9">
+
+                                            <textarea rows="4" cols="80" class="form-control" id="b_CustomerNote" name="b_CustomerNote" disabled="disabled">@CustomerNote</textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">โน้ตเพิ่มเติม(เจ้าหน้าที่)</label>
+                                        <div class="col-sm-9">
+
+                                            <textarea rows="4" cols="80" class="form-control" id="b_dminNote" name="b_dminNote" disabled="disabled">@Note</textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Status</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="b_Status" name="b_Status" disabled="disabled">
+                                            <option value="0">เลือกสถานะ</option>
+
+                                            @foreach (var row in ViewBag.Status)
+                                            {
+                                                <option value=@row.CODE>
+                                                    @row.DESCRIPTION_TH
+
+                                                </option>
+                                            }
+                                        </select>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">New S/N*</label>
+                                        <div class="col-sm-9">
+
+                                            <input type="text" class="form-control" id="b_New_SNno" name="b_New_SNno" oninput="this.value = this.value.toUpperCase()" />
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <span id="idmessage" class="w3-codespan"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Claim Shop*</label>
+                                    <div class="col-sm-9">
+
+                                        <input type="text" class="form-control" id="b_ClaimShop" name="b_ClaimShop" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            </fieldset>
+                            </form>
+                            <div class="col-lg-4 mx-auto">
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary submit-btn btn-block" id="rep_new_sn">ยืนยันทดแทน</button>
+                                    @*<input class="submit" type="submit" value="ยืนยัน">*@
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between pb-3">
+                            <h4 class="card-title mb-0">รูปลงทะเบียน</h4>
+
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table" id="FilesList" style="visibility:hidden">
+                                <tr>
+                                    <th>
+                                        Attachment(s)
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-0">รูปสินค้าประกอบเคลม</h4>
+                        <div class="table-responsive">
+                            <table class="table" id="FilesListImageClaim" style="visibility:hidden">
+                                <tr>
+                                    <th>
+                                        Attachment(s)
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-0">รูปเลขไมล์</h4>
+                        <div class="table-responsive">
+                            <table class="table" id="FilesListImageCarMileage" style="visibility:hidden">
+                                <tr>
+                                    <th>
+                                        Attachment(s)
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+    <div class="modal fade" id="confirmdatail-claim" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                </div>
+                <div class="modal-body">
+                    <p id="textbox"></p> <i class="fa fa-truck fa-3x"></i> <i class="fa fa-truck fa-2x"></i>
+
+                </div>
+                <div class="modal-footer">
+
+
+
+                    <button type="button" id="btnnextdetail" class="btn btn-success btn-ok" data-dismiss="modal">ต้องการ</button>
+                    <button type="button" id="btnconfirmdetail" class="btn btn-default " data-dismiss="modal">ไม่ต้องการ</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <div id="myModalzoom" class="modalx" style="z-index: 11;">
+
+        <!-- The Close Button -->
+        @*<span class="close">&times;</span>*@
+
+        <!-- Modal Content (The Image) -->
+        <img class="modal-contentx" id="img01">
+        <div class="modal-contentx" id="img01" style="background-color: #191919;"><button class="btn btn-secondary" type="button" data-dismiss="modal" id="closeimg" style="margin-left: 91%;">Close</button></div>
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
+
+    </div>
+    <link href="~/JSautocomplete/jquery-ui.css" rel="stylesheet" />
+    @*<script src="~/JSautocomplete/jquery-1.10.2.min.js"></script>*@
+    <script src="~/JSautocomplete/jquery-ui.js"></script>
+    <script src="~/Scripts/localhost.js"></script>
+    <link href="~/Css/LoadingSpinner.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //Getimage//
+        //$("#confirmdatail-claim").modal();
+      
+        $('#b_symptom').val("@Symptom_ID");
+        $('#b_Status').val("@ClaimStatus");
+       
+        let lastname = getlocalhost();
+        console.log(lastname);
+        var nokey = $("#bid").val();
+        $.ajax({
+            url: '@Url.Action("GetPathImage", "GetdataCenter")',
+            data: {
+                inWarranty_ID: nokey,
+                infoldertype: "1"
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (result) {
+
+                if (result.Getdata.length > 0) {
+                    $("#FilesList tbody").empty();
+                    for (var i = 0; i < result.Getdata.length; i++) {
+                        resultObj = eval(result.Getdata);
+                        var markup = "<tr id='" + resultObj[i].val.IMAGE_ID + "'><td><img src='" + resultObj[i].val.PATH + "' id='myImg' style='width: 25%'></td>\
+                                  <td>\
+                                  </td>\
+                                  </tr>"; // Binding the file name
+                        $("#FilesList tbody").append(markup);
+                        //var sfilename = resultObj[i].val.IMAGE_NAME;
+                        //formdata.append(sfilename, resultObj[i]);
+
+                    }
+
+                    chkatchtbl();
+                } else {
+                    $("#FilesList tbody").empty();
+
+                }
+            },
+
+        });
+
+        var Claim_ID = "@Claim_ID";
+        $.ajax({
+            url: '@Url.Action("GetPathImage", "GetdataCenter")',
+            data: {
+                inWarranty_ID: Claim_ID,
+                infoldertype: "2"
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (result) {
+
+                if (result.Getdata.length > 0) {
+                    $("#FilesListImageClaim tbody").empty();
+                    for (var i = 0; i < result.Getdata.length; i++) {
+                        resultObj = eval(result.Getdata);
+                        var markup = "<tr id='" + resultObj[i].val.IMAGE_ID + "'><td><img src='" + resultObj[i].val.PATH + "' id='myImg' style='width: 25%'></td>\
+                                  <td>\
+                                  </td>\
+                                  </tr>"; // Binding the file name
+                        $("#FilesListImageClaim tbody").append(markup);
+                        //var sfilename = resultObj[i].val.IMAGE_NAME;
+                        //formdata.append(sfilename, resultObj[i]);
+
+                    }
+
+                    chkatchtblImageClaim();
+                } else {
+                    $("#FilesListImageClaim tbody").empty();
+
+                }
+            },
+
+        });
+        $.ajax({
+            url: '@Url.Action("GetPathImage", "GetdataCenter")',
+            data: {
+                inWarranty_ID: Claim_ID,
+                infoldertype: "3"
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (result) {
+
+                if (result.Getdata.length > 0) {
+                    $("#FilesListImageCarMileage tbody").empty();
+                    for (var i = 0; i < result.Getdata.length; i++) {
+                        resultObj = eval(result.Getdata);
+                        var markup = "<tr id='" + resultObj[i].val.IMAGE_ID + "'><td><img src='" + resultObj[i].val.PATH + "' id='myImg' style='width: 25%'></td>\
+                                  <td>\
+                                 </td>\
+                                  </tr>"; // Binding the file name
+                        $("#FilesListImageCarMileage tbody").append(markup);
+                        //var sfilename = resultObj[i].val.IMAGE_NAME;
+                        //formdata.append(sfilename, resultObj[i]);
+
+                    }
+
+                    chkatchtblImageCarMileage();
+                } else {
+                    $("#FilesListImageCarMileage tbody").empty();
+
+                }
+            },
+
+        });
+        function chkatchtbl() {
+            //alert($('#FilesList tbody').length)
+            if ($('#FilesList tbody').length >= 1) {
+                $("#FilesList").css("visibility", "visible");
+            } else {
+                $("#FilesList").css("visibility", "hidden");
+            }
+        }
+        function chkatchtblImageClaim() {
+            //alert($('#FilesList tbody').length)
+            if ($('#FilesListImageClaim tbody').length >= 1) {
+                $("#FilesListImageClaim").css("visibility", "visible");
+            } else {
+                $("#FilesListImageClaim").css("visibility", "hidden");
+            }
+        }
+        function chkatchtblImageCarMileage() {
+            //alert($('#FilesList tbody').length)
+            if ($('#FilesListImageCarMileage tbody').length >= 1) {
+                $("#FilesListImageCarMileage").css("visibility", "visible");
+            } else {
+                $("#FilesListImageCarMileage").css("visibility", "hidden");
+            }
+        }
+
+        $("#b_New_SNno").autocomplete({
+            selectFirst: true,
+            autoFocus: true,
+            timeout: 100000,
+            source: function (request, response) {
+                var param = {
+                    Name: $('#b_New_SNno').val(),
+
+                };
+                $.ajax({
+                    url: '@Url.Action("GetdateSNCode", "GetdataCenter")',
+                    data: JSON.stringify(param),
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataFilter: function (data) { return data; },
+                    success: function (data) {
+                        response($.map(data.slice(0, 20), function (item) {
+                            return {
+                                value: item
+                            }
+                        }))
+                    },
+                    error: function (XMLhttpsRequest, textStatus, errorThrown) {
+                        alert(textStatus);
+                    }
+                });
+
+            },
+            select: function (event, ui) {
+                var _val = ui.item.value;
+        
+                         $.ajax({
+                                    url: '@Url.Action("GetdateSNeplacement", "GetdataCenter")',
+                                            data: {
+
+                                                    b_SN: _val,
+
+                                                    },
+                                             type: "POST",
+                                             dataType: "JSON",
+                                             success: function (data) {
+                                             
+                                                 if (data == "N") {
+                                                  
+                                                     $.ajax({
+                                                         url: '@Url.Action("Getdata_Sales_History_SN", "GetdataCenter")',
+                                                         data: {
+
+                                                             b_SN: _val,
+
+                                                         },
+                                                         type: "POST",
+                                                         dataType: "JSON",
+                                                         success: function (data) {
+                                                             //alert(data.W_ID)
+                                                             // $("#meassagetext").html(data.message);
+
+                                                             if (data.message == "") {
+                                                                 if (data.Description == "") {
+                                                                     $("#idmessage").text("");
+                                                                     alert("ไม่มี S/N ในระบบ กรุณากรอก S/N อีกครั้ง กดดูรายละเอียดสินค้า");
+                                                                     return false;
+                                                                 } else {
+                                                                     $("#idmessage").text("สามารถใช้ S/N: " + _val + "ทดแทนสินค้าได้");
+                                                                 }
+
+                                                             } else  {
+
+                                                                 $("#idmessage").text("สามารถใช้ S/N: " + _val + "ทดแทนสินค้าได้");
+
+
+                                                             }
+                                                         }
+                                                     });
+
+                                                   } else {
+                                                     $("#idmessage").text("");
+                                                       alert("ไม่สามารถทดแทนสินค้าได้ S/N: " + _val + " " + data);
+                                                   }
+                                               }
+                                           });
+          
+                         
+
+            },
+            minLength: 2//minLength as 2, it means when ever user enter 2 character in TextBox the AutoComplete method will fire and get its source data.
+        });
+
+        $().ready(function () {
+            // validate the comment form when it is submitted
+            $("#commentForm").validate();
+
+            // validate signup form on keyup and submit
+            $("#signupForm").validate({
+                rules: {
+                    b_CarMileage_now: "required",
+
+
+                },
+                messages: {
+                    b_CarMileage_now: "กรุณาใส่เลขไมล์ปัจจุบัน"
+
+
+                }
+            });
+
+
+        });
+        function checkSn(b_SN) {
+            $("#overlay").fadeIn(300);
+            $.ajax({
+                url: '@Url.Action("GetdateSNeplacement", "GetdataCenter")',
+                data: {
+
+                    b_SN: b_SN,
+
+                },
+                type: "POST",
+                dataType: "JSON",
+                success: function (data) {
+                  
+                  
+                    if (data == "N") {
+
+                        $.ajax({
+                            url: '@Url.Action("Getdata_Sales_History_SN", "GetdataCenter")',
+                            data: {
+
+                                b_SN: b_SN,
+
+                            },
+                            type: "POST",
+                            dataType: "JSON",
+                            success: function (data) {
+                                //alert(data.W_ID)
+                                // $("#meassagetext").html(data.message);
+
+                                if (data.message == "N") {
+                                    if (data.Description == "") {
+                                        $("#idmessage").text("");
+                                        alert("ไม่มี S/N ในระบบ กรุณากรอก S/N อีกครั้ง ");
+                                        return false;
+                                    }
+
+                                } else {
+                                   
+                                    var Claim_ID = "@Claim_ID";
+                                    $.ajax({
+                                        url: '@Url.Action("ReplacementSN", "Replacement")',
+
+                                        data: {
+                                            b_ClaimShop: $('#b_ClaimShop').val(),
+                                            b_SN: $('#b_SNno').val(),
+                                            b_Warranty_ID: $('#bid').val(),
+                                            b_New_SN: $('#b_New_SNno').val(),
+                                            b_Claim_ID: Claim_ID,
+
+                                        },
+                                        type: "POST",
+                                        dataType: "JSON",
+                                        success: function (data) {
+
+
+                                            if (data.message == "Y") {
+                                                alert("บันทึก S/N ทดแทน สำเร็จ");
+
+
+
+                                                var sn_no = $('#b_SNno').val();
+                                                window.location.replace(lastname + "/ClaimView/Index?SnNUM=" + btoa($('#bid').val()));
+
+                                            } else {
+                                                alert(data.message);
+                                            }
+                                        }
+                                    });
+
+
+                                }
+                            }
+                        }).done(function () {
+                            setTimeout(function () {
+                                $("#overlay").fadeOut(300);
+                            }, 500);
+                        });
+
+                    } else {
+                      
+                        $("#idmessage").text("");
+                        alert("ไม่สามารถทดแทนสินค้าได้ S/N: " + b_SN + " " + data);
+
+                        $("#overlay").fadeOut(300);
+                    }
+                }
+            });
+
+        }
+        $("#rep_new_sn").click(function () {
+            if ($('#b_New_SNno').val() == "") {
+                alert("กรุณาใส่ New S/N");
+                return false;
+            }
+            if ($('#b_ClaimShop').val() == "") {
+                alert("กรุณาใส่ Claim Shop");
+                return false;
+            }
+            checkSn($('#b_New_SNno').val());
+        });
+        $(document).delegate('#btnnextdetail', 'click', function () {
+            //window.location.replace("../Account/LogIn");
+          //  var wi = window.open(".Inquiry/Index");
+            window.location.replace(lastname + "/Inquiry/Index");
+            wi.focus();
+        }); 
+        $(document).on('click', '#myImg', function () {
+            var modal = document.getElementById('myModalzoom');
+            var img = document.getElementById('myImg');
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        });
+        $(document).on('click', '.close', function () {
+            var modal = document.getElementById('myModalzoom');
+            modal.style.display = "none";
+        });
+        $(document).on('click', '#closeimg', function () {
+            var modal = document.getElementById('myModalzoom');
+            modal.style.display = "none";
+        });
+        $(document).on('click', '#myModalzoom div', function () {
+            var modal = document.getElementById('myModalzoom');
+            modal.style.display = "none";
+        });
+    </script>
+
+</body>
+</html>
+
+
