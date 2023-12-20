@@ -41,6 +41,8 @@ $RECYCLE.BIN/
 # Img Upload
 /EWarranty/UploadedImage
 
+/EWarranty/BootstrapTemplate
+
 
 # Config
 /EWarranty/Web.config
