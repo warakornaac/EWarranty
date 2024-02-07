@@ -61,6 +61,8 @@ namespace EWarranty.Controllers
                 string LineID = string.Empty;
                 string EMail = string.Empty;       
                 string CustomerNote = string.Empty;
+                string Shop = string.Empty;
+                string StatusId = string.Empty;
                 Docdisplay = Request.QueryString["SnNUM"];
                 List<EWarranty.Models.GroupClass.DefineCode> List_Sympto = new List<EWarranty.Models.GroupClass.DefineCode>();
                 List<EWarranty.Models.GroupClass.DefineCode> List = new List<EWarranty.Models.GroupClass.DefineCode>();
@@ -120,7 +122,7 @@ namespace EWarranty.Controllers
                             CarYear = dr["Car Year"].ToString();
                             CarLicense = dr["Car License"].ToString();
                             CarMileage = dr["Car Mileage"].ToString();
-                           // Shop = dr["Shop"].ToString(),
+                            Shop = dr["Shop"].ToString();
                            // Status = dr["Status"].ToString(),
                             WarrantyStartDate = dr["Warranty Start Date"].ToString();
                             WarrantyEndDate = dr["Warranty End Date"].ToString();
@@ -150,16 +152,14 @@ namespace EWarranty.Controllers
                              Tel = dr["Tel"].ToString();
                              LineID = dr["LineID"].ToString();
                              EMail = dr["EMail"].ToString();
+                             StatusId = dr["StatusID"].ToString();
                         //})
                     }
                     dr.Close();
                     dr.Dispose();
                     command.Dispose();
                     //Connection.Close();
-
-                  
                     //DefineCode model = null;
-
                     var command_Symptom = new SqlCommand("P_Get_Symptom", Connection);
                     command_Symptom.CommandType = CommandType.StoredProcedure;
                     command_Symptom.Parameters.AddWithValue("@initem",ItemNo);
@@ -181,12 +181,6 @@ namespace EWarranty.Controllers
                     dr_Sympto.Close();
                     dr_Sympto.Dispose();
                     command_Symptom.Dispose();
-
-
-
-
-                   
-                    
                     var command_status = new SqlCommand("P_Get_DefineCode", Connection);
                     command_status.CommandType = CommandType.StoredProcedure;
                     command_status.Parameters.AddWithValue("@DefineID", 67);
@@ -246,6 +240,8 @@ namespace EWarranty.Controllers
                 ViewBag.Tel = Tel;
                 ViewBag.LineID = LineID;
                 ViewBag.EMail = EMail;
+                ViewBag.Shop = Shop;
+                ViewBag.StatusId = StatusId;
 
                
             }
@@ -444,7 +440,7 @@ namespace EWarranty.Controllers
             return Json(countError);
         }
          [HttpPost]
-        public JsonResult AddWarrantyreq(string b_Claim_ID, string b_dminNote, string b_adminstatus, string b_Symptom_ID, string b_CustomerNote, string b_Warranty_ID, string b_CarMaker, string b_SN, string b_CarModel, string b_CarYear, string b_CarLicense, string b_CarMileage, string b_CarMileage_now)
+        public JsonResult AddWarrantyreq(string b_Userid, string b_Claim_ID, string b_dminNote, string b_adminstatus, string b_Symptom_ID, string b_CustomerNote, string b_Warranty_ID, string b_CarMaker, string b_SN, string b_CarModel, string b_CarYear, string b_CarLicense, string b_CarMileage, string b_CarMileage_now)
         {
 
 
@@ -461,7 +457,7 @@ namespace EWarranty.Controllers
                 var command = new SqlCommand("P_Claimrequest_customer_ewaranty", Connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@inUsrID", Session["UserID"]);
+                command.Parameters.AddWithValue("@inUsrID", b_Userid);
                 command.Parameters.AddWithValue("@inSN", b_SN);
                 command.Parameters.AddWithValue("@inCarMaker", b_CarMaker);
                 command.Parameters.AddWithValue("@inCarModel", b_CarModel);

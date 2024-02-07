@@ -1,0 +1,1070 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layoutview.cshtml";
+    string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+
+    var user = ViewBag.UserId;
+    var userType = ViewBag.UserType;
+
+    var UserPassword = ViewBag.UserPassword;
+    var id = ViewBag.id;
+    var Name = ViewBag.Name;
+    var Address01 = ViewBag.Address01;
+    var Address02 = ViewBag.Address02;
+    var EMail = ViewBag.EMail;
+    var Tel = ViewBag.Tel;
+    var LineID = ViewBag.LineID;
+    var Cuscode = ViewBag.Cuscode;
+    var Shipto = ViewBag.Shipto;
+    var Password_Endcode = ViewBag.Password_Endcode;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>E-Warranty Register Dealer</title>
+    <style>
+        @@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,500;0,600;1,500&display=swap");
+
+        html body {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        html body {
+            /*font-family: 'Kanit', sans-serif;*/
+            font-size: calc(0.75em + 1vmin);
+        }
+
+        .content-wrapper {
+            background: #F3F3F3;
+            padding: 0.5pc 0.7pc;
+            width: 100%;
+            flex-grow: 1;
+        }
+        /* Style all input fields */
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+
+            /* Style the submit button */
+            input[type=submit] {
+                background-color: #04AA6D;
+                color: white;
+            }
+
+        /* Style the container for inputs */
+        .container {
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        /* The message box is shown when the user clicks on the password field */
+        #message {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+            margin: auto;
+        }
+
+            #message p {
+                padding: 0px 19px;
+                /*padding: 0px 186px;*/
+                font-size: 0.875rem;
+            }
+
+
+        #messagecf {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+            margin: auto;
+        }
+
+            #messagecf p {
+                padding: 0px 19px;
+                /*padding: 0px 186px;*/
+                font-size: 0.875rem;
+            }
+
+        /* Add a green text color and a checkmark when the requirements are right */
+        .valid {
+            color: green;
+        }
+
+            .valid:before {
+                position: relative;
+                left: -35px;
+                content: "✔";
+            }
+
+        /* Add a red text color and an "x" when the requirements are wrong */
+        .invalid {
+            color: red;
+        }
+
+            .invalid:before {
+                position: relative;
+                left: -35px;
+                content: "✖";
+            }
+
+        .field-icon {
+            float: right;
+            margin-left: -41px;
+            margin-top: 15px;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+    <style>
+        form.cmxform label.error, label.error {
+            color: red;
+            font-style: italic;
+        }
+
+        #commentForm {
+            width: 500px;
+        }
+
+            #commentForm label {
+                width: 250px;
+            }
+
+                #commentForm label.error, #commentForm input.submit {
+                    margin-left: 253px;
+                }
+
+
+
+        #signupForm label.error {
+            margin-left: 10px;
+            width: auto;
+            display: inline;
+        }
+
+        #newsletter_topics label.error {
+            display: none;
+            margin-left: 103px;
+        }
+
+        body {
+            font-size: calc(0.75em + 1vmin);
+        }
+    </style>
+
+    <style>
+        /* The container */
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* Hide the browser's default checkbox */
+            .container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 10;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        /* Large checkboxes */
+        .myinput.large {
+            height: 19px;
+            width: 19px;
+        }
+
+            .myinput.large[type="checkbox"]:before {
+                width: 20px;
+                height: 20px;
+            }
+
+            .myinput.large[type="checkbox"]:after {
+                top: -20px;
+                width: 16px;
+                height: 16px;
+            }
+    </style>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-33058582-1', 'auto', {
+            'name': 'Main'
+        });
+        ga('Main.send', 'event', 'jquery.Thailand.js', 'GitHub', 'Visit');
+    </script>
+</head>
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper align-items-center auth register-bg-1 theme-one">
+                <div class="row">
+                    <div class="col-lg-12 mx-auto">
+                        <div class="row page-title-header">
+                        </div>
+                        <h2 class="text-center mb-4">แก้ไขข้อมูลส่วนตัว</h2>
+                        <div>
+                            <div class="col-12 grid-margin">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class=""> กรุณากรอกข้อมูลของท่านตาม * ให้ครบถ้วน</p>
+                                        <form class="cmxform" id="signupForm" method="get" action="">
+                                            <fieldset>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <input type="hidden" id="userId" value="" />
+                                                            <input type="hidden" id="displayName" value="" />
+                                                            <label class="col-sm-3 col-form-label">ชื่อร้านค้า*</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="b_name" name="b_name" value="@Name" readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">รหัสร้านค้า*</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="b_code" name="b_code" value="@Cuscode" readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 text-center" style="margin: -12px 0px 13px;">
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                @*show all shipto*@
+                                                <div class="row" style="font-size: 16px;">
+                                                    <div class="col-md-12">
+                                                        <div id="showShipto"> </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">ที่อยู่*</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control" id="address1" name="address1" value="@Address01" required />
+                                                                <input type="hidden" class="form-control" id="shipto" name="shipto" value="@Shipto" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">เบอร์โทรศัพท์(เฉพาะตัวเลข)*</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="number" class="form-control" id="b_tel" name="b_tel" value="@Tel" required />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">อีเมล*</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="email" class="form-control" id="email" name="email" value="@EMail" required readonly/>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 text-center" style="margin: -12px 0px 13px;">
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label" for="password">รหัสผ่านเก่า* </label>
+                                                            <div class="col-sm-9">
+                                                                <input type="hidden" id="getPasswordOld" value="@Password_Endcode" />
+                                                                <input class="form-control" maxlength="8" type="text" placeholder="รหัสผ่านเก่า" id="password" name="password">
+                                                            </div>
+                                                            @*<span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>*@
+                                                            <div id="message">
+                                                                <p>รหัสผ่านจะต้องประกอบด้วย :</p>
+                                                                <p id="letter" class="invalid"><b>ภาษาอังกฤษตัวพิมพ์เล็ก</b> </p>
+                                                                <p id="capital" class="invalid"><b>ภาษาอังกฤษตัวพิมพ์ใหญ่</b> </p>
+                                                                <p id="number" class="invalid"><b>ตัวเลข</b></p>
+                                                                <p id="length" class="invalid"><b>ตัวอักษรมีความยาว 8 ตัวอักษร</b></p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label" for="password">รหัสผ่าน*</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control" maxlength="8" type="text" placeholder="รหัสผ่าน" id="confirm_password" name="confirm_password">
+                                                            </div>
+                                                            @*<span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>*@
+                                                            <div id="message">
+                                                                <p>รหัสผ่านจะต้องประกอบด้วย :</p>
+                                                                <p id="letter" class="invalid"><b>ภาษาอังกฤษตัวพิมพ์เล็ก</b> </p>
+                                                                <p id="capital" class="invalid"><b>ภาษาอังกฤษตัวพิมพ์ใหญ่</b> </p>
+                                                                <p id="number" class="invalid"><b>ตัวเลข</b></p>
+                                                                <p id="length" class="invalid"><b>ตัวอักษรมีความยาว 8 ตัวอักษร</b></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label" for="cfpassword">ยืนยันรหัสผ่านใหม่*</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control" maxlength="8" type="text" placeholder="ยืนยันรหัสผ่าน" id="confirm_password1" name="confirm_password1">
+                                                            </div>
+                                                            @*<span toggle="#confirm_password" class="fa fa-fw fa-eye field-icon toggle-cfpassword"></span>*@
+                                                            <div id="messagecf">
+                                                                <p>ยืนยันรหัสผ่านจะต้องประกอบด้วย :</p>
+                                                                <p id="cfletter" class="invalid"><b>ภาษาอังกฤษตัวพิมพ์เล็ก</b></p>
+                                                                <p id="cfcapital" class="invalid"><b>ภาษาอังกฤษตัวพิมพ์ใหญ่</b> </p>
+                                                                <p id="cfnumber" class="invalid"><b>ตัวเลข</b></p>
+                                                                <p id="cflength" class="invalid"><b>ตัวอักษรมีความยาว 8 ตัวอักษร</b></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group row">
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group row">
+                                                            <span id="messagedx" style="color:red"> </span> <br><br>
+                                                            <span id="messagex" style="color:red"> </span> <br><br>
+                                                            <input class="submit" type="submit" value="แก้ไขข้อมูล">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group row">
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+
+
+
+    </div>
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/JQL.min.js"></script>
+    <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/typeahead.bundle.js"></script>
+    <link rel="stylesheet" href="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.css">
+    <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    @*<script src="~/BootstrapTemplate/src/assets/vendors/js/vendor.bundle.base.js"></script>
+        <script src="~/BootstrapTemplate/src/assets/vendors/js/vendor.bundle.addons.js"></script>*@
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="~/BootstrapTemplate/src/assets/js/shared/off-canvas.js"></script>
+    <script src="~/BootstrapTemplate/src/assets/js/shared/misc.js"></script>
+    <!-- endinject -->
+    <script src="~/BootstrapTemplate/src/assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
+
+    @*<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>*@
+
+
+    <script type="text/javascript">
+        var cusCode = "@Cuscode";
+        var shipto = "";
+        let lastname = getlocalhost();
+        function getlocalhost() {
+            var url;
+            var array = document.location.pathname.split("/");
+            if (document.domain == "localhost") {
+
+                url = document.location.origin;
+            } else {
+                url = document.location.origin + "/" + array[1];
+            }
+            return url;
+        }
+
+        $(document).ready(function () {
+            getDataShipto(cusCode, shipto);
+            $(".list-group .list-group-item").click(function (e) {
+                $(".list-group .list-group-item").removeClass("active");
+                $(e.target).addClass("active");
+            });
+        });
+
+        function getDataShipto(cusCode) {
+            $.ajax({
+                url: '@Url.Action("SearchShiptoDealer", "Account")',
+                data: {
+                    cuscode: cusCode.trim(),
+                    shipto: '',
+                },
+                type: "POST",
+                dataType: "JSON",
+                beforeSend: function () {
+                    $('#showShipto').empty();
+                    $('#showShipto').html('<div style="padding-bottom: 15px; font-size: 14px;"> <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> กำลังโหลดข้อมูล... </div>')
+                },
+                success: function (data) {
+                    console.log("SearchShiptoDealer = " + data);
+                    var textHtml = '';
+                    textHtml += "<div class='list-group'>";
+                    $(data).each(function (index, item) {
+                        if (item.Code != '') {
+                            textHtml += '<div type="button" onclick="makeActive(event, this);" class="list-group-item" data-shipto="' + item.Code + '"  data-name="' + item.Name + '" data-address1="' + item.Address1 + '" data-address2="' + item.Address2 + '" data-phone="' + item.Phone + '"  data-contact="' + item.Contact + '">' + item.Code + " | " + "  " + item.Address1 + " | " + item.Address2 + '</div>';
+                        }
+                    });
+                    // onClick="selectShipto(this);"
+                    textHtml += "</div>";
+                    $('#showShipto').html(textHtml);
+                }
+            });
+        }
+
+        var password = '';
+            $("#search_dealer").autocomplete({
+                selectFirst: true,
+                autoFocus: true,
+                source: function (request, response) {
+                    var param = {
+                        textSearch: $('#search_dealer').val()
+                    };
+                    $.ajax({
+                        url: '@Url.Action("SearchDataDealer", "Account")',
+                        data: JSON.stringify(param),
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            response($.map(data.slice(0, 50), function (item) {
+                                return {
+                                    value: item
+                                }
+                            }))
+                        },
+                        error: function (XMLhttpsRequest, textStatus, errorThrown) {
+                            alert(textStatus);
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    var _val = ui.item.value;
+                    var _splito = "";
+                    _splito = _val.split('|');
+                    var splitval = _splito;
+                    _scus = _splito[0].trim();
+                    $("#b_code").val(_splito[0].trim());
+                    $("#b_name").val(_splito[1].trim());
+                    //get ship to by cuscode
+                    $.ajax({
+                        url: '@Url.Action("SearchShiptoDealer", "Account")',
+                        data: {
+                            cuscode: _splito[0].trim(),
+                            shipto: ''
+                        },
+                        type: "POST",
+                        dataType: "JSON",
+                        beforeSend: function () {
+                            $('#showShipto').empty();
+                            $('#showShipto').html('<div style="padding-bottom: 15px; font-size: 14px;"> <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> กำลังโหลดข้อมูล... </div>')
+                        },
+                        success: function (data) {
+                            console.log("SearchShiptoDealer = " + data);
+                            var textHtml = '';
+                            textHtml += "<div class='list-group'>";
+                            $(data).each(function (index, item) {
+                                if (item.Code != '') {
+                                    textHtml += '<button onClick="getAddressShipto(this)" type="button" class="list-group-item list-group-item-action" data-shipto="' + item.Code + '" data-address1="' + item.Address1 + '" data-address2="' + item.Address2 + '" data-phone="' + item.Phone + '"  data-contact="' + item.Contact + '">' + "(" + item.Code + ")" + "  " + item.Address1 + " | " + item.Address2 + '</button>';
+
+                                }
+                            });
+                            textHtml += "</div>";
+                            $('#showShipto').html(textHtml);
+                            password = generatePassword();
+                            $("#password").val(password);
+                            $("#confirm_password").val(password);
+                        }
+                    });
+                },
+
+                minLength: 2//minLength as 2, it means when ever user enter 2 character in TextBox the AutoComplete method will fire and get its source data.
+            });
+
+
+        function makeActive(event, el) {
+            var address1 = $(el).attr('data-address1');
+            var address2 = $(el).attr('data-address2');
+            var phone = $(el).attr('data-phone');
+            var contact = $(el).attr('data-contact');
+            var shipto = $(el).attr('data-shipto');
+
+            var previous = document.getElementsByClassName("active");
+            if (previous.length > 0) {
+                previous[0].className = previous[0].className.replace(" active", "");
+            }
+            event.target.className += " active";
+
+            $("#address1").val(address1);
+            if (phone != "") {
+                $("#b_tel").val(phone.replace(/-/g, ''));
+            }
+            $("#shipto").val(shipto);
+        }
+
+        //get page ว่ามาจาก line ไหม
+        function getPageLocation() {
+            const queryString = decodeURIComponent(window.location.search);
+            const params = new URLSearchParams(queryString);
+            const flagApp = params.get('flagApp');
+            const userId = params.get('userId');
+            const email = params.get('email');
+            const displayName = params.get('displayName');
+            if (flagApp != null && flagApp != '' && flagApp == 'line') { //มาจาก line
+                if (userId != null && userId != '') {
+                    $("#userId").val(userId);
+                }
+                if (displayName != null && displayName != '') {
+                    $("#displayName").val(displayName);
+                    $("#b_name").val(displayName);
+                }
+                if (email != null && email != '') {
+                    $("#email").val(email);
+                }
+            }
+        }
+
+        function CvalidatePassword() {
+
+            var password = document.getElementById("confirm_password")
+                , confirm_password = document.getElementById("confirm_password1");
+
+            function validatePassword() {
+                if (password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("Passwords Don't Match");
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            }
+
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+        }
+
+        $(".toggle-password").click(function () {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+        $(".toggle-cfpassword").click(function () {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+        $(".toggle-cfpassword1").click(function () {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+        var myInputcf = document.getElementById("confirm_password");
+        var lettercf = document.getElementById("letter");
+        var capitalcf = document.getElementById("capital");
+        var numbercf = document.getElementById("number");
+        var lengthcf = document.getElementById("length");
+        // When the user clicks on the password field, show the message box
+        myInputcf.onfocus = function () {
+            document.getElementById("message").style.display = "block";
+        }
+
+        // When the user clicks outside of the password field, hide the message box
+        myInputcf.onblur = function () {
+            document.getElementById("message").style.display = "none";
+        }
+
+        // When the user starts to type something inside the password field
+        myInputcf.onkeyup = function () {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if (myInputcf.value.match(lowerCaseLetters)) {
+                lettercf.classList.remove("invalid");
+                lettercf.classList.add("valid");
+            } else {
+                lettercf.classList.remove("valid");
+                lettercf.classList.add("invalid");
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if (myInputcf.value.match(upperCaseLetters)) {
+                capitalcf.classList.remove("invalid");
+                capitalcf.classList.add("valid");
+            } else {
+                capitalcf.classList.remove("valid");
+                capitalcf.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if (myInputcf.value.match(numbers)) {
+                numbercf.classList.remove("invalid");
+                numbercf.classList.add("valid");
+            } else {
+                numbercf.classList.remove("valid");
+                numbercf.classList.add("invalid");
+            }
+
+            // Validate length
+            if (myInputcf.value.length >= 8) {
+                lengthcf.classList.remove("invalid");
+                lengthcf.classList.add("valid");
+            } else {
+                lengthcf.classList.remove("valid");
+                lengthcf.classList.add("invalid");
+            }
+        }
+
+
+
+        //ยืนยัน///
+        var myInputcf1 = document.getElementById("confirm_password1");
+        var lettercf1 = document.getElementById("letter1");
+        var capitalcf1 = document.getElementById("capital1");
+        var numbercf1 = document.getElementById("number1");
+        var lengthcf1 = document.getElementById("length1");
+        // When the user clicks on the password field, show the message box
+        myInputcf1.onfocus = function () {
+            document.getElementById("message1").style.display = "block";
+        }
+
+        // When the user clicks outside of the password field, hide the message box
+        myInputcf1.onblur = function () {
+            document.getElementById("message1").style.display = "none";
+        }
+
+        // When the user starts to type something inside the password field
+        myInputcf1.onkeyup = function () {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if (myInputcf1.value.match(lowerCaseLetters)) {
+                lettercf1.classList.remove("invalid");
+                lettercf1.classList.add("valid");
+            } else {
+                lettercf1.classList.remove("valid");
+                lettercf1.classList.add("invalid");
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if (myInputcf1.value.match(upperCaseLetters)) {
+                capitalcf1.classList.remove("invalid");
+                capitalcf1.classList.add("valid");
+            } else {
+                capitalcf1.classList.remove("valid");
+                capitalcf1.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if (myInputcf1.value.match(numbers)) {
+                numbercf1.classList.remove("invalid");
+                numbercf1.classList.add("valid");
+            } else {
+                numbercf1.classList.remove("valid");
+                numbercf1.classList.add("invalid");
+            }
+
+            // Validate length
+            if (myInputcf1.value.length >= 8) {
+                lengthcf1.classList.remove("invalid");
+                lengthcf1.classList.add("valid");
+            } else {
+                lengthcf1.classList.remove("valid");
+                lengthcf1.classList.add("invalid");
+            }
+        }
+            //////
+
+
+            $().ready(function () {
+                // validate the comment form when it is submitted
+                $("#commentForm").validate();
+
+                // validate signup form on keyup and submit
+                $("#signupForm").validate({
+                    rules: {
+                        b_name: "required",
+                        b_lastname: "required",
+                        username: {
+                            required: true,
+                            minlength: 2
+                        },
+                        //password: {
+                        //    required: true,
+                        //    minlength: 5
+                        //},
+                        confirm_password1: {
+                            required: false,
+                            minlength: 5,
+                            equalTo: "#confirm_password"
+                        },
+                        email: {
+                            required: true,
+                            email: true
+                        },
+                        address1: "required",
+                        b_tel: "required",
+                        //b_lineid: "required",
+                    },
+                    messages: {
+                        //password: {
+                        //    required: "กรุณาใส่ รหัสผ่าน",
+                        //    minlength: "your password must be at least 8 characters long"
+                        //},
+                        //confirm_password: {
+                        //    required: "กรุณาใส่ ยืนยันรหัสผ่าน",
+                        //    minlength: "your password must be at least 8 characters long",
+                        //    equalto: "กรุณา ยืนยันรหัสผ่านใหม่ รหัสผ่านไม่ตรงกัน"
+                        //},
+                        //confirm_password1: {
+                        //    required: "กรุณาใส่ ยืนยันรหัสผ่านใหม่",
+                        //    minlength: "your password must be at least 8 characters long"
+                        //},
+                        email: "กรุณากรอกอีเมล",
+                        address1: "กรุณากรอกที่อยู่ของท่าน",
+                        // address2: "กรุณาใส่ ที่อยู่ของท่าน",
+                        // b_lineid: "กรุณาใส่ Line ID ของท่าน"
+                        // agree: "Please accept our policy",
+                        // topic: "Please select at least 2 topics"
+                    }
+                });
+
+                // propose username by combining first- and lastname
+                $("#username").focus(function () {
+                    var firstname = $("#firstname").val();
+                    var lastname = $("#lastname").val();
+                    if (firstname && lastname && !this.value) {
+                        this.value = firstname + "." + lastname;
+                    }
+                });
+
+                //code to hide topic selection, disable for demo
+                var newsletter = $("#newsletter");
+                // newsletter topics are optional, hide at firstf
+                var inital = newsletter.is(":checked");
+                var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
+                var topicInputs = topics.find("input").attr("disabled", !inital);
+                // show when newsletter is checked
+                newsletter.click(function () {
+                    topics[this.checked ? "removeClass" : "addClass"]("gray");
+                    topicInputs.attr("disabled", !this.checked);
+                });
+            });
+            $.validator.setDefaults({
+                submitHandler: function () {
+                    // alert("submitted!");
+                    var b_name = $('#b_name').val();
+                    var b_lastname = $('#b_lastname').val();
+                    //var b_password = $('#password').val();
+                    // var b_cfpassword = $('#confirm_password').val();
+                    var b_address1 = $('#address1').val();
+                    var b_address2 = $('#address2').val();
+                    var b_district = $('#district').val();
+                    var b_amphoe = $('#amphoe').val();
+                    var b_province = $('#province').val();
+                    var b_zipcode = $('#zipcode').val();
+                    var b_tel = $('#b-tel').val();
+                    var b_lineid = $('#b_lineid').val();
+                    var b_email = $('#b_email').val();
+                    var b_cfpassword = $('#confirm_password1').val();
+                    var pw = document.getElementById("confirm_password1").value;
+                    var getPasswordOld = $("#getPasswordOld").val().replace(/\s+/g, '');
+                    var inputPasswordOld = $("#password").val().replace(/\s+/g, '');
+
+                    if (pw != "") {
+                        if (/[0-9]/.test(pw) && /[a-z]/.test(pw) && /[A-Z]/.test(pw)) {
+                            //document.getElementById("messagex").innerHTML = "**รหัสของคุณผ่านปลอดภัย";
+                        }
+                        else { document.getElementById("messagex").innerHTML = "**รหัสผ่านใหม่ของคุณไม่ปลอดภัย"; return false; }
+
+                        //minimum password length validation
+                        if (pw.length < 8) {
+                            document.getElementById("messagex").innerHTML = "**รหัสผ่านของคุณต้องมีความยาว 8 ตัวอักษร";
+                            return false;
+                        }
+                    }
+                    //alert(inputPasswordOld + '/' + getPasswordOld);
+                    if (inputPasswordOld != "") {
+                        if (inputPasswordOld != getPasswordOld) { //ตรงกับรหัสผ่านเก่า
+                            alert("ท่านกรอกรหัสผ่านปัจจุบันไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง");
+                            return false;
+                        }
+                    }
+                        $.ajax({
+                        url: '@Url.Action("EditRegisterDealer", "EditRegisterDealer")',
+                            data: {
+                            b_name: $('#b_name').val(),
+                            b_code: $('#b_code').val(),
+                            b_password: $('#password').val(),
+                            b_address1: $('#address1').val(),
+                            b_tel: $('#b_tel').val(),
+                            b_email: $('#email').val(),
+                        },
+                        type: "POST",
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (data.message == "Y") {
+                                if (b_cfpassword != "") {
+                                    $.ajax({
+                                        url: '@Url.Action("savechangepassword", "Account")',
+                                        data: {
+                                            b_name: $('#email').val(),
+                                            b_cfpassword: $('#confirm_password1').val(),
+                                        },
+                                        type: "POST",
+                                        dataType: "JSON",
+                                        success: function (data) {
+                                            if (data.message == "Y") {
+                                                $("#overlay").fadeOut(100);
+                                                alert("แก้ไขข้อมูลสำเร็จ");
+                                                window.location.replace(lastname + "/Inquiry/Index");
+                                            } else {
+                                                alert(data.message);
+                                                return false;
+                                            }
+                                        }
+                                    }).done(function () {
+                                        setTimeout(function () {
+                                            $("#overlay").fadeOut(100);
+                                        }, 500);
+                                    });
+                                } else {
+                                    $("#overlay").fadeOut(100);
+                                    alert("แก้ไขข้อมูลสำเร็จ");
+                                    window.location.replace(lastname + "/Inquiry/Index");
+                                    //var wi = window.open(lastname + "/Inquiry/Index");
+                                    //wi.focus();
+                                }
+                            } else {
+                                alert(data.message);
+                                return false;
+                            }
+                        }
+                    }).done(function () {
+                        setTimeout(function () {
+                            $("#overlay").fadeOut(300);
+                        }, 500);
+                    });
+                        
+               }
+            });
+
+        function getDataLoginExternal(pictureUrl, userId, displayName, email, page) {
+            var userId = userId || "";
+            var displayName = displayName || "";
+            var getDecodedIDToken = email || "";
+            var page = page || "";
+            console.log("userId = " + userId);
+            console.log("displayName = " + displayName);
+            console.log("getDecodedIDToken = " + getDecodedIDToken);
+            //return false;
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CheckDataLoginExternal", "Account")',
+                data: {
+                    userId: userId,
+                    email: getDecodedIDToken,
+                    displayName: displayName,
+                },
+                dataType: "JSON",
+                beforeSend: function () {
+                    // LoadingShow();
+                },
+                success: function (result) {
+                    console.log("result.message = " + result.message);
+                    console.log("page = " + page);
+                    if (result.message == "Y") { //เป็นสมาชิกแล้ว
+                        //ดึงข้อมูลจาก usrTbl
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetDataLoginExternal", "Account")',
+                            data: {
+                                userId: userId,
+                                page: page,
+                            },
+                            dataType: "JSON",
+                            success: function (result) {
+                                if (result.message == "Y") {
+                                    console.log("userId = " + result.UserId);
+                                    console.log("UserType = " + result.UserType);
+                                    console.log("ID = " + result.ID);
+                                    console.log("Page = " + result.page);
+                                    //return false;
+                                    //พาไปเมนูหลัก
+                                    window.location.assign("@domainName" + "/e-Warranty_test/Menubar/Index");
+                                }
+                            },
+                            error: function (ex) {
+                                //notify(ex, 'danger');
+                            },
+                            complete: function (res) {
+                                //LoadingHide();
+                            }
+                        }).fail(function (error) {
+                            //Swal.fire({
+                            //    icon: 'error',
+                            //    title: 'Error not saved',
+                            //    html: 'กรุณาแจ้งผู้ดูแลระบบ<br>โดยการแคปหน้าจอและก๊อปปี้ Error ด่านล่างนี้<br><br><br>',
+                            //    confirmButtonColor: '#d33',
+                            //    confirmButtonText: 'ปิด',
+                            //    allowOutsideClick: false,
+                            //    focusConfirm: false,
+                            //});
+                        });
+
+                    } else { //ไมเป็นสมาชิก
+                        window.location.replace(currentURL + "Register?flagApp=line&userId=" + userId + "&displayName=" + displayName + "&email=" + getDecodedIDToken);
+                    }
+                },
+                error: function (ex) {
+                    //notify(ex, 'danger');
+                },
+                complete: function (res) {
+                    //LoadingHide();
+                }
+            }).fail(function (error) {
+
+            });
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+﻿@{
+
+    string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>e-Warranty</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <link href="~/BootstrapTemplate/src/assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        @@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,500;0,600;1,500&display=swap");
+
+        html body {
+            font-family: 'Kanit', sans-serif;
+            font-size: calc(0.75em + 1vmin);
+        }
+
+        body {
+            margin: 16px
+        }
+
+        button, img {
+            /*display: none;*/
+            width: 40%
+        }
+
+        button {
+            padding: 16px
+        }
+
+        #pictureUrl {
+            display: block;
+            margin: 0 auto
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>Get Userprofile e-Warranty</h1> -->
+    <img id="pictureUrl" width="20%">
+    <p id="userId"></p>
+    <p id="displayName"></p>
+    <p id="statusMessage"></p>
+    <p id="getDecodedIDToken"></p>
+    <p id="page"></p>
+
+    <script type="text/javascript">
+
+        // $(document).ready(function () {
+        //     setTimeout(() => {
+        //         getDataLoginExternal();
+        //     }, 1000);
+        //     //var pathname = window.location.pathname.split('/');
+        //     //var pathId = pathname[1].replace('/', '');
+        //     //console.log(pathId + "Warrantyregister/Index");
+        //     //console.log(pathname + "Warrantyregister/Index");
+        // });
+
+        var currentURL = window.location.href;
+        var loc = window.location;
+        var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+        var currentURL = loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+
+
+        function getDataLoginExternal(pictureUrl, userId, displayName, email, page) {
+            var userId = userId || "";
+            var displayName = displayName || "";
+            var getDecodedIDToken = email || "";
+            var page = page || "";
+            console.log("userId = " + userId);
+            console.log("displayName = " + displayName);
+            console.log("getDecodedIDToken = " + getDecodedIDToken);
+            //return false;
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CheckDataLoginExternal", "Account")',
+                data: {
+                    userId: userId,
+                    email: getDecodedIDToken,
+                    displayName: displayName,
+                },
+                dataType: "JSON",
+                beforeSend: function () {
+                    // LoadingShow();
+                },
+                success: function (result) {
+                    console.log("result.message = " + result.message);
+                    console.log("page = " + page);
+                    if (result.message == "Y") { //เป็นสมาชิกแล้ว
+                        //ดึงข้อมูลจาก usrTbl
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetDataLoginExternal", "Account")',
+                            data: {
+                                userId: userId,
+                                page: page,
+                            },
+                            dataType: "JSON",
+                            success: function (result) {
+                                if (result.message == "Y") {
+                                    console.log("userId = " + result.UserId);
+                                    console.log("UserType = " + result.UserType);
+                                    console.log("ID = " + result.ID);
+                                    console.log("Page = " + result.page);
+                                    //return false;
+                                    //พาไปหน้า
+                                    if (result.page != null && result.page != '') {
+                                        if (result.page == "register") { //หน้าลงทะเบียน
+                                            window.location.assign("@domainName" + "/e-Warranty_test/Warrantyregister/Index");
+                                        } else if (page == "inquiry") {//หน้าตรวจสอบสถานะ
+                                            window.location.assign("@domainName" + "/e-Warranty_test/Inquiry/Index");
+                                        }
+                                    } else {//สมัครสมาชิก
+                                        window.location.assign("@domainName" + "/e-Warranty_test/Account/Register");
+                                    }
+                                }
+                            },
+                            error: function (ex) {
+                                //notify(ex, 'danger');
+                            },
+                            complete: function (res) {
+                                //LoadingHide();
+                            }
+                        }).fail(function (error) {
+                            //Swal.fire({
+                            //    icon: 'error',
+                            //    title: 'Error not saved',
+                            //    html: 'กรุณาแจ้งผู้ดูแลระบบ<br>โดยการแคปหน้าจอและก๊อปปี้ Error ด่านล่างนี้<br><br><br>',
+                            //    confirmButtonColor: '#d33',
+                            //    confirmButtonText: 'ปิด',
+                            //    allowOutsideClick: false,
+                            //    focusConfirm: false,
+                            //});
+                        });
+
+                    } else { //ไมเป็นสมาชิก
+                        window.location.replace(currentURL + "Register?flagApp=line&userId=" + userId + "&displayName=" + displayName + "&email=" + getDecodedIDToken);
+                    }
+                },
+                error: function (ex) {
+                    //notify(ex, 'danger');
+                },
+                complete: function (res) {
+                    //LoadingHide();
+                }
+            }).fail(function (error) {
+
+            });
+        }
+
+        //get page
+        function getPageLocation() {
+            const queryString = decodeURIComponent(window.location.search);
+            const params = new URLSearchParams(queryString);
+            const page = params.get('page');
+            document.getElementById("page").innerHTML = '<b>Page:</b> ' + page;
+            if (page != null && page != '') {
+                if (page == "register") { //หน้าลงทะเบียน
+                    window.location.assign("https://mst.aac.co.th/e-Warranty_Test/Warrantyregister/Index");
+                } else if (page == "inquiry") {//หน้าตรวจสอบสถานะ
+                    window.location.assign("https://mst.aac.co.th/e-Warranty_Test/Inquiry/Index");
+                }
+            } else {
+                window.location.assign("https://mst.aac.co.th/e-Warranty_Test");
+            }
+        }
+
+        //get profile line
+        function runApp() {
+            liff.getProfile().then(profile => {
+                document.getElementById("pictureUrl").src = profile.pictureUrl;
+                document.getElementById("userId").innerHTML = profile.userId;
+                document.getElementById("displayName").innerHTML = profile.displayName;
+                document.getElementById("statusMessage").innerHTML =  profile.statusMessage;
+                document.getElementById("getDecodedIDToken").innerHTML = liff.getDecodedIDToken().email;
+
+                $("body").empty();
+                $("body").html('<div class="row"> <div class="col-lg-12 text-center"> <div style="padding: 50px; font-size: 18px;"> <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> <br> LOADING... </div> </div> </div>')
+
+                setTimeout(() => {
+                    const queryString = decodeURIComponent(window.location.search);
+                    const params = new URLSearchParams(queryString);
+                    const page = params.get('page');
+                    getDataLoginExternal(profile.pictureUrl, profile.userId, profile.displayName, liff.getDecodedIDToken().email, page);
+                }, 2000);
+
+            }).catch(err => console.error(err));
+        }
+        //line login
+        liff.init({ liffId: "2002394100-n3ep23XB" }, () => {
+            if (liff.isLoggedIn()) {
+                //getPage();
+                runApp();
+            } else {
+                liff.login();
+            }
+        }, err => console.error(err.code, error.message));
+
+    </script>
+</body>
+</html>

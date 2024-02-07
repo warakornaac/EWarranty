@@ -1,5 +1,5 @@
 ﻿@model EWarranty.Models.GroupClass.LoginUserViewModel
- 
+
 
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
     <title>E-Warranty Dashboard </title>
     <!-- plugins:css -->
 
- 
+
 
     <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
@@ -27,114 +27,101 @@
     <link rel="shortcut icon" href="~/BootstrapTemplate/src/assets/images/favicon.ico" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <style>
         .p-viewer {
             z-index: 9999;
-            position: absolute;
+            position: relative;
             /*top: 52%;*/
-            right: 12%;
+            right: 10%;
+            padding-right: 11px;
         }
-        
+
+        @@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,500;0,600;1,500&display=swap");
+
+        html body {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .error {
+            color: red;
+        }
     </style>
 </head>
 <body>
- 
+
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
             <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
                 <div class="w-100">
+
                     <div class="col-lg-4 mx-auto">
                         <p class="page-title" style="color:white;font-size: 114%;">E-Warranty Automotive Asiatic and Tru Automotive Co.,Ltd</p>
                     </div>
-                        <div class="col-lg-4 mx-auto">
-                          
-                            <div class="auto-form-wrapper">
-                                @using (Html.BeginForm())
-                                {
-                                    <form class="cmxform" id="signupForm" method="get" action="">
-                                        <div class="form-group">
-                                            <div class="editor-label">@Html.LabelFor(u => u.Usre, "ชื่อผู้ใช้งาน/อีเมล์ ")</div>
-                                            <div class="editor-field">
-                                                @Html.TextBoxFor(u => u.Usre, new { data_bind = "Email", @class = "form-control" })
+                    <div class="col-lg-4 mx-auto">
 
-                                                @Html.ValidationMessageFor(u => u.Usre)
+                        <div class="auto-form-wrapper">
+                            @using (Html.BeginForm("LogIn", "Account", FormMethod.Post))
+                            {
 
-                                            </div>
+                                <div class="form-group">
+                                    <div class="editor-label">@Html.LabelFor(u => u.Usre, "ชื่อผู้ใช้งาน/อีเมล ")</div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(u => u.Usre, new { data_bind = "Email", @class = "form-control" })
+                                        <div>@Html.ValidationMessageFor(u => u.Usre, "", new { @class = "error" })</div>
 
-                                        </div>
 
-                                        <div class="form-group">
-
-                                            <div class="editor-label">@Html.LabelFor(u => u.Password, "รหัสผ่าน")</div>
-                                            <div class="editor-field">
-                                                @Html.TextBoxFor(u => u.Password, new { data_bind = "Password", @class = "form-control", @type = "password", @name = "password", @id = "password" })
-
-                                                @Html.ValidationMessageFor(u => u.Password)
-                                                <span class="p-viewer">
-                                                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                                </span>
-
-                                            </div>
-                                            @*<label class="label">Password</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="*********" id="passwordlogin">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="mdi mdi-check-circle-outline"></i>
-                                        </span>
                                     </div>
-                                </div>*@
-                                        </div>
-                                        <div class="form-group">
-                                            <button class="btn btn-primary submit-btn btn-block" id="_b_login">เข้าสู่ระบบ</button>
-                                        </div>
-                                        <div class="form-group d-flex justify-content-between">
-                                            <div class="form-check form-check-flat mt-0">
-                                                <!--<label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" checked> Keep me signed in
-                                </label>-->
-                                            </div>
-                                            <a href="~/Account/ForgotPassword" class="text-small forgot-password text-black" onclick="functionForgotPassword()">ลืมรหัสผ่าน</a>
-                                        </div>
 
-                                        <div class="text-block text-center my-3">
-                                            <span class="text-small font-weight-semibold">ผู้ใช้ใหม่ ?</span>
-                                            <a href="~/Account/Register" class="text-black text-small">ลงทะเบียน</a>
-                                        </div>
-                                    </form>
+                                </div>
 
-                                    <div style="color:red">@Html.ValidationSummary(true, "การเข้าสู่ระบบผิดพลาด")</div>
-                                }
-                            </div>
-                            <!-- <ul class="auth-footer">
-                 <li>
-                     <a href="#">Conditions</a>
-                 </li>
-                 <li>
-                     <a href="#">Help</a>
-                 </li>
-                 <li>
-                     <a href="#">Terms</a>
-                 </li>
-             </ul>-->
-                            <!--<p class="footer-text text-center">copyright © 2020 Bootstrapdash. All rights reserved.</p>-->
-                           
+                                <div class="form-group form-floating">
+
+                                    <div class="editor-label">@Html.LabelFor(u => u.Password, "รหัสผ่าน")</div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(u => u.Password, new { data_bind = "Password", @class = "form-control", @type = "password", @name = "password", @id = "password" })
+                                        <!-- <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" style="position:relative"></span> -->
+                                        <div>
+                                            @Html.ValidationMessageFor(u => u.Password, "", new { @class = "error" })
+                                        </div>
+                                        @*<span class="p-viewer">
+                                                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                            </span>*@
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary submit-btn btn-block" type="submit">เข้าสู่ระบบ</button>
+                                </div>
+                                <div class="form-group d-flex justify-content-between">
+                                    <div class="form-check form-check-flat mt-0">
+                                    </div>
+                                    <a href="~/Account/ForgotPassword" class="text-small forgot-password text-black" onclick="functionForgotPassword()">ลืมรหัสผ่าน</a>
+                                </div>
+
+                                <div class="text-block text-center my-3">
+                                    <span class="text-small font-weight-semibold">ผู้ใช้ใหม่ ?</span>
+                                    <a href="~/Account/Register" class="text-black text-small">ลงทะเบียน</a>
+                                </div>
+
+
+                                <div style="color:red">@Html.ValidationSummary(true, "")</div>
+                            }
                         </div>
-                    <p class="footer-text text-center" style="color: white;">Version 1.0</p>
                     </div>
+                    <p class="footer-text text-center" style="color: white;">Version 1.0</p>
+                </div>
 
             </div>
             <!-- content-wrapper ends -->
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <button  id="chacklogin" style="display:none;"></button>
-  
+    <button id="chacklogin" style="display:none;"></button>
+
     <!-- container-scroller -->
     <!-- plugins:js -->
-   
     <!-- endinject -->
     <!-- inject:js -->
     <script src="~/BootstrapTemplate/src/assets/js/shared/off-canvas.js"></script>
@@ -144,49 +131,44 @@
     <script src="~/Scripts/jquery-validation-1.19.5/lib/jquery.js"></script>
     <script src="~/Scripts/jquery-validation-1.19.5/dist/jquery.validate.js"></script>
     <script type="text/javascript">
-        $("#chacklogin").click(function () {
-          
-            console.log(window.location.pathname);
-        });
-        $("#chacklogin").trigger("click");
-       $(document).ready(function () {
-           //sessionStorage.setItem("hostname", window.location);
-           //let lastname = sessionStorage.getItem("hostname");
-          
-         
-          // alert(myArray[1])
+        $(document).ready(function () {
+            //sessionStorage.setItem("hostname", window.location);
+            //let lastname = sessionStorage.getItem("hostname");
 
-           var elem = window.location.pathname,
-             result = elem.split('/');
-           if (result[1] == "e-Warranty") {
-               sessionStorage.setItem("hostname",window.location.protocol+"//"+ window.location.host + "/" + result[1]);
-           } else {
-               sessionStorage.setItem("hostname", window.location.protocol + "//" + window.location.host);
-           }
-           let lastname = sessionStorage.getItem("hostname");
-           //alert(lastname)
-          // console.log(result[1]);
-           //alert(result[1])
-          // / e - Warranty / Account / LogIn
-          // alert(window.location.host);     //returns www.golangprograms.com
-          // alert(window.location.hostname); //returns www.golangprograms.com
-        //   alert(window.location.pathname); //return /javascript-and-jquery-examples/how-to-current-url-host-and-url-attributes-using-javascript-or-jquery.html
-          // alert(window.location.href);     //returns http://www.golangprograms.com/javascript-and-jquery-examples/how-to-current-url-host-and-url-attributes-using-javascript-or-jquery.html
-           //alert(window.location.port);     //returns null
-          // alert(window.location.protocol);  //returns http:
-          // alert(subsmy)
-           //if (subsmy == "l") {
-           //     sessionStorage.setItem("hostnamesplit", myArray[0]);
-                
-           // } else {
 
-           //     sessionStorage.setItem("hostnamesplit", myArray[0] + "/" + myArray[0]);
-           // }
-           // let hostnamesplit = sessionStorage.getItem("hostnamesplit");
-           // alert(hostnamesplit)
-          
-         
-          
+            // alert(myArray[1])
+
+            var elem = window.location.pathname,
+                result = elem.split('/');
+            if (result[1] == "e-Warranty") {
+                sessionStorage.setItem("hostname", window.location.protocol + "//" + window.location.host + "/" + result[1]);
+            } else {
+                sessionStorage.setItem("hostname", window.location.protocol + "//" + window.location.host);
+            }
+            let lastname = sessionStorage.getItem("hostname");
+            //alert(lastname)
+            // console.log(result[1]);
+            //alert(result[1])
+            // / e - Warranty / Account / LogIn
+            // alert(window.location.host);     //returns www.golangprograms.com
+            // alert(window.location.hostname); //returns www.golangprograms.com
+            //   alert(window.location.pathname); //return /javascript-and-jquery-examples/how-to-current-url-host-and-url-attributes-using-javascript-or-jquery.html
+            // alert(window.location.href);     //returns http://www.golangprograms.com/javascript-and-jquery-examples/how-to-current-url-host-and-url-attributes-using-javascript-or-jquery.html
+            //alert(window.location.port);     //returns null
+            // alert(window.location.protocol);  //returns http:
+            // alert(subsmy)
+            //if (subsmy == "l") {
+            //     sessionStorage.setItem("hostnamesplit", myArray[0]);
+
+            // } else {
+
+            //     sessionStorage.setItem("hostnamesplit", myArray[0] + "/" + myArray[0]);
+            // }
+            // let hostnamesplit = sessionStorage.getItem("hostnamesplit");
+            // alert(hostnamesplit)
+
+
+
             $(".toggle-password").click(function () {
 
                 $(this).toggleClass("fa-eye fa-eye-slash");
@@ -197,9 +179,9 @@
                     input.attr("type", "password");
                 }
             });
-           
-       });
+
+        });
     </script>
 
-        </body>
+</body>
 </html>

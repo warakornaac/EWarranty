@@ -228,7 +228,7 @@ namespace EWarranty.Models
                 returnSTKDES.Direction = System.Data.ParameterDirection.Output;
                 command.Parameters.Add(returnSTKDES);
 
-                command.ExecuteNonQuery();
+                DE0027067command.ExecuteNonQuery();
                 message = returnValuedoc.Value.ToString();
                 Description = returnSTKDES.Value.ToString();
                 ItemNo = returnItemNo.Value.ToString();
@@ -308,7 +308,7 @@ namespace EWarranty.Models
             Connection.Close();
             return Json(List, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetdateInquiry(string b_SN, string Status, string Customername, string Customerid, string Carlicense)
+        public JsonResult GetdateInquiry(string b_SN, string Status, string Customername, string Customerid, string Carlicense, string Cuscode)
         {
 
             string User = Session["UserID"].ToString();
@@ -337,7 +337,9 @@ namespace EWarranty.Models
             command.Parameters.AddWithValue("@in_Customername", Customername);
             command.Parameters.AddWithValue("@in_Customerid", S_User);
             command.Parameters.AddWithValue("@in_Carlicense", Carlicense);
-              Connection.Open();
+            command.Parameters.AddWithValue("@in_Cuscode", Cuscode);
+            command.Parameters.AddWithValue("@in_User", User);
+            Connection.Open();
 
             SqlDataReader dr = command.ExecuteReader();
             while (dr.Read())
@@ -494,5 +496,6 @@ namespace EWarranty.Models
             return Json(new { Getdata }, JsonRequestBehavior.AllowGet);
 
         }
+
     }
 }

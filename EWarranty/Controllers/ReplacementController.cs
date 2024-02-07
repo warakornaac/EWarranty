@@ -257,11 +257,8 @@ namespace EWarranty.Controllers
 
 
 
-        public JsonResult ReplacementSN(string b_Claim_ID, string b_New_SN, string b_Warranty_ID, string b_ClaimShop)
+        public JsonResult ReplacementSN(string b_Claim_ID, string b_New_SN, string b_Warranty_ID, string b_ClaimShop, string b_Cuscode, string b_Shipto)
         {
-
-
-
             string message = string.Empty;
             string W_ID = string.Empty;
 
@@ -279,6 +276,8 @@ namespace EWarranty.Controllers
                 command.Parameters.AddWithValue("@inWarranty_ID", b_Warranty_ID);
                 command.Parameters.AddWithValue("@inClaim_ID", b_Claim_ID);
                 command.Parameters.AddWithValue("@inClaimShop", b_ClaimShop);
+                command.Parameters.AddWithValue("@inCuscode", b_Cuscode);
+                command.Parameters.AddWithValue("@inShipto", b_Shipto);
                 SqlParameter returnValuedoc = new SqlParameter("@outGenstatus", SqlDbType.NVarChar, 100);
                 returnValuedoc.Direction = System.Data.ParameterDirection.Output;
                 command.Parameters.Add(returnValuedoc);

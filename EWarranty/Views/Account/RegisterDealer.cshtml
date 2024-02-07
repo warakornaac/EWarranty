@@ -1,4 +1,7 @@
-﻿@{ 
+﻿@{
+    Layout = "~/Views/Shared/_Layoutview.cshtml";
+    ViewBag.UserId = this.Session["UserID"];
+    ViewBag.userType = this.Session["UserType"];
     string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
 }
 <!DOCTYPE html>
@@ -7,34 +10,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>E-Warranty Register</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/assets/vendors/css/vendor.bundle.addons.css">
-    <!-- inject:css -->
-    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/css/shared/style.css">
-    <!-- endinject -->
-    <!-- End Layout styles -->
-    <link rel="shortcut icon" href="~/BootstrapTemplate/src/assets/assets/images/favicon.ico" />
-    <link rel="shortcut icon" href="~/BootstrapTemplate/src/assets/images/favicon.ico" />
-
-
-
-
-    <link rel="stylesheet" href="~/BootstrapTemplate/src/assets/css/demo_1/style.css">
-
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <script src="~/Scripts/jquery-validation-1.19.5/lib/jquery.js"></script>
-    <script src="~/Scripts/jquery-validation-1.19.5/dist/jquery.validate.js"></script>
-    <link href="~/Css/LoadingSpinner.css" rel="stylesheet" />
+    <title>E-Warranty Register Dealer</title>
     <style>
         @@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,500;0,600;1,500&display=swap");
 
@@ -279,92 +255,109 @@
         ga('Main.send', 'event', 'jquery.Thailand.js', 'GitHub', 'Visit');
     </script>
 </head>
-
-
-
 <body>
-
-
     <div class="container-scroller">
-        <div class="content-wrapper">
-            <!-- Page Title Header Starts-->
-
-
-            <div class="content-wrapper" style="margin-top: -40px;">
-                <!-- Page Title Header Starts-->
-                <div class="col-12">
-                    <div class="page-header">
-                        <h4 class="page-title"></h4>
-                        <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
-
-                            <ul class="quick-links ml-auto">
-
-
-                                <li><a href="~/Account/LogIn">เข้าสู่ระบบ</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-
-        </div>
         <div class="container-fluid page-body-wrapper full-page-wrapper">
-
             <div class="content-wrapper align-items-center auth register-bg-1 theme-one">
-
-
-
-
                 <div class="row">
-
                     <div class="col-lg-12 mx-auto">
                         <div class="row page-title-header">
-
-
                         </div>
-                        <h2 class="text-center mb-4">ลงทะเบียน</h2>
-
+                        <h2 class="text-center mb-4">ลงทะเบียนตัวแทน</h2>
                         <div>
-
                             <div class="col-12 grid-margin">
                                 <div class="card">
                                     <div class="card-body">
-                                        <p class=""> กรุณากรอกข้อมูลของท่านตาม * ให้ครบถ้วน </p>
+                                        <p class=""> กรุณากรอกข้อมูลของท่านตาม * ให้ครบถ้วน 110P0345 </p>
                                         <form class="cmxform" id="signupForm" method="get" action="">
                                             <fieldset>
                                                 <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-2 col-form-label">ค้นหาร้านค้า</label>
+                                                            <label class="col-md-8">
+                                                                <input type="text" class="form-control" placeholder="ชื่อร้าน/รหัสร้าน" id="search_dealer" name="search_dealer" />
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group row">
-                                                            <input type="hidden" id="userId" value=""/>
-                                                            <input type="hidden" id="displayName" value=""/>
-
-                                                            <label class="col-sm-3 col-form-label">ชื่อ*</label>
+                                                            <input type="hidden" id="userId" value="" />
+                                                            <input type="hidden" id="displayName" value="" />
+                                                            <label class="col-sm-3 col-form-label">ชื่อร้านค้า*</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="b_name" name="b_name" required />
+                                                                <input type="text" class="form-control" id="b_name" name="b_name" readonly required />
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">นามสกุล*</label>
+                                                            <label class="col-sm-3 col-form-label">รหัสร้านค้า*</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="b_lastname" name="b_lastname" required />
+                                                                <input type="text" class="form-control" id="b_code" name="b_code" readonly required />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
+                                                    <div class="col-md-12 text-center" style="margin: -12px 0px 13px;">
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                @*show all shipto*@
+                                                <div class="row" style="font-size: 16px;">
+                                                    <div class="col-md-12">
+                                                        <div id="showShipto"> </div>
+                                                    </div>
+                                                </div>
 
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">ที่อยู่*</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control" id="address1" name="address1" required />
+                                                                <input type="hidden" class="form-control" id="shipto" name="shipto" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">เบอร์โทรศัพท์ *</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="number" class="form-control" id="b_tel" name="b_tel" required />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label">อีเมล* </label>
+                                                            <div class="col-sm-9">
+                                                                <input type="email" class="form-control" id="email" name="email" required />
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 text-center" style="margin: -12px 0px 13px;">
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label" for="password">รหัสผ่าน*</label>
                                                             <div class="col-sm-9">
-                                                                <input class="form-control" maxlength="8" type="password" placeholder="รหัสผ่าน" id="password" name="password" required>
-
-
+                                                                <input class="form-control" maxlength="8" type="text" placeholder="รหัสผ่าน" id="password" name="password" required readonly>
                                                             </div>
                                                             <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                                             <div id="message">
@@ -375,17 +368,12 @@
                                                                 <p id="length" class="invalid"><b>ตัวอักษรมีความยาว 8 ตัวอักษร</b></p>
                                                             </div>
                                                         </div>
-
                                                     </div>
-
-
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6" style="display: none;">
                                                         <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label" for="cfpassword">ยืนยันรหัสผ่าน*</label>
                                                             <div class="col-sm-9">
-                                                                <input class="form-control" maxlength="8" type="password" placeholder="ยืนยันรหัสผ่าน" id="confirm_password" name="confirm_password" required>
-
-
+                                                                <input class="form-control" maxlength="8" type="text" placeholder="ยืนยันรหัสผ่าน" id="confirm_password" name="confirm_password" required readonly>
                                                             </div>
                                                             <span toggle="#confirm_password" class="fa fa-fw fa-eye field-icon toggle-cfpassword"></span>
                                                             <div id="messagecf">
@@ -398,141 +386,8 @@
                                                         </div>
                                                     </div>
 
-                                                    @*<div id="message">
-                                                            <h2>Password  must contain the following:</h2>
-                                                            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                                                            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                                                            <p id="number" class="invalid">A <b>ตัวเลข</b></p>
-                                                            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                                                        </div>*@
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">ที่อยู่ 1 *</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="address1" name="address1" required />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">ที่อยู่ 2</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="address2" name="address2" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">แขวง/ตำบล *</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="district" name="district" required />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">เขต/อำเภอ *</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="amphoe" name="amphoe" required />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="row">
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">จังหวัด *</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="province" name="province" required />
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">รหัสไปรษณีย์ *</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="zipcode" name="zipcode" required />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">เบอร์โทรศัพท์(เฉพาะตัวเลข)*</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="number" class="form-control" id="b_tel" name="b_tel" required />
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">ไลน์ไอดี **</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="b_lineid" name="b_lineid" />
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">อีเมล </label>
-                                                            <div class="col-sm-9">
-                                                                <input type="email" class="form-control" id="email" name="email" />
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group row">
-
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <div class="form-group row">
-                                                            <table style="width: 100%; font-size: initial;">
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td><input type="checkbox" name="checkBoxName" class=" myinput large" /></td>
-                                                                    <td>ยืนยันการอนุญาตให้บริษัททรูออโตโมทีฟสามารถจัดเก็บข้อมูลส่วนบุคคลของท่านจากการขอบริการ</td>
-                                                                    <td></td>
-                                                                </tr>
-
-                                                            </table>
-
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group row">
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-
-
                                                     <div class="col-md-4">
                                                         <div class="form-group row">
 
@@ -598,9 +453,89 @@
     @*<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>*@
 
 
-
-
 <script type="text/javascript">
+        var password = '';
+            $("#search_dealer").autocomplete({
+                selectFirst: true,
+                autoFocus: true,
+                source: function (request, response) {
+                    var param = {
+                        textSearch: $('#search_dealer').val()
+                    };
+                    $.ajax({
+                        url: '@Url.Action("SearchDataDealer", "Account")',
+                        data: JSON.stringify(param),
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            response($.map(data.slice(0, 50), function (item) {
+                                return {
+                                    value: item
+                                }
+                            }))
+                        },
+                        error: function (XMLhttpsRequest, textStatus, errorThrown) {
+                            alert(textStatus);
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    var _val = ui.item.value;
+                    var _splito = "";
+                    _splito = _val.split('|');
+                    var splitval = _splito;
+                    _scus = _splito[0].trim();
+                    $("#b_code").val(_splito[0].trim());
+                    $("#b_name").val(_splito[1].trim());
+                    //get ship to by cuscode
+                    $.ajax({
+                        url: '@Url.Action("SearchShiptoDealer", "Account")',
+                        data: {
+                            cuscode: _splito[0].trim(),
+                            shipto: '',
+                        },
+                        type: "POST",
+                        dataType: "JSON",
+                        beforeSend: function () {
+                            $('#showShipto').empty();
+                            $('#showShipto').html('<div style="padding-bottom: 15px; font-size: 14px;"> <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> กำลังโหลดข้อมูล... </div>')
+                        },
+                        success: function (data) {
+                            console.log("SearchShiptoDealer = " + data);
+                            var textHtml = '';
+                            textHtml += "<div class='list-group'>";
+                            $(data).each(function (index, item) {
+                                if (item.Code != '') {
+                                    textHtml += '<button onClick="getAddressShipto(this)" type="button" class="list-group-item list-group-item-action" data-shipto="' + item.Code + '" data-address1="' + item.Address1 + '" data-address2="' + item.Address2 + '" data-phone="' + item.Phone + '"  data-contact="' + item.Contact + '">' + "(" + item.Code + ")" + "  " + item.Address1 + " | " + item.Address2 + '</button>';
+
+                                }
+                            });
+                            textHtml += "</div>";
+                            $('#showShipto').html(textHtml);
+                            password = generatePassword(8);
+                            $("#password").val(password);
+                            $("#confirm_password").val(password);
+                        }
+                    });
+                },
+
+                minLength: 2//minLength as 2, it means when ever user enter 2 character in TextBox the AutoComplete method will fire and get its source data.
+            });
+
+
+        function getAddressShipto(el) {
+            var address1 = $(el).attr('data-address1');
+            var address2 = $(el).attr('data-address2');
+            var phone = $(el).attr('data-phone');
+            var contact = $(el).attr('data-contact');
+            var shipto = $(el).attr('data-shipto');
+            $("#address1").val(address1);
+            $("#b_tel").val(phone);
+            $("#shipto").val(shipto);
+        }
+
         //get page ว่ามาจาก line ไหม
         function getPageLocation() {
             const queryString = decodeURIComponent(window.location.search);
@@ -928,19 +863,14 @@
                         required: "#newsletter:checked",
                         minlength: 2
                     },
-                    agree: "required",
                     address1: "required",
                    // address2: "required",
-                    district: "required",
-                    amphoe: "required",
-                    province: "required",
-                    zipcode: "required",
                     b_tel: "required",
                   //  b_lineid: "required",
                 },
                 messages: {
-                    b_name: "กรุณากรอกชื่อของท่าน",
-                    b_lastname: "กรุณากรอกนามสกุลของท่าน",
+                    b_name: "กรุณากรอกชื่อร้านค้า",
+                    b_code: "กรุณากรอกรหัสร้านค้า",
                     username: {
                         required: "Please enter a username",
                         minlength: "Your username must consist of at least 2 characters"
@@ -954,13 +884,8 @@
                         minlength: "ยืนยันรหัสผ่านของคุณต้องมีความยาว 8 ตัวอักษร",
                         equalTo: "กรุณา ยืนยันรหัสผ่านใหม่ รหัสผ่านไม่ตรงกัน"
                     },
-                   // email: "กรุณาใส่  email address",
+                    email: "กรุณากรอกอีเมล",
                     address1: "กรุณากรอก ที่อยู่ของท่าน",
-                //    address2: "กรุณาใส่ ที่อยู่ของท่าน",
-                    district: "กรุณากรอก แขวง/ตำบล ของท่าน",
-                    amphoe: "กรุณากรอก เขต/อำเภอ ของท่าน",
-                    province: "กรุณากรุณากรอก จังหวัด  ของท่าน",
-                    zipcode: "กรุณากรอก รหัสไปรษณีย์ของท่าน",
                     b_tel: "กรุณากรอก เบอร์โทรศัพท์ ของท่าน"
                    // b_lineid: "กรุณาใส่ Line ID ของท่าน"
                    // agree: "Please accept our policy",
@@ -968,22 +893,6 @@
                 }
             });
 
-            //// propose username by combining first- and lastname
-            //$("#username").focus(function () {
-            //    var firstname = $("#firstname").val();
-            //    var lastname = $("#lastname").val();
-            //    if (firstname && lastname && !this.value) {
-            //        this.value = firstname + "." + lastname;
-            //    }
-            //});
-
-            ////code to hide topic selection, disable for demo
-            //var newsletter = $("#newsletter");
-            //// newsletter topics are optional, hide at first
-            //var inital = newsletter.is(":checked");
-            //var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
-            //var topicInputs = topics.find("input").attr("disabled", !inital);
-            // show when newsletter is checked
             newsletter.click(function () {
                 topics[this.checked ? "removeClass" : "addClass"]("gray");
                 topicInputs.attr("disabled", !this.checked);
@@ -991,39 +900,25 @@
         });
         $.validator.setDefaults({
             submitHandler: function () {
-                // alert("submitted!");
                 document.getElementById("messagedx").innerHTML = "";
                 document.getElementById("messagex").innerHTML = "";
                 var b_name = $('#b_name').val();
-                var b_lastname = $('#b_lastname').val();
+                var b_code = $('#b_code').val();
                 var b_password = $('#password').val();
                 var b_cfpassword = $('#confirm_password').val();
                 var b_address1 = $('#address1').val();
                 var b_address2 = $('#address2').val();
-                var b_district = $('#district').val();
-                var b_amphoe = $('#amphoe').val();
-                var b_province = $('#province').val();
-                var b_zipcode = $('#zipcode').val();
                 var b_tel = $('#b-tel').val();
                 var b_lineid = $('#b_lineid').val();
                 var b_email = $('#email').val();
                 var userId = $('#userId').val();
                 var displayName = $('#displayName').val();
 
-                //var checkpassword = $('#messageMatching').text();
-                //if (checkpassword == "Password Not Matching") { alert("กรุณายืนยันรหัสผ่านให้ตรงกับรหัสผ่านของท่าน"); return false; }
-                //alert(b_lineid + "////" + b_email)
                 if (b_lineid == "" && b_email == "") {
                     alert("กรุณาใส่ไลน์ไอดีหรือ อีเมลของท่านในการลงทะเบียน"); return false;
-
                 }
-                //checkpassword();
-               // checkcfpassword();
 
                 var pw = document.getElementById("password").value;
-                //if (/^[a-zA-Z0-9]+$/.test(pw) && /\d/.test(pwcf) && /[a-z]/.test(pw) && /[A-Z]/.test(pw)) {
-               // if (/^[a-zA-Z0-9]+$/.test(pw) && /[a-z]/.test(pw) && /[A-Z]/.test(pw)) {
-                // if (/[0-9]/.test(pw) && /[a-z]/.test(pw) && /[A-Z]/.test(pw)) {
                 if (/[0-9]/.test(pw) && /[a-z]/.test(pw) && /[A-Z]/.test(pw)) {
                    // document.getElementById("messagedx").innerHTML = "**รหัสของคุณผ่านปลอดภัย";
                 }
@@ -1050,68 +945,45 @@
                     document.getElementById("messagex").innerHTML = "**ยืนยันรหัสผ่านของคุณต้องมีความยาว 8 ตัวอักษร";
                     return false;
                 }
-                if ($('input[name="checkBoxName"]').is(':checked')) {
-                    // checked
-                } else {
-                    alert("กรุณา ยืนยันการอนุญาตให้บริษัททรูออโตโมทีฟสามารถจัดเก็บข้อมูลส่วนบุคคลของท่านจากการขอบริการ");
-                    return false;
-                }
                 $("#messagedx").html("");
                 $("#messagex").html("");
                 $("#overlay").fadeIn(300);
                 var currentURL = window.location.href;
+                //var loc = window.location;
+                //var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+                //var currentURL = loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+                //window.location.replace(currentURL + "LogIn");
+                //alert(pathName + "/" +currentURL);
+                //return false;
 
                 $.ajax({
-                     url: '@Url.Action("AddRegister", "Account")',
-
-                    data: {
-                        b_name: $('#b_name').val(),
-                        b_lastname: $('#b_lastname').val(),
+                     url: '@Url.Action("AddRegisterDealer", "Account")',
+                     data: {
+                        b_name: $('#b_name').val(), //ชื่อร้าน
+                        b_code: $('#b_code').val().trim(), //รหัสร้าน
                         b_password: $('#password').val(),
                         b_cfpassword: $('#confirm_password').val(),
                         b_address1: $('#address1').val(),
-                        b_address2: $('#address2').val(),
-                        b_district: $('#district').val(),
-                        b_amphoe: $('#amphoe').val(),
-                        b_province: $('#province').val(),
-                        b_zipcode: $('#zipcode').val(),
                         b_tel: $('#b_tel').val(),
-                        b_lineid: $('#b_lineid').val(),
                         b_email: $('#email').val(),
-                        b_userId: userId,
-                        b_displayName: displayName,
+                       // b_shipto: $('#shipto').val(),
                     },
                     type: "POST",
                     dataType: "JSON",
                     success: function (data) {
                        // alert(data.message)
                         // $("#meassagetext").html(data.message);
-
                         if (data.message == "Y") {
                             alert("ลงทะเบียนลำเร็จ");
-                           // var wi = window.open("Account/LogIn");
                             var loc = window.location;
                             var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
                             var currentURL = loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
-
-                            if (userId != "" && userId != null) {
-                                //window.location.replace = '@Url.Action("Index", "Menubar")';
-                                //login auto
-                                getDataLoginExternal('', userId, displayName, $('#email').val(), '')
-
-                            } else {
-                                window.location.replace(currentURL + "LogIn");
-                            }
+                            //window.location.replace("../../Menubar/Index");
+                            window.location.assign("@domainName" + "/e-Warranty_test/Menubar/Index");
 
                         } else {
-
                             alert(data.message);
-
                             return false;
-                            //$("#meassagetext").html("Password is correct")
-                            // $("#meassagetext").removeClass('weak-password');
-                            // $("#meassagetext").addClass('strong-password');
-                            // $('#savepas').removeAttr("disabled");
                         }
                     }
                 }).done(function () {
@@ -1198,6 +1070,41 @@
             }).fail(function (error) {
 
             });
+        }
+        //gen password
+        var upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        var lower = 'abcdefghijklmnopqrstuvwxyz'
+        var digit = '0123456789'
+        var all = upper + lower + digit
+
+        function rand(max) {
+            return Math.floor(Math.random() * max)
+        }
+
+        function random(set) {
+            return set[rand(set.length - 1)]
+        }
+
+        function generate(length, set) {
+            var result = []
+            while (length--) result.push(random(set))
+            return result
+        }
+
+        function shuffle(arr) {
+            var result = []
+            while (arr.length) {
+                result = result.concat(arr.splice(rand[arr.length - 1]))
+            }
+            return result
+        }
+        function generatePassword(length) {
+            var result = [] // we need to ensure we have some characters
+            result = result.concat(generate(1, upper)) // 1 upper case
+            result = result.concat(generate(1, lower)) // 1 lower case
+            result = result.concat(generate(1, digit)) // 1 digit
+            result = result.concat(generate(length - 3, all)) // remaining - whatever
+            return shuffle(result).join('') // shuffle and make a string
         }
 
 </script>

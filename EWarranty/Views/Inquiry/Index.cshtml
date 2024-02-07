@@ -6,10 +6,7 @@
     var userType = ViewBag.UserType;
     var SN_no = ViewBag.Snno;
 
-     List<EWarranty.Models.GroupClass.DefineCode> List =  ViewBag.Status;
-
-    
-
+    List<EWarranty.Models.GroupClass.DefineCode> List = ViewBag.Status;
 }
 
 <html lang="en">
@@ -24,124 +21,26 @@
 </head>
 <body>
     <div class="container-scroller">
-       
-            <!-- <div class="main-panel">-->
-             <div>
-                <div class="content-wrapper">
-                    <!-- Page Title Header Starts-->
-                    <div class="row page-title-header">
-                        <h1>ตรวจสอบสถานะ</h1>
-                        <div class="col-md-12">
-                            <div class="page-header-toolbar">
-                     
-                   @if (userType == "14")
-                    {
-                      
-                           <div class="btn-group toolbar-item" role="group" aria-label="Basic example">
-                               <div class="d-flex py-2 border-bottom">
-                                   <span class="img-sm rounded-circle bg-warning text-white text-avatar">User</span>
-                                   <div class="wrapper ml-2">
-                                       <p class="mb-n1 font-weight-semibold" id="semibold">@user</p>
-                                      
-                                       @*<small>E-mail:test1@gmail.com</small>*@
-                                   </div>
-                                   @*<small class="text-muted ml-auto">4 Hours ago</small>*@
-                               </div>
-                           </div>
-                           <div class="filter-wrapper">
-                               <div class="dropdown toolbar-item">
-                                 <p class="page-title">S/N</p>
-                                 <input type="text" class="form-control" id="b_Sn" name="b_Sn" oninput="this.value = this.value.toUpperCase()" />
-                               </div>
-                               <div class="dropdown toolbar-item">
-                                   
-                               </div>
-                               <div class="filter-wrapper">
 
+        <!-- <div class="main-panel">-->
+        <div>
+            <div class="content-wrapper">
+                <!-- Page Title Header Starts-->
+                <div class="row page-title-header" style="padding-left: 10px;">
+                    <h1>ตรวจสอบสถานะ</h1>
+                    <div class="col-md-12">
+                        @if (userType == "14") //end user
+                        {
+                            <div class="row" style="padding-top: 5px;">
+                                <div class="col-sm-4 col-lg-3">
+                                    <p class="page-title">หมายเลขซีเรียล</p>
+                                    <input type="text" class="form-control" id="b_Sn" name="b_Sn" oninput="this.value = this.value.toUpperCase()" />
+                                </div>
+                                <div class="col-sm-4 col-lg-3">
+                                    <p class="page-title">สถานะ</p>
+                                    <select class="form-control" id="b_Status" name="b_Status">
+                                        <option value="0">เลือกสถานะ</option>
 
-                               </div>
-                               <div class="dropdown toolbar-item">
-                                   <p class="page-title">Status</p>
-                                   <select class="form-control" id="b_Status" name="b_Status">
-                                       <option value="0">เลือกสถานะ</option>
-
-                                       @foreach (var row in ViewBag.Status)
-                                       {
-                                           <option value="@row.CODE">
-                                               @row.DESCRIPTION_TH
-
-                                           </option>
-                                       }
-                                   </select>
-                               </div>
-                               <div class="filter-wrapper">
-
-
-                               </div>
-                               <div class="dropdown toolbar-item">
-                                   <p class="page-title">ชื่อลูกค้า</p>
-                                   <input type="text" class="form-control" id="b_Cusname" name="b_Cusname" />
-                               </div>
-                               <div class="filter-wrapper">
-
-
-                               </div>
-
-
-                               <div class="dropdown toolbar-item">
-                                   <p class="page-title">Car license</p>
-                                   <input type="text" class="form-control" id="b_Carlicense" name="b_Carlicense" />
-                               </div>
-                            </div>
-                 
-                         <div class="filter-wrapper">
-                            
-                       
-                         </div>
-                         <div class="filter-wrapper">
-                          
-
-                         </div>
-                         <div class="filter-wrapper">
-                            
-                     
-                         </div>
-                         <div class="filter-wrapper">
-                             <div class="dropdown toolbar-item">
-                                 <p class="page-title">กดปุ่ม ค้นหา</p>
-                                 <button type="button" class="btn btn-primary toolbar-item" id="btn_search">ค้นหา</button>
-                             </div>
-                      
-                         </div>
-                         @*<div class="sort-wrapper">
-                      
-                         </div>*@
-                      
-                    }
-                   else
-                   {
-                      
-                           <div class="filter-wrapper">
-                               <div class="dropdown toolbar-item">
-                                   <p class="page-title">User</p>
-                                   <input type="text" class="form-control" id="b_UserID" name="b_UserID" />
-                               </div>
-
-                           </div>
-                         <div class="filter-wrapper">
-                             <div class="dropdown toolbar-item">
-                                 <p class="page-title">S/N</p>
-                                 <input type="text" class="form-control" id="b_Sn" name="b_Sn" oninput="this.value = this.value.toUpperCase()" />
-                             </div>
-                        
-                         </div>
-                 
-                         <div class="filter-wrapper">
-                             <div class="dropdown toolbar-item">
-                                 <p class="page-title">Status</p>
-                                <select class="form-control" id="b_Status" name="b_Status">
-                                    <option value="0">เลือกสถานะ</option>
-                                                                      
                                         @foreach (var row in ViewBag.Status)
                                         {
                                             <option value="@row.CODE">
@@ -150,179 +49,218 @@
                                             </option>
                                         }
                                     </select>
-             
-                             </div>
-                       
-                         </div>
-                         <div class="filter-wrapper">
-                             <div class="dropdown toolbar-item">
-                                 <p class="page-title">ชื่อลูกค้า</p>
-                                 <input type="text" class="form-control" id="b_Cusname" name="b_Cusname" />
-                             </div>
+                                </div>
+                                <div class="col-sm-4 col-lg-3">
+                                    <p class="page-title">ชื่อลูกค้า</p>
+                                    <input type="text" class="form-control" id="b_Cusname" name="b_Cusname" />
+                                </div>
+                                <div class="col-sm-4 col-lg-2">
+                                    <p class="page-title">ทะเบียนรถ</p>
+                                    <input type="text" class="form-control" id="b_Carlicense" name="b_Carlicense" />
+                                </div>
 
-                         </div>
-                         <div class="filter-wrapper">
-                             <div class="dropdown toolbar-item">
-                                 <p class="page-title">Car license</p>
-                                 <input type="text" class="form-control" id="b_Carlicense" name="b_Carlicense" />
-                             </div>
-                     
-                         </div>
-                         <div class="filter-wrapper">
-                             <div class="dropdown toolbar-item">
-                                 <p class="page-title">กดปุ่ม ค้นหา</p>
-                                 <button type="button" class="btn btn-primary toolbar-item" id="btn_search">ค้นหา</button>
-                             </div>
-                      
-                         </div>
-                         @*<div class="sort-wrapper">
-                      
-                         </div>*@
-                      
-                       
-                   }
-
-                 </div>
-                      </div>
-                    </div>
-                    <!-- Page Title Header Ends-->
-                
-                    <div class="page-header-toolbar">
-                        <div class="card-body">
-                           
-                        </div>
-                    </div>
-                               <!-- <div class="row">
-                                    <div class="col-md-12 grid-margin">
-                                        <div class="card">
-
-                                            <div class="card-body">
-                                                <div class="row">
-
-                                                    <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
-                                                        <div class="d-flex">
-                                                            <div class="wrapper">
-                                                                <h3 class="mb-0 font-weight-semibold">S/N</h3>
-                                                                @*<h5 class="mb-0 font-weight-medium text-primary">S/N</h5>*@
-                                                                <input type="text" class="form-control" id="b_Sn" name="b_Sn" />
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
-                                                        <div class="d-flex">
-                                                            <div class="wrapper">
-                                                                <h3 class="mb-0 font-weight-semibold">Status</h3>
-                                                                @*<h5 class="mb-0 font-weight-medium text-primary">Conversation</h5>*@
-                                                                <select class="form-control" id="b_Status" name="b_Status"></select>
-                                                            </div>
-                                                            <div class="wrapper my-auto ml-auto ml-lg-4">
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
-                                                        <div class="d-flex">
-                                                            <div class="wrapper">
-                                                                <h3 class="mb-0 font-weight-semibold">ชื่อลูกค้า</h3>
-
-                                                                <input type="search" class="form-control" id="b_cusname" name="b_cusname">
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
-                                                        <div class="d-flex">
-                                                            <div class="wrapper">
-                                                                <h3 class="mb-0 font-weight-semibold">Car license</h3>
-
-                                                                <input type="search" class="form-control" id="b_Carlicense" name="b_Carlicense">
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>  -->
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="row">
-
-                                            <div class="col-md-12 grid-margin">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="d-flex justify-content-between">
-                                                            <h4 class="card-title mb-0">ข้อมูลลงทะเบียนสินค้า</h4>
-                                                            @*<a href="#"><small>Show All</small></a>*@
-                                                        </div>
-                                                        <p></p>
-                                                       
-                                                            <div id="fixed-table-container-1" class="fixed-table-container" style="z-index: 1;">
-                                                                @*<table class="table table-striped table-hover" id="_tbinvoicehiscx">*@
-                                                                <table>
-                                                                    <thead>
-                                                                        <tr>
-                                                                            @*<th>No.</th>*@
-                                                                            <th>ต้องการ</th>
-                                                                            <th>S/N</th>
-                                                                           
-                                                                            <th>Item</th>
-                                                                            @if (userType != "14")
-                                                                            {
-                                                                                <th>Description</th>
-                                                                            }
-                                                                            <th>สถานะ</th>
-                                                                            @if (userType != "14")
-                                                                            {
-                                                                                <th>ลูกค้า/เบอร์โทร</th>
-                                                                            }
-                                                                            <th>Car Maker</th>
-                                                                            <th>Car Model</th>
-                                                                            <th>Year</th>
-                                                                            <th>Car License</th>
-                                                                            <th>วันที่ลงทะเบียน</th>
-                                                                            <th> วันที่สิ้นสุดรับประกัน</th>
-                                                                          
-                                                                            @if (Session["UserType"].ToString() != "14")
-                                                                            {
-
-                                                                                <th>วันที่สินค้าเข้าคลัง</th>
-                                                                                <th>วันที่ขายออก</th>
-                                                                                <th>Customer</th>
-                                                                                <th>Salesman</th>
-                                                                                <th>Invoice No</th>
-                                                                                <th>Create by</th>
-                                                                                <th>Create Date</th>
-                                                                                <th>Update by</th> 
-                                                                                <th>Update</th>
-                                                                                <th>Other</th>
-                                                                            }
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody></tbody>
-                                                                </table>
-
-
-                                                            </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                <div class="col-sm-3 col-lg-1">
+                                    <p class="page-title"> &nbsp; </p>
+                                    <button type="button" class="btn btn-lg btn-primary toolbar-item" id="btn_search" style="margin-top: -3px;">ค้นหา</button>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row" style="padding-top: 5px;">
+                                <div class="col-md-2">
+                                    <p class="page-title">ผู้ใช้งาน</p>
+                                    <input type="hidden" class="form-control" id="b_Cuscode" name="b_Cuscode" value="@this.Session["cuscode"]" />
+                                    <input type="text" class="form-control" id="b_UserID" name="b_UserID" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p class="page-title">หมายเลขซีเรียล</p>
+                                    <input type="text" class="form-control" id="b_Sn" name="b_Sn" oninput="this.value = this.value.toUpperCase()" />
 
                                 </div>
-                              
+                                <div class="col-md-2">
+                                    <p class="page-title">สถานะ</p>
+                                    <select class="form-control" id="b_Status" name="b_Status">
+                                        <option value="0">เลือกสถานะ</option>
+
+                                        @foreach (var row in ViewBag.Status)
+                                        {
+                                            <option value="@row.CODE">
+                                                @row.DESCRIPTION_TH
+
+                                            </option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <p class="page-title">ชื่อลูกค้า</p>
+                                    <input type="text" class="form-control" id="b_Cusname" name="b_Cusname" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p class="page-title">ทะเบียนรถ</p>
+                                    <input type="text" class="form-control" id="b_Carlicense" name="b_Carlicense" />
+                                </div>
+                                @if (userType == "15")
+                                {
+                                    <div class="col-sm-1 text-center" style="padding-top: 5px;">
+                                        <p class="page-title"> Advance</p>
+                                        <input type="checkbox" value="Y" id="advanceSearch" style="transform: scale(1.9);">
+                                    </div>
+                                }
+                                <div class="col-md-1">
+                                    <p class="page-title"> &nbsp; </p>
+                                    <button type="button" class="btn btn-lg btn-primary toolbar-item" id="btn_search" style="margin-top: -3px;">ค้นหา</button>
+                                </div>
                             </div>
-                         
+                            @*<div class="sort-wrapper">
+
+                                </div>*@
+                        }
+
+                    </div>
+                </div>
+                <!-- Page Title Header Ends-->
+
+                <div class="page-header-toolbar">
+                    <div class="card-body">
+
+                    </div>
+                </div>
+                <!-- <div class="row">
+                     <div class="col-md-12 grid-margin">
+                         <div class="card">
+
+                             <div class="card-body">
+                                 <div class="row">
+
+                                     <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                                         <div class="d-flex">
+                                             <div class="wrapper">
+                                                 <h3 class="mb-0 font-weight-semibold">หมายเลขซีเรียล</h3>
+                                                 @*<h5 class="mb-0 font-weight-medium text-primary">S/N</h5>*@
+                                                 <input type="text" class="form-control" id="b_Sn" name="b_Sn" />
+                                             </div>
+
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                                         <div class="d-flex">
+                                             <div class="wrapper">
+                                                 <h3 class="mb-0 font-weight-semibold">สถานะ</h3>
+                                                 @*<h5 class="mb-0 font-weight-medium text-primary">Conversation</h5>*@
+                                                 <select class="form-control" id="b_Status" name="b_Status"></select>
+                                             </div>
+                                             <div class="wrapper my-auto ml-auto ml-lg-4">
+
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                                         <div class="d-flex">
+                                             <div class="wrapper">
+                                                 <h3 class="mb-0 font-weight-semibold">ชื่อลูกค้า</h3>
+
+                                                 <input type="search" class="form-control" id="b_cusname" name="b_cusname">
+                                             </div>
+
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                                         <div class="d-flex">
+                                             <div class="wrapper">
+                                                 <h3 class="mb-0 font-weight-semibold">ทะเบียนรถ</h3>
+
+                                                 <input type="search" class="form-control" id="b_Carlicense" name="b_Carlicense">
+                                             </div>
+
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>  -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+
+                            <div class="col-md-12 grid-margin">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <label> <h5>ข้อมูลลงทะเบียนสินค้า</h5></label>
+                                            @*<a href="#"><small>Show All</small></a>*@
+                                        </div>
+                                        <p></p>
+
+                                        <div id="fixed-table-container-1" class="fixed-table-container" style="z-index: 1;">
+                                            @*<table class="table table-striped table-hover" id="_tbinvoicehiscx">*@
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        @*<th>No.</th>*@
+                                                        <th>ต้องการ</th>
+                                                        <th>หมายเลขซีเรียล</th>
+
+                                                        <th>รหัสสินค้า</th>
+                                                        @if (userType != "14")
+                                                        {
+                                                            <th>รายละเอียดสินค้า</th>
+                                                        }
+                                                        <th>สถานะ</th>
+                                                        @if (userType != "14")
+                                                        {
+                                                            <th>ลูกค้า/เบอร์โทร</th>
+                                                        }
+                                                        <th>ยี่ห้อ</th>
+                                                        <th>รุ่นรถ</th>
+                                                        <th>ปี</th>
+                                                        <th>ทะเบียนรถ</th>
+                                                        <th>ร้านค้า</th>
+                                                        <th>วันที่แจ้งเคลม</th>
+                                                        <th>วันที่ลงทะเบียน</th>
+                                                        <th>วันที่สิ้นสุดรับประกัน</th>
+
+                                                        @if (Session["UserType"].ToString() != "14")
+                                                        {
+                                                            if (Session["UserType"].ToString() != "15")
+                                                            {
+                                                                <th>วันที่สินค้าเข้าคลัง</th>
+                                                                <th>วันที่ขาย</th>
+                                                                <th>รหัส/ชื่อลูกค้า (ดีลเลอร์)</th>
+                                                                <th>พนักงานขาย</th>
+                                                            }
+                                                            <th>เลขที่ใบเสร็จ</th>
+                                                            <th>สร้างโดย</th>
+                                                            <th>วันที่สร้าง</th>
+                                                            <th>แก้ไขโดย</th>
+
+                                                            <th>วันที่แก้ไข</th>
+                                                            <th>อื่นๆ</th>
+                                                        }
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <!-- main-panel ends -->
-                  
-                    <!-- page-body-wrapper ends -->
-     </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- main-panel ends -->
+        <!-- page-body-wrapper ends -->
+    </div>
     <div class="modal fade" id="confirm-claim" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -353,7 +291,7 @@
                 </div>
                 <div class="modal-body">
                     <p id="textbox"></p> <i class="fa fa-truck fa-3x"></i> <i class="fa fa-truck fa-2x"></i>
-                 
+
                 </div>
                 <div class="modal-footer">
 
@@ -439,7 +377,7 @@
     <script src="~/BootstrapTemplate/src/assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
 
     <script src="~/Scripts/localhost.js"></script>
-        <script>
+    <script>
          var id = '@Request.RequestContext.HttpContext.Session["ID"]';
         var userid = '@Request.RequestContext.HttpContext.Session["UserID"]';
         var usertype = '@Request.RequestContext.HttpContext.Session["UserType"]';
@@ -535,32 +473,32 @@
 
                 var currentURL = window.location.href;
 
-              
+
                 window.location.replace(lastname + "/Account/LogIn");
           //  }
         });
         $("#btn_search").on("click", function () {
 
             var b_Sn = $("#b_Sn").val();
-            var b_Status = $("#b_Status").val();
+            var b_Status = $("#b_Status option:selected").val();
             var b_Cusname = $("#b_Cusname").val();
             var b_Carlicense = $("#b_Carlicense").val();
-
             var b_Customerid = $("#b_UserID").val();
+            var b_typeid = $("#b_userType").val();
+            var b_advanceSearch = $("#advanceSearch").is(":checked");//มีเฉพาะสิทธิ์ dealer
+            if (b_advanceSearch) {
+                if (b_Sn == "" || b_Carlicense == "") {
+                    alert("กรุณากรอกข้อมูลหมายเลขซีเรียลและทะเบียนรถให้ครบถ้วน");
+                    return false;
+                }
+            }
 
-
-            var b_typeid = $("#b_userType").val()
-
-          
-           
             if(b_Sn == "" && b_Status == "0" && b_Cusname == "" && b_Carlicense == "" && b_Customerid == "") {
-                alert("กรุณาใส่ข้อมูลเพื่อต้องการค้นหา");
+                alert("กรุณากรอกข้อมูลเพื่อต้องการค้นหา");
                 return false;
             }else{
                   GetGetdateInquiry(b_Status,"1");
              }
-          
-
         });
        // GetGetdateInquiry("0");
         if (usertype != "14") {
@@ -570,69 +508,79 @@
             GetGetdateInquiry("0", "0");
             $("#b_Status").val("0");
         }
+
         function GetGetdateInquiry(status,dis) {
             var b_Sn = $("#b_Sn").val();
             var b_Status = status;
-            var b_Cusname = $("#b_Cusname").val();
-            var b_Carlicense = $("#b_Carlicense").val();
-
+            var b_Cusname = $("#b_Cusname").val().trim();
+            var b_Carlicense = $("#b_Carlicense").val().trim();
             var b_Customerid = $("#b_UserID").val();
-
-
-            var b_typeid = $("#b_userType").val()
-
-            var b_typeid = $("#b_userType").val()
+            var b_typeid = $("#b_userType").val();
+            var b_Cuscode = '';
+            var b_advanceSearch = $("#advanceSearch").is(":checked");//มีเฉพาะสิทธิ์ dealer
+            if (!b_advanceSearch) { //ไม่คลิก
+                if ($("#b_Cuscode").val() != "" && typeof($("#b_Cuscode").val()) !== "undefined") {
+                    var b_Cuscode = $("#b_Cuscode").val().trim(); //มีเฉพาะสิทธิ์ dealer
+                }
+            }
             $.ajax({
                 url: '@Url.Action("GetdateInquiry", "GetdataCenter")',
                 data: {
                     b_Sn: b_Sn,
                     Status: b_Status,
                     Customername: b_Cusname,
-
                     Carlicense: b_Carlicense,
                     Customerid: b_Customerid,
+                    Cuscode: b_Cuscode,
                 },
                 type: "POST",
                 dataType: "JSON",
                 success: function (data) {
-                   /// console.log(data)
+                   console.log(data)
                     // $('#_tbinvoicehiscx > tbody:last-child').html("");
                     $('#fixed-table-container-1 tbody:last-child').html("");
                     if (data.length > 0) {
+                        console.log(data.length)
 
                         var chkstatus = "0";
                         var varbutton = "";
                         var SubmithtmlPage = '';
                         for (var i = 0; i < data.length; i++) {
-                            
-
+                            var warrantyExpire = "";
+                            warrantyExpire = data[i].WarrantyExpire;
                             chkstatus = data[i].StatusID;
-                            if (b_typeid == "14") {
-                                if (chkstatus == "1" || chkstatus == "8") { //ลงทะเบียนเรียบร้อย
-                                    
-                                    varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-primary" data-dismiss="modal">ดูรายละเอียด</button><button type="button" stksn=' + data[i].Warranty_ID + '  varbut ="2"  class="btn btn-warning">แจ้งเคลม</button></td>';
+                            if (b_typeid == "14") { //end user
+                                if (chkstatus == "1" || chkstatus == "5" || chkstatus == "8") { //ลงทะเบียนเรียบร้อย, ไม่ผ่าน, ขอข้อมูลเพิ่ม
+                                    if (warrantyExpire == '7') {//หมดระยะเวลารับประกัน
+                                        varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '  varbut ="2"  class="btn btn-secondary" disabled>แจ้งเคลมแล้ว</button></td>';
+                                    } else {
+                                        varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '  varbut ="2"  class="btn btn-warning">แจ้งเคลม</button></td>';
+                                    }
                                 } else if (chkstatus == "2" || chkstatus == "3" || chkstatus == "4" || chkstatus == "5" || chkstatus == "6" || chkstatus == "7" ) { // ส่งพิจารณาเคลม
-                                    varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-primary" data-dismiss="modal">ดูรายละเอียด</button><button type="button" stksn=' + data[i].Warranty_ID + '  varbut ="2"  class="btn btn-secondary" disabled>แจ้งเคลม</button></td>';
+                                    varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '  varbut ="2"  class="btn btn-secondary" disabled>แจ้งเคลมแล้ว</button></td>';
                                 }
-                               
                             } else {
                                 if (chkstatus == "1") { //ลงทะเบียนเรียบร้อย
-                                    varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-primary" data-dismiss="modal">ดูรายละเอียด</button><button type="button" stksn=' + data[i].Warranty_ID + '   varbut ="2"  class="btn btn-warning" disabled>แจ้งเคลม</button></td>';
+                                    if (data[i].CreateBy == userid) { //คนลงทะเบียนสามารถแจ้งเคลมได้
+                                        varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '  varbut ="2"  class="btn btn-warning">แจ้งเคลม</button></td>';
+                                    } else {
+                                        varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '   varbut ="2"  class="btn btn-warning" disabled>แจ้งเคลมแล้ว</button></td>';
+                                    }
                                 } else if (chkstatus == "2" || chkstatus == "3") { // กำลังพิจารณา
-                                    varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + '  id="clickno1" varbut ="1" class="btn btn-primary" data-dismiss="modal">ดูรายละเอียด</button><button type="button" stksn=' + data[i].Warranty_ID + ' varbut ="3"  class="btn btn-info">ตรจวสอบ</button></td>';
+                                    varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + '  id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + ' varbut ="3"  class="btn btn-warning">ตรวจสอบ</button></td>';
                                 } else if (chkstatus == "4") { // Approved
-                                    varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + '  id="clickno1" varbut ="1" class="btn btn-primary" data-dismiss="modal">ดูรายละเอียด</button><button type="button" varbut ="4" stksn=' + data[i].Warranty_ID + '  class="btn btn-success btn-ok">ทดแทนสินค้า</button></td>';
-                                } else if (chkstatus == "5"||chkstatus == "6"||chkstatus == "7") { // Rejected
-                                    varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + '  id="clickno1" varbut ="1" class="btn btn-primary" data-dismiss="modal">ดูรายละเอียด</button></td>';
-                                } 
+                                    varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + '  id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" varbut ="4" stksn=' + data[i].Warranty_ID + '  class="btn btn-success btn-ok">ทดแทนสินค้า</button></td>';
+                                } else { // Rejected
+                                    varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + '  id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button></td>';
+                                }
                             }
                             SubmithtmlPage = '<tr style="cursor: pointer;" >';
                             SubmithtmlPage += varbutton;
                             // SubmithtmlPage += '<td >' + data[i].No + '</td>';
                             //   SubmithtmlPage += '<td style="text-align: -webkit-center;padding-top: 4px;background-color: #bbc;min-width: 80px;border: 1px solid #222;"><input type="checkbox" id="blahA" value="1"/></td>';
                             SubmithtmlPage += '<td style="ccursor: pointer;text-decoration: underline;text-decoration-color: blue;font-weight: bold;"  stksn=' + data[i].Warranty_ID + ' sta=' + data[i].StatusID + '>' + data[i].SN + '</td>';
-                           
-                           
+
+
                             SubmithtmlPage += '<td>' + data[i].ItemNo + '</td>';
                             if (b_typeid != "14") {
                                 SubmithtmlPage += '<td><div  class="preserveLineBreaks">' + data[i].STKDES + '</div></td>';
@@ -642,22 +590,25 @@
                             if (b_typeid != "14") {
                                 SubmithtmlPage += '<td>' + data[i].Name + "<br>|" + data[i].Tel + '</td>';
                             }
-                        
+
                             SubmithtmlPage += '<td>' + data[i].CarMaker + '</td>';
                             SubmithtmlPage += '<td>' + data[i].CarModel + '</td>';
                             SubmithtmlPage += '<td>' + data[i].CarYear + '</td>';
                             SubmithtmlPage += '<td>' + data[i].CarLicense + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].Shop + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].CreateDate + '</td>';
                             SubmithtmlPage += '<td>' + data[i].WarrantyStartDate + '</td>';
                             SubmithtmlPage += '<td>' + data[i].WarrantyEndDate + '</td>';
-                           
+
                             if (b_typeid != "14") {
-                               
-   
-                                SubmithtmlPage += '<td">' + data[i].ExpectedReceiptDate + '</td>';
-                                SubmithtmlPage += '<td>' + data[i].InvoiceDate + '</td>';
-                                SubmithtmlPage += '<td>' + data[i].ExpectedReceiptDate + '</td>';
-                                SubmithtmlPage += '<td>' + data[i].CUSCOD + "<br>|" + data[i].CUSNAM + '</td>';
-                                SubmithtmlPage += '<td>' + data[i].SLMCOD + '</td>';
+
+                                if (b_typeid != "15") {
+                                    SubmithtmlPage += '<td">' + data[i].ExpectedReceiptDate + '</td>';
+                                    SubmithtmlPage += '<td>' + data[i].InvoiceDate + '</td>';
+                                    SubmithtmlPage += '<td>' + data[i].ExpectedReceiptDate + '</td>';
+                                    SubmithtmlPage += '<td>' + data[i].CUSCOD + "<br>|" + data[i].CUSNAM + '</td>';
+                                    SubmithtmlPage += '<td>' + data[i].SLMCOD + '</td>';
+                                }
                                 SubmithtmlPage += '<td>' + data[i].InvoiceNo + '</td>';
                                 SubmithtmlPage += '<td>' + data[i].CreateBy + '</td>';
                                 SubmithtmlPage += '<td>' + data[i].CreateDate + '</td>';
@@ -683,7 +634,7 @@
             });
 
         }
-          
+
             $("table").on("click", "button", function () {
             var stksn = $(this).attr('stksn');
             var sta = $(this).attr('sta');
@@ -691,14 +642,18 @@
             var b_typeid = $("#b_userType").val();
             $("#snID").val(stksn);
 
-            
+
             if (b_typeid != "14") {
                 //Admin//
                 if (varbut == "1") {//ดูรายละเอียด
                     var wi = window.location.replace(lastname + "/ClaimView/Index?SnNUM=" + btoa(stksn));
                     wi.focus();
 
-                } else if (varbut == "3") {//ดูรายละเอียด
+                } else if (varbut == "2") {//
+                    var wi = window.location.replace(lastname + "/ClaimRequest/Index?SnNUM=" + btoa(stksn));
+                    wi.focus();
+
+                }else if (varbut == "3") {//ดูรายละเอียด
                     var wi = window.location.replace(lastname + "/ClaimRequest/Index?SnNUM=" + btoa(stksn));
                     wi.focus();
 
@@ -729,7 +684,7 @@
                 //} else if (sta == "6") {
                 //    $("#textbox").text("คุณต้องการดูรายละเอียดหรือไม่")
                 //    $("#confirmdatail-claim").modal();
-                   
+
                 //}
             }
             else {
@@ -755,34 +710,34 @@
 
 
         });
-  
-     
+
+
         $(document).delegate('#btnnextdetail', 'click', function () {
 
             var sn_no = $("#snID").val();
 
 
             //var currentURL = window.location.href;
-          
+
            // var wi = window.open(currentURL+"ClaimView/Index?SnNUM=" + btoa(sn_no))
            // var wi = window.open("./ClaimView/Index?SnNUM=" + btoa(sn_no));
             var wi = window.location.replace(lastname + "/ClaimView/Index?SnNUM=" + btoa(sn_no));
             wi.focus();
         });
-      
+
         $(document).delegate('#btnnext', 'click', function () {
-          
+
             var sn_no = $("#snID").val();
 
 
             //alert(lastname)
-         
+
            // var currentURL = window.location.host;
             //var wi = window.open("./ClaimRequest/Index?SnNUM=" + btoa(sn_no))
-       
+
             var wi = window.location.replace(lastname + "/ClaimRequest/Index?SnNUM=" + btoa(sn_no));
 
-        
+
             //wi.focus();
         });
         $(document).delegate('#btnnextReplacement', 'click', function () {
@@ -792,7 +747,7 @@
 
            // var currentURL = window.location.host; //window.location.href;
 
-            
+
            // var wi = window.open("./Replacement/Index?SnNUM=" + btoa(sn_no));
             var wi = window.location.replace(lastname + "/Replacement/Index?SnNUM=" + btoa(sn_no));
             wi.focus();

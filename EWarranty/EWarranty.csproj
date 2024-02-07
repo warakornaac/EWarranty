@@ -55,11 +55,11 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -118,6 +118,7 @@
     <Compile Include="Controllers\ClaimEditController.cs" />
     <Compile Include="Controllers\ClaimRequestController.cs" />
     <Compile Include="Controllers\ClaimViewController.cs" />
+    <Compile Include="Controllers\EditRegisterDealerController.cs" />
     <Compile Include="Controllers\EditWarrantyregisterController.cs" />
     <Compile Include="Controllers\InquiryController.cs" />
     <Compile Include="Controllers\MenubarController.cs" />
@@ -3949,6 +3950,7 @@
     <Content Include="JSautocomplete\jquery-ui.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-ui.css" />
     <Content Include="Scripts\jquery-validation-1.19.5\build\release.js" />
     <Content Include="Scripts\jquery-validation-1.19.5\demo\ajaxSubmit-integration-demo.html" />
     <Content Include="Scripts\jquery-validation-1.19.5\demo\bootstrap\index-bs4.html" />
@@ -4699,9 +4701,6 @@
     <Content Include="Views\Replacement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Inquiry\Index - Copy.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\EditWarrantyregister\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -4718,6 +4717,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Menubar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\CheckLoginExternal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\RegisterDealer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditRegisterDealer\index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

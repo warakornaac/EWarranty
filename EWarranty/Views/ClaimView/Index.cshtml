@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Index";
-     Layout = "~/Views/Shared/_Layoutview.cshtml";
+    Layout = "~/Views/Shared/_Layoutview.cshtml";
 
     var user = ViewBag.UserId;
     var userType = ViewBag.UserType;
@@ -22,7 +22,7 @@
     var ExpectedReceiptDate = ViewBag.ExpectedReceiptDate;
     var Warranty_ID = ViewBag.Warranty_ID;
     var Claim_ID = ViewBag.Claim_ID;
-    var Symptomname =ViewBag.Symptomname ;
+    var Symptomname = ViewBag.Symptomname;
     var MileageClaim = ViewBag.MileageClaim;
 
     var Symptom_ID = ViewBag.Symptom_ID;
@@ -38,10 +38,11 @@
     var Tel = ViewBag.Tel;
     var LineID = ViewBag.LineID;
     var EMail = ViewBag.EMail;
+    var Shop = ViewBag.Shop;
+    var Cuscode = ViewBag.Cuscode;
+    var Shipto = ViewBag.Shipto;
     List<EWarranty.Models.GroupClass.DefineCode> List_Sympto = ViewBag.List_Sympto;
     List<EWarranty.Models.GroupClass.DefineCode> List = ViewBag.Status;
-    
-    
 }
 
 <html lang="en">
@@ -51,7 +52,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>E-Warranty Claim</title>
 
-  
+
     <style>
         #myImg {
             border-radius: 5px;
@@ -308,7 +309,7 @@
             border: 1px solid #000;
             margin: 10px 5px 0 0;
         }
-     
+
         /*Copied from bootstrap to handle input file multiple*/
         .btn {
             display: inline-block;
@@ -434,10 +435,10 @@
 
             <div class="col-lg-12 mx-auto">
                 <h2 class="text-center mb-4">
-                   ข้อมูลเคลมสินค้า
+                    ข้อมูลเคลมสินค้า
                 </h2>
                 @*<div class="auto-form-wrapper">*@
-                 <div>
+                <div>
                     <div class="col-12 grid-margin">
                         <div class="card">
                             <div class="card-body">
@@ -448,69 +449,69 @@
                                             <div class="col-md-6">
                                                 <div class="form-group row">
 
-                                                    <label class="col-sm-3 col-form-label">S/N</label>
+                                                    <label class="col-sm-3 col-form-label">หมายเลขซีเรียล</label>
                                                     <div class="col-sm-9">
 
                                                         <input type="text" class="form-control" id="b_SNno" name="b_SNno" value="@SN" disabled="disabled" />
                                                     </div>
                                                 </div>
                                             </div>
-                                           @if (userType != "14")
-                                           {
-                                               
-                                                 <div class="col-md-6">
-                                                                <div class="form-group row">
+                                            @if (userType != "14")
+                                            {
 
-                                                                    <label class="col-sm-3 col-form-label"> ชื่อลูกค้า</label>
-                                                                    <div class="col-sm-9">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
 
-                                                                        <input type="text" class="form-control" id="b_namecus" name="b_namecus" value="@Name  @LastName" disabled="disabled" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                           }
+                                                        <label class="col-sm-3 col-form-label"> ชื่อลูกค้า</label>
+                                                        <div class="col-sm-9">
+
+                                                            <input type="text" class="form-control" id="b_namecus" name="b_namecus" value="@Name  @LastName" disabled="disabled" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
                                         </div>
 
 
-                                                   @if (userType != "14")
-                                                    {
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group row">
+                                        @if (userType != "14")
+                                        {
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
 
-                                                                <label class="col-sm-3 col-form-label">เบอร์โทรลูกค้า</label>
-                                                                <div class="col-sm-9">
+                                                        <label class="col-sm-3 col-form-label">เบอร์โทรลูกค้า</label>
+                                                        <div class="col-sm-9">
 
-                                                                    <input type="text" class="form-control" id="b_tel" name="b_tel" value="@Tel" disabled="disabled" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group row">
-
-                                                                <label class="col-sm-3 col-form-label">Line ลูกค้า</label>
-                                                                <div class="col-sm-9">
-
-                                                                    <input type="text" class="form-control" id="b_line" name="b_line" value="@LineID" disabled="disabled" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                    <div class="row">
-                                                       
-                                                        <div class="col-md-6">
-                                                            <div class="form-group row">
-
-                                                                <label class="col-sm-3 col-form-label">Email ลูกค้า</label>
-                                                                <div class="col-sm-9">
-
-                                                                    <input type="text" class="form-control" id="b_EMail" name="b_EMail" value="@EMail" disabled="disabled" />
-                                                                </div>
-                                                            </div>
+                                                            <input type="text" class="form-control" id="b_tel" name="b_tel" value="@Tel" disabled="disabled" />
                                                         </div>
                                                     </div>
-                                                    }
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+
+                                                        <label class="col-sm-3 col-form-label">ไลน์ไอดี</label>
+                                                        <div class="col-sm-9">
+
+                                                            <input type="text" class="form-control" id="b_line" name="b_line" value="@LineID" disabled="disabled" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+
+                                                        <label class="col-sm-3 col-form-label">อีเมลลูกค้า</label>
+                                                        <div class="col-sm-9">
+
+                                                            <input type="text" class="form-control" id="b_EMail" name="b_EMail" value="@EMail" disabled="disabled" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
 
                                         <div class="row">
                                             <div class="col-md-6">
@@ -525,7 +526,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">รุ่น</label>
+                                                    <label class="col-sm-3 col-form-label">รุ่นรถ</label>
                                                     <div class="col-sm-9">
 
                                                         <input type="text" class="form-control" id="b_CarModel" name="b_CarModel" value="@CarModel" disabled="disabled" />
@@ -537,7 +538,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">
-                                                        ทะเบียน*
+                                                        ทะเบียนรถ*
                                                     </label>
                                                     <div class="col-sm-9">
                                                         <input type="text" class="form-control" id="b_CarLicense" name="b_CarLicense" value="@CarLicense" disabled="disabled" />
@@ -587,7 +588,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">item</label>
+                                                    <label class="col-sm-3 col-form-label">รหัสสินค้า</label>
                                                     <div class="col-sm-4">
                                                         <input type="text" class="form-control" id="b_item" name="b_item" value="@ItemNo" disabled="disabled" />
                                                     </div>
@@ -597,7 +598,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">Description</label>
+                                                    <label class="col-sm-3 col-form-label">รายละเอียดสินค้า</label>
                                                     <div class="col-sm-9">
                                                         <input type="text" class="form-control" id="b_Description" name="b_Description" value="@STKDES" disabled="disabled" />
                                                     </div>
@@ -627,12 +628,23 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">ร้านค้า</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="b_shop" name="b_shop" value="@Shop" disabled="disabled" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
 
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">อาการ*</label>
                                                     <div class="col-sm-9">
-                                                       
+
                                                         <select class="form-control" id="b_symptom" name="b_symptom" disabled="disabled">
                                                             <option value="0">เลือกอาการแจ้งเคลม </option>
                                                             @foreach (var row in ViewBag.List_Sympto)
@@ -661,17 +673,17 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">โน้ตเพิ่มเติม(ลูกค้า)*</label>
+                                                    <label class="col-sm-3 col-form-label">โน้ตเพิ่มเติม(ลูกค้า)</label>
                                                     <div class="col-sm-9">
 
-                                                        <textarea rows="4" cols="80" class="form-control" id="b_CustomerNote" name="b_CustomerNote"    disabled="disabled">@CustomerNote</textarea>
+                                                        <textarea rows="4" cols="80" class="form-control" id="b_CustomerNote" name="b_CustomerNote" disabled="disabled">@CustomerNote</textarea>
                                                     </div>
                                                 </div>
 
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">โน้ตเพิ่มเติม(เจ้าหน้าที่)*</label>
+                                                    <label class="col-sm-3 col-form-label">โน้ตเพิ่มเติม(เจ้าหน้าที่)</label>
                                                     <div class="col-sm-9">
 
                                                         <textarea rows="4" cols="80" class="form-control" id="b_dminNote" name="b_dminNote" disabled="disabled">@Note</textarea>
@@ -680,50 +692,71 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Status</label>
-                                                <div class="col-sm-9" >
-                                                    <select class="form-control" id="b_Status" name="b_Status" disabled="disabled">
-                                                        <option value="0">เลือกสถานะ</option>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">สถานะ</label>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control" id="b_Status" name="b_Status" disabled="disabled">
+                                                            <option value="0">เลือกสถานะ</option>
 
-                                                        @foreach (var row in ViewBag.Status)
-                                                        {
-                                                            <option value=@row.CODE>
-                                                                @row.DESCRIPTION_TH
+                                                            @foreach (var row in ViewBag.Status)
+                                                            {
+                                                                <option value=@row.CODE>
+                                                                    @row.DESCRIPTION_TH
 
-                                                            </option>
-                                                        }
-                                                    </select>
-                                                    
+                                                                </option>
+                                                            }
+                                                        </select>
+
+                                                    </div>
+
                                                 </div>
-                                              
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">หมายเลขซีเรียล ทดแทน*</label>
+                                                    <div class="col-sm-9">
+
+                                                        <input type="text" class="form-control" id="b_New_SNno" name="b_New_SNno" value="@ReplacementSN" disabled="disabled" />
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">New S/N*</label>
-                                                <div class="col-sm-9">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">ร้านที่เคลมสินค้า*</label>
+                                                    <div class="col-sm-9">
 
-                                                    <input type="text" class="form-control" id="b_New_SNno" name="b_New_SNno" value="@ReplacementSN" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_ClaimShop" name="b_ClaimShop" value="@ClaimShop" disabled="disabled" />
+                                                    </div>
                                                 </div>
-                                            </div>
 
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Claim Shop*</label>
-                                                <div class="col-sm-9">
-
-                                                    <input type="text" class="form-control" id="b_ClaimShop" name="b_ClaimShop" value="@ClaimShop" disabled="disabled" />
+                                        @if (userType == "15" && Shipto != "")
+                                        {
+                                            <div class="row">
+                                                <div class="col-md-12 text-center" style="margin: -12px 0px 13px;">
+                                                    <hr>
                                                 </div>
                                             </div>
-
-                                        </div><div class="col-lg-4 mx-auto">
-
-                                            <div class="form-group">
-                                                @*<button class="btn btn-primary submit-btn btn-block" id="b-cf-reg">ลงทะเบียน</button>*@
-                                                @*<input class="submit" type="submit" value="ยืนยัน">*@
+                                            @*show all shipto*@
+                                            <div class="row" style="font-size: 16px;">
+                                                <div class="col-md-12">
+                                                    <span class="label label-info">ที่อยู่ร้านค้า</span>
+                                                    <div id="showShipto" style="margin-top: 10px;"> </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="row">
+                                            <div class="col-lg-4 mx-auto">
+                                                <div class="form-group">
+                                                    @*<button class="btn btn-primary submit-btn btn-block" id="b-cf-reg">ลงทะเบียน</button>*@
+                                                    @*<input class="submit" type="submit" value="ยืนยัน">*@
+                                                </div>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -731,12 +764,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
 
                 </div>
             </div>
@@ -748,7 +775,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between pb-3">
                             <h4 class="card-title mb-0">รูปลงทะเบียน</h4>
-                          
+
                         </div>
                         <div class="table-responsive">
                             <table class="table" id="FilesList" style="visibility:hidden">
@@ -854,21 +881,67 @@
     <!-- page-body-wrapper ends -->
     @*</div>*@
 
-   
+
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <script src="~/Scripts/localhost.js"></script>
     <script type="text/javascript">
-        //Getimage//
-       
+        var id = '@Request.RequestContext.HttpContext.Session["ID"]';
+        var userid = '@Request.RequestContext.HttpContext.Session["UserID"]';
+        var usertype = '@Request.RequestContext.HttpContext.Session["UserType"]';
+        var cusCode = "@Cuscode";
+        var shipto = "@Shipto";
+        if (cusCode == "" || cusCode == null) {
+            cusCode = "";
+        }
+
+        $(document).ready(function () {
+            console.log("userType = " + usertype);
+            if (usertype == 15 && shipto != "") {//เป็นค้า
+                getDataShipto(cusCode, shipto);
+            }
+        });
+
+        $('.list-group-item').click(function () {
+            $('.list-group-item').removeClass('active');
+            $(this).addClass('active');
+        });
+        //get shipto by customer
+        function getDataShipto(cusCode, shipto) {
+               $.ajax({
+                    url: '@Url.Action("SearchShiptoDealer", "Account")',
+                    data: {
+                        cuscode: cusCode.trim(),
+                        shipto: shipto.trim(),
+                    },
+                    type: "POST",
+                    dataType: "JSON",
+                    beforeSend: function () {
+                        $('#showShipto').empty();
+                        $('#showShipto').html('<div style="padding-bottom: 15px; font-size: 14px;"> <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> กำลังโหลดข้อมูล... </div>')
+                    },
+                    success: function (data) {
+                        console.log("SearchShiptoDealer = " + data);
+                        var textHtml = '';
+                        textHtml += "<div class='list-group'>";
+                        $(data).each(function (index, item) {
+                            if (item.Code != '') {
+                                textHtml += '<div type="button" onclick="makeActive(event, this);" class="list-group-item" data-shipto="' + item.Code + '" data-address1="' + item.Address1 + '" data-address2="' + item.Address2 + '" data-phone="' + item.Phone + '"  data-contact="' + item.Contact + '">' + item.Code + " | " + "  " + item.Address1 + '</div>';
+                            }
+                        });
+                        // onClick="selectShipto(this);"
+                        textHtml += "</div>";
+                        $('#showShipto').html(textHtml);
+                    }
+               });
+        }
+
          $('#b_Status').val("@ClaimStatus");
         //alert(@Symptom_ID)
         $('#b_symptom').val("@Symptom_ID");
     //   $("#myModal").modal();
-    var id = '@Request.RequestContext.HttpContext.Session["ID"]';
-    var userid = '@Request.RequestContext.HttpContext.Session["UserID"]';
-    var usertype = '@Request.RequestContext.HttpContext.Session["UserType"]';
+
         // let lastname = sessionStorage.getItem("hostname");
         let lastname = getlocalhost();
         console.log(lastname);
@@ -1103,7 +1176,7 @@
 
             },
             messages: {
-                b_CarMileage_now: "กรุณาใส่เลขไมล์ปัจจุบัน"
+                b_CarMileage_now: "กรุณากรอกเลขไมล์ปัจจุบัน"
 
 
             }
@@ -1128,7 +1201,7 @@
             var leng = $('#FilesList > tbody:last-child').children().length;
             var lengCarMileage = $('#FilesListCarMileage > tbody:last-child').children().length;
             if (leng == 1) {
-                alert("กรุณา Upload รูป ประกอบพิจารณาเคลม")
+                alert("กรุณาอัพโหลกด รูป ประกอบพิจารณาเคลม")
                 //$("#textAlertWarningmes").empty();
                 //$("#textAlertWarningmes").text("กรุณา Upload image เพื่อประกอบพิจารณาเคลม");
                 //$("#myModalWarning").modal();
@@ -1197,7 +1270,7 @@
                                                 //alert(result);
 
                                                 //alert("Upload รูปไมล์ สินค้าสำเร็จ");
-                                                alert("ทำเรื่องเคลมเรียบร้อย");
+                                                alert("บันทึกรายการสำเร็จ");
                                                 $("#FilesListCarMileage tr .delimagsalCarMileage").trigger("click");
 
 
@@ -1348,7 +1421,7 @@
 
     $("#b_des").click(function () {
         if ($('#b_Sn').val() == "") {
-            alert("กรุณาใส่ S/N");
+            alert("กรุณากรอก หมายเลขซีเรียล");
             return false;
         }
         $.ajax({
@@ -1365,7 +1438,7 @@
                 // $("#meassagetext").html(data.message);
 
                 if (data.Description == "") {
-                    alert("ไม่มี S/N ในระบบ กรุณากรอก S/N อีกครั้ง")
+                    alert("ไม่พบหมายเลขซีเรียลในระบบ กรุณาลองอีกครั้ง")
                 } else {
                     $("#b_Description").val(data.Description);
                 }

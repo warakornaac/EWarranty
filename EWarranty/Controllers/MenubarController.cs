@@ -13,6 +13,11 @@ namespace EWarranty.Controllers
 
         public ActionResult Index()
         {
+            string User = Session["UserID"].ToString();
+            string UserType = Session["UserType"].ToString();
+            ViewBag.UserId = User;
+            ViewBag.UserType = UserType;
+
             return View();
         }
 
