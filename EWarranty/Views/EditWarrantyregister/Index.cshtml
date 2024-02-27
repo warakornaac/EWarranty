@@ -215,7 +215,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
 
-                                                        <label class="col-sm-3 col-form-label">ชื่อ*</label>
+                                                        <label class="col-sm-3 col-form-label">ชื่อ <span class="red-star">*</span></label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="b_name" name="b_name" value="@Name" required />
                                                         </div>
@@ -223,7 +223,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">นามสกุล*</label>
+                                                        <label class="col-sm-3 col-form-label">นามสกุล <span class="red-star">*</span></label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="b_lastname" name="b_lastname" value="@LastNameuser" required />
                                                         </div>
@@ -234,26 +234,26 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">ที่อยู่ 1 *</label>
+                                                        <label class="col-sm-3 col-form-label">ที่อยู่  <span class="red-star">*</span></label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="address1" name="address1" value="@Address01" required />
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                @*PCP 13022024  : Request to hide field from UAT <div class="col-md-6">
                                                     <div class="form-group row">
                                                         <label class="col-sm-3 col-form-label">ที่อยู่ 2</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="address2" name="address2" value="@Address02" />
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> *@
 
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">แขวง/ตำบล *</label>
+                                                        <label class="col-sm-3 col-form-label">แขวง/ตำบล  <span class="red-star">*</span></label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="district" name="district" value="@SubDistrict" required />
                                                         </div>
@@ -261,7 +261,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">เขต/อำเภอ *</label>
+                                                        <label class="col-sm-3 col-form-label">เขต/อำเภอ  <span class="red-star">*</span></label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="amphoe" name="amphoe" value="@District" required />
                                                         </div>
@@ -273,7 +273,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">จังหวัด *</label>
+                                                        <label class="col-sm-3 col-form-label">จังหวัด  <span class="red-star">*</span></label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="province" name="province" value="@Province" required />
                                                         </div>
@@ -282,7 +282,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">รหัสไปรษณีย์ *</label>
+                                                        <label class="col-sm-3 col-form-label">รหัสไปรษณีย์  <span class="red-star">*</span></label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="zipcode" name="zipcode" value="@Postcode" required />
                                                         </div>
@@ -293,7 +293,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">เบอร์โทรศัพท์(เฉพาะตัวเลข)*</label>
+                                                        <label class="col-sm-3 col-form-label">เบอร์โทรศัพท์(เฉพาะตัวเลข)  <span class="red-star">*</span></label>
                                                         <div class="col-sm-9">
                                                             <input type="number" class="form-control" id="b_tel" name="b_tel" value="@Tel" required />
                                                         </div>
@@ -314,7 +314,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">อีเมล *</label>
+                                                        <label class="col-sm-3 col-form-label">อีเมล  <span class="red-star">*</span></label>
                                                         <div class="col-sm-9">
                                                             <input type="email" class="form-control" id="email" name="email" value="@EMail" />
                                                         </div>
@@ -904,7 +904,7 @@
                     //var b_password = $('#password').val();
                     // var b_cfpassword = $('#confirm_password').val();
                     var b_address1 = $('#address1').val();
-                    var b_address2 = $('#address2').val();
+                    //var b_address2 = $('#address2').val();
                     var b_district = $('#district').val();
                     var b_amphoe = $('#amphoe').val();
                     var b_province = $('#province').val();
@@ -959,7 +959,7 @@
                             // b_password: $('#password').val(),
                             //  b_cfpassword: $('#confirm_password').val(),
                             b_address1: $('#address1').val(),
-                            b_address2: $('#address2').val(),
+                            //b_address2: $('#address2').val(),
                             b_district: $('#district').val(),
                             b_amphoe: $('#amphoe').val(),
                             b_province: $('#province').val(),

@@ -39,20 +39,23 @@
     var LineID = ViewBag.LineID;
     var EMail = ViewBag.EMail;
     var Shop = ViewBag.Shop;
+    var ShopTel = ViewBag.ShopTel;
     var Cuscode = ViewBag.Cuscode;
     var Shipto = ViewBag.Shipto;
+    var ClaimNo = ViewBag.ClaimNo;
     List<EWarranty.Models.GroupClass.DefineCode> List_Sympto = ViewBag.List_Sympto;
     List<EWarranty.Models.GroupClass.DefineCode> List = ViewBag.Status;
 }
 
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>E-Warranty Claim</title>
-
-
+    <script src="~/fixed-table-master/fixed-table.js"></script>
+    <link href="~/fixed-table-master/fixed-table.css" rel="stylesheet" />
     <style>
         #myImg {
             border-radius: 5px;
@@ -66,17 +69,26 @@
 
         /* The Modal (background) */
         .modalx {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.9);
+            /* Black w/ opacity */
         }
 
         /* Modal Content (Image) */
@@ -100,10 +112,12 @@
         }
 
         /* Add Animation - Zoom in the Modal */
-        .modal-content, #caption {
+        .modal-content,
+        #caption {
             animation-name: zoom;
             animation-duration: 0.6s;
         }
+
         /* The Close Button */
         .close {
             position: absolute;
@@ -124,7 +138,8 @@
             }
 
         .preserveLineBreaks {
-            white-space: pre-line; /*or pre-wrap*/
+            white-space: pre-line;
+            /*or pre-wrap*/
         }
 
         /* Style all input fields */
@@ -211,7 +226,8 @@
         }
     </style>
     <style>
-        form.cmxform label.error, label.error {
+        form.cmxform label.error,
+        label.error {
             color: red;
             font-style: italic;
         }
@@ -224,7 +240,8 @@
                 width: 250px;
             }
 
-                #commentForm label.error, #commentForm input.submit {
+                #commentForm label.error,
+                #commentForm input.submit {
                     margin-left: 253px;
                 }
 
@@ -240,6 +257,7 @@
             display: none;
             margin-left: 103px;
         }
+
         /* This is copied from https://github.com/blueimp/jQuery-File-Upload/blob/master/css/jquery.fileupload.css */
         .fileinput-button {
             position: relative;
@@ -330,6 +348,7 @@
             border: 1px solid transparent;
             border-radius: 4px;
         }
+
         /*Also */
         .btn-success {
             border: 1px solid #c5dbec;
@@ -337,6 +356,7 @@
             font-weight: bold;
             color: #2e6e9e;
         }
+
         /* This is copied from https://github.com/blueimp/jQuery-File-Upload/blob/master/css/jquery.fileupload.css */
         .fileinput-button {
             position: relative;
@@ -442,30 +462,39 @@
                     <div class="col-12 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <p class="card-description">  </p>
+                                <p class="card-description"> </p>
                                 <form class="cmxform" id="signupForm" method="post" action="">
                                     <fieldset>
                                         <div class="row">
+                                            @if (ClaimNo != "") { 
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">เลขที่เคลม</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="b_ClaimNo" name="b_ClaimNo" value="@ClaimNo" disabled="disabled" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-
                                                     <label class="col-sm-3 col-form-label">หมายเลขซีเรียล</label>
                                                     <div class="col-sm-9">
-
                                                         <input type="text" class="form-control" id="b_SNno" name="b_SNno" value="@SN" disabled="disabled" />
                                                     </div>
                                                 </div>
                                             </div>
                                             @if (userType != "14")
                                             {
-
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
 
                                                         <label class="col-sm-3 col-form-label"> ชื่อลูกค้า</label>
                                                         <div class="col-sm-9">
 
-                                                            <input type="text" class="form-control" id="b_namecus" name="b_namecus" value="@Name  @LastName" disabled="disabled" />
+                                                            <input type="text" class="form-control" id="b_namecus"
+                                                                   name="b_namecus" value="@Name  @LastName"
+                                                                   disabled="disabled" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -482,7 +511,8 @@
                                                         <label class="col-sm-3 col-form-label">เบอร์โทรลูกค้า</label>
                                                         <div class="col-sm-9">
 
-                                                            <input type="text" class="form-control" id="b_tel" name="b_tel" value="@Tel" disabled="disabled" />
+                                                            <input type="text" class="form-control" id="b_tel" name="b_tel"
+                                                                   value="@Tel" disabled="disabled" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -492,7 +522,8 @@
                                                         <label class="col-sm-3 col-form-label">ไลน์ไอดี</label>
                                                         <div class="col-sm-9">
 
-                                                            <input type="text" class="form-control" id="b_line" name="b_line" value="@LineID" disabled="disabled" />
+                                                            <input type="text" class="form-control" id="b_line"
+                                                                   name="b_line" value="@LineID" disabled="disabled" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -506,7 +537,8 @@
                                                         <label class="col-sm-3 col-form-label">อีเมลลูกค้า</label>
                                                         <div class="col-sm-9">
 
-                                                            <input type="text" class="form-control" id="b_EMail" name="b_EMail" value="@EMail" disabled="disabled" />
+                                                            <input type="text" class="form-control" id="b_EMail"
+                                                                   name="b_EMail" value="@EMail" disabled="disabled" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -520,7 +552,8 @@
                                                     <label class="col-sm-3 col-form-label">ยี่ห้อรถ</label>
                                                     <div class="col-sm-9">
 
-                                                        <input type="text" class="form-control" id="b_CarMaker" name="b_CarMaker" value="@CarMaker" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_CarMaker"
+                                                               name="b_CarMaker" value="@CarMaker" disabled="disabled" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -529,7 +562,8 @@
                                                     <label class="col-sm-3 col-form-label">รุ่นรถ</label>
                                                     <div class="col-sm-9">
 
-                                                        <input type="text" class="form-control" id="b_CarModel" name="b_CarModel" value="@CarModel" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_CarModel"
+                                                               name="b_CarModel" value="@CarModel" disabled="disabled" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -541,7 +575,9 @@
                                                         ทะเบียนรถ*
                                                     </label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="b_CarLicense" name="b_CarLicense" value="@CarLicense" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_CarLicense"
+                                                               name="b_CarLicense" value="@CarLicense"
+                                                               disabled="disabled" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -549,28 +585,23 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label" for="password">ปี</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="b_CarYear" name="b_CarYear" value="@CarYear" disabled="disabled" />
-
+                                                        <input type="text" class="form-control" id="b_CarYear"
+                                                               name="b_CarYear" value="@CarYear" disabled="disabled" />
 
                                                     </div>
-
-
                                                 </div>
 
                                             </div>
 
-
-
-
-
                                         </div>
-
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">เลขไมล์ </label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="b_CarMileage" name="b_CarMileage" value="@CarMileage" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_CarMileage"
+                                                               name="b_CarMileage" value="@CarMileage"
+                                                               disabled="disabled" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -578,7 +609,9 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">เลขไมล์ปัจจุบัน*</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="b_CarMileage_now" name="b_CarMileage_now" value="@MileageClaim" required disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_CarMileage_now"
+                                                               name="b_CarMileage_now" value="@MileageClaim" required
+                                                               disabled="disabled" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -590,7 +623,8 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">รหัสสินค้า</label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" class="form-control" id="b_item" name="b_item" value="@ItemNo" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_item"
+                                                               name="b_item" value="@ItemNo" disabled="disabled" />
                                                     </div>
 
                                                 </div>
@@ -600,7 +634,8 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">รายละเอียดสินค้า</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="b_Description" name="b_Description" value="@STKDES" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_Description"
+                                                               name="b_Description" value="@STKDES" disabled="disabled" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -612,40 +647,59 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">วันที่ลงทะเบียน</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="b_datereg" name="b_datereg" value="@WarrantyStartDate" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_datereg"
+                                                               name="b_datereg" value="@WarrantyStartDate"
+                                                               disabled="disabled" />
                                                     </div>
                                                 </div>
 
                                             </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">วันสิ้นสุดรับประกัน</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="b_enddatereg" name="b_enddatereg" value="@WarrantyEndDate" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_enddatereg"
+                                                               name="b_enddatereg" value="@WarrantyEndDate"
+                                                               disabled="disabled" />
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">ร้านค้า</label>
+                                                    <label class="col-sm-3 col-form-label">ร้านค้าที่ติดตั้ง</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="b_shop" name="b_shop" value="@Shop" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_shop"
+                                                               name="b_shop" value="@Shop" disabled="disabled" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">เบอร์โทรศัพท์ร้านค้าที่ติดตั้ง</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="b_shop"
+                                                               name="b_shop" value="@ShopTel" disabled="disabled" />
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="row">
 
+
+
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">อาการ*</label>
                                                     <div class="col-sm-9">
 
-                                                        <select class="form-control" id="b_symptom" name="b_symptom" disabled="disabled">
+                                                        <select class="form-control" id="b_symptom" name="b_symptom"
+                                                                disabled="disabled">
                                                             <option value="0">เลือกอาการแจ้งเคลม </option>
                                                             @foreach (var row in ViewBag.List_Sympto)
                                                             {
@@ -666,7 +720,8 @@
                                                     <label class="col-sm-3 col-form-label">ผลการพิจารณา*</label>
                                                     <div class="col-sm-9">
 
-                                                        <textarea rows="4" cols="80" class="form-control" id="b_results" name="b_results" disabled="disabled">@Result</textarea>
+                                                        <textarea rows="4" cols="80" class="form-control" id="b_results"
+                                                                  name="b_results" disabled="disabled">@Result</textarea>
                                                     </div>
                                                 </div>
 
@@ -676,7 +731,9 @@
                                                     <label class="col-sm-3 col-form-label">โน้ตเพิ่มเติม(ลูกค้า)</label>
                                                     <div class="col-sm-9">
 
-                                                        <textarea rows="4" cols="80" class="form-control" id="b_CustomerNote" name="b_CustomerNote" disabled="disabled">@CustomerNote</textarea>
+                                                        <textarea rows="4" cols="80" class="form-control"
+                                                                  id="b_CustomerNote" name="b_CustomerNote"
+                                                                  disabled="disabled">@CustomerNote</textarea>
                                                     </div>
                                                 </div>
 
@@ -686,7 +743,9 @@
                                                     <label class="col-sm-3 col-form-label">โน้ตเพิ่มเติม(เจ้าหน้าที่)</label>
                                                     <div class="col-sm-9">
 
-                                                        <textarea rows="4" cols="80" class="form-control" id="b_dminNote" name="b_dminNote" disabled="disabled">@Note</textarea>
+                                                        <textarea rows="4" cols="80" class="form-control"
+                                                                  id="b_dminNote" name="b_dminNote"
+                                                                  disabled="disabled">@Note</textarea>
                                                     </div>
                                                 </div>
 
@@ -697,7 +756,8 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">สถานะ</label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" id="b_Status" name="b_Status" disabled="disabled">
+                                                        <select class="form-control" id="b_Status" name="b_Status"
+                                                                disabled="disabled">
                                                             <option value="0">เลือกสถานะ</option>
 
                                                             @foreach (var row in ViewBag.Status)
@@ -718,7 +778,9 @@
                                                     <label class="col-sm-3 col-form-label">หมายเลขซีเรียล ทดแทน*</label>
                                                     <div class="col-sm-9">
 
-                                                        <input type="text" class="form-control" id="b_New_SNno" name="b_New_SNno" value="@ReplacementSN" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_New_SNno"
+                                                               name="b_New_SNno" value="@ReplacementSN"
+                                                               disabled="disabled" />
                                                     </div>
                                                 </div>
 
@@ -730,7 +792,8 @@
                                                     <label class="col-sm-3 col-form-label">ร้านที่เคลมสินค้า*</label>
                                                     <div class="col-sm-9">
 
-                                                        <input type="text" class="form-control" id="b_ClaimShop" name="b_ClaimShop" value="@ClaimShop" disabled="disabled" />
+                                                        <input type="text" class="form-control" id="b_ClaimShop"
+                                                               name="b_ClaimShop" value="@ClaimShop" disabled="disabled" />
                                                     </div>
                                                 </div>
 
@@ -754,7 +817,8 @@
                                         <div class="row">
                                             <div class="col-lg-4 mx-auto">
                                                 <div class="form-group">
-                                                    @*<button class="btn btn-primary submit-btn btn-block" id="b-cf-reg">ลงทะเบียน</button>*@
+                                                    @*<button class="btn btn-primary submit-btn btn-block"
+                                                        id="b-cf-reg">ลงทะเบียน</button>*@
                                                     @*<input class="submit" type="submit" value="ยืนยัน">*@
                                                 </div>
                                             </div>
@@ -773,10 +837,7 @@
             <div class="col-md-4 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between pb-3">
-                            <h4 class="card-title mb-0">รูปลงทะเบียน</h4>
-
-                        </div>
+                        <h4 class="card-title mb-0">รูปสินค้าที่ลงทะเบียน</h4>
                         <div class="table-responsive">
                             <table class="table" id="FilesList" style="visibility:hidden">
                                 <tr>
@@ -795,7 +856,7 @@
             <div class="col-md-4 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-0">รูปสินค้าประกอบเคลม</h4>
+                        <h4 class="card-title mb-0">รูปสินค้าประกอบการเคลม</h4>
                         <div class="table-responsive">
                             <table class="table" id="FilesListImageClaim" style="visibility:hidden">
                                 <tr>
@@ -833,6 +894,59 @@
                 </div>
             </div>
         </div>
+
+        @*ประวัติการเคลม*@
+        <div class="card" id="divDataClaimLog" style="display: none;">
+            <h5 class="card-header">ประวัติการเคลม</h5>
+            <div class="card-body" style="padding: 0px 1px;">
+                <div id="fixed-table-container-1" class="fixed-table-container" style="z-index: 1;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>เคลมครั้งที่</th>
+                                <th>หมายเลขซีเรียล</th>
+                                <th>รหัสสินค้า</th>
+                                @if (userType != "14")
+                                {
+                                    <th>รายละเอียดสินค้า</th>
+                                }
+                                <th>สถานะ</th>
+                                @if (userType != "14")
+                                {
+                                    <th>ลูกค้า/เบอร์โทร</th>
+                                }
+                                <th>ยี่ห้อ</th>
+                                <th>รุ่นรถ</th>
+                                <th>ปี</th>
+                                <th>ทะเบียนรถ</th>
+                                <th>ร้านค้าที่ติดตั้ง</th>
+                                <th>เบอร์โทรร้านค้าที่ติดตั้ง</th>
+                                <th>อาการ</th>
+                                <th>วันที่แจ้งเคลม</th>
+                                <th>วันที่ลงทะเบียน</th>
+                                <th>วันที่สิ้นสุดรับประกัน</th>
+                                <th>เลขที่เคลม</th>
+                                <th>โน็ต(ลูกค้า)</th>
+                                <th>ผลการพิจารณา</th>
+                                <th>โน้ต(Admin)</th>
+                                @if (Session["UserType"].ToString() != "14")
+                                {
+                                    <th>เลขที่ใบเสร็จ</th>
+                                    <th>สร้างโดย</th>
+                                    <th>วันที่สร้าง</th>
+                                    <th>แก้ไขโดย</th>
+                                    <th>วันที่แก้ไข</th>
+                                    <th>อื่นๆ</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @*จบประวัติการเคลม*@
+
     </div>
     <div class="modal" id="myModal" style="background-color: black;">
 
@@ -840,9 +954,11 @@
 
             <div class="modal-content">
 
-                <div class="modal-header" style="background-color: #337AB7; padding: 16px 16px; color: #FFF; border-bottom: 2px dashed #337AB7; ">
+                <div class="modal-header"
+                     style="background-color: #337AB7; padding: 16px 16px; color: #FFF; border-bottom: 2px dashed #337AB7; ">
 
-                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>*@
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>*@
 
                     <h4 class="modal-title" id="myModalLabel"></h4>
 
@@ -855,7 +971,10 @@
 
                     @*<button type="button" class="btn btn btn-primary" data-dismiss="modal">OK</button>*@
 
-                    <button type="button" class="btn btn btn-success" data-dismiss="modal" id="btnlogin">เข้าสู่ระบบอีกครั้ง</button>
+                    <button type="button" class="btn btn btn-success" data-dismiss="modal"
+                            id="btnlogin">
+                        เข้าสู่ระบบอีกครั้ง
+                    </button>
 
                     @*<button type="button" class="btn btn-orange" data-dismiss="modal">Cancel</button>*@
 
@@ -873,7 +992,12 @@
 
         <!-- Modal Content (The Image) -->
         <img class="modal-contentx" id="img01">
-        <div class="modal-contentx" id="img01" style="background-color: #191919;"><button class="btn btn-secondary" type="button" data-dismiss="modal" id="closeimg" style="margin-left: 91%;">Close</button></div>
+        <div class="modal-contentx" id="img01" style="background-color: #191919;">
+            <button class="btn btn-secondary"
+                    type="button" data-dismiss="modal" id="closeimg" style="margin-left: 91%;">
+                Close
+            </button>
+        </div>
         <!-- Modal Caption (Image Text) -->
         <div id="caption"></div>
 
@@ -884,7 +1008,9 @@
 
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+            integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+            crossorigin="anonymous"></script>
     <script src="~/Scripts/localhost.js"></script>
     <script type="text/javascript">
         var id = '@Request.RequestContext.HttpContext.Session["ID"]';
@@ -902,6 +1028,10 @@
                 getDataShipto(cusCode, shipto);
             }
         });
+        //ดึงประวัติ
+        setTimeout(function () {
+            GetDataClaimLog();
+        }, 2000);
 
         $('.list-group-item').click(function () {
             $('.list-group-item').removeClass('active');
@@ -909,133 +1039,205 @@
         });
         //get shipto by customer
         function getDataShipto(cusCode, shipto) {
-               $.ajax({
-                    url: '@Url.Action("SearchShiptoDealer", "Account")',
-                    data: {
-                        cuscode: cusCode.trim(),
-                        shipto: shipto.trim(),
-                    },
-                    type: "POST",
-                    dataType: "JSON",
-                    beforeSend: function () {
-                        $('#showShipto').empty();
-                        $('#showShipto').html('<div style="padding-bottom: 15px; font-size: 14px;"> <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> กำลังโหลดข้อมูล... </div>')
-                    },
-                    success: function (data) {
-                        console.log("SearchShiptoDealer = " + data);
-                        var textHtml = '';
-                        textHtml += "<div class='list-group'>";
-                        $(data).each(function (index, item) {
-                            if (item.Code != '') {
-                                textHtml += '<div type="button" onclick="makeActive(event, this);" class="list-group-item" data-shipto="' + item.Code + '" data-address1="' + item.Address1 + '" data-address2="' + item.Address2 + '" data-phone="' + item.Phone + '"  data-contact="' + item.Contact + '">' + item.Code + " | " + "  " + item.Address1 + '</div>';
+            $.ajax({
+                url: '@Url.Action("SearchShiptoDealer", "Account")',
+                data: {
+                    cuscode: cusCode.trim(),
+                    shipto: shipto.trim(),
+                },
+                type: "POST",
+                dataType: "JSON",
+                beforeSend: function () {
+                    $('#showShipto').empty();
+                    $('#showShipto').html('<div style="padding-bottom: 15px; font-size: 14px;"> <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> กำลังโหลดข้อมูล... </div>')
+                },
+                success: function (data) {
+                    console.log("SearchShiptoDealer = " + data);
+                    var textHtml = '';
+                    textHtml += "<div class='list-group'>";
+                    $(data).each(function (index, item) {
+                        if (item.Code != '') {
+                            textHtml += '<div type="button" onclick="makeActive(event, this);" class="list-group-item" data-shipto="' + item.Code + '" data-address1="' + item.Address1 + '" data-address2="' + item.Address2 + '" data-phone="' + item.Phone + '"  data-contact="' + item.Contact + '">' + item.Code + " | " + "  " + item.Address1 + '</div>';
+                        }
+                    });
+                    // onClick="selectShipto(this);"
+                    textHtml += "</div>";
+                    $('#showShipto').html(textHtml);
+                }
+            });
+        }
+        //ดึงประวัติการเคลม
+        function GetDataClaimLog(status) {
+            var b_Sn = $("#b_SNno").val();
+            $.ajax({
+                url: '@Url.Action("GetDataClaimLog", "ClaimView")',
+                data: {
+                    b_Sn: b_Sn,
+                },
+                type: "POST",
+                dataType: "JSON",
+                success: function (data) {
+                    console.log(data)
+                    // $('#_tbinvoicehiscx > tbody:last-child').html("");
+                    $('#fixed-table-container-1 tbody:last-child').html("");
+                    if (data.length > 0) {
+                        $("#divDataClaimLog").css("display", "block");
+                        console.log(data.length)
+                        var SubmithtmlPage = '';
+                        for (var i = 0; i < data.length; i++) {
+                            var warrantyExpire = "";
+                            warrantyExpire = data[i].WarrantyExpire;
+                            chkstatus = data[i].StatusID;
+                            SubmithtmlPage = '<tr style="cursor: pointer;" >'; SubmithtmlPage += '<td>' + data[i].ClaimRound + '</td>';
+                            SubmithtmlPage += '<td style="ccursor: pointer;text-decoration: underline;text-decoration-color: blue;font-weight: bold;"  stksn=' + data[i].Warranty_ID + ' sta=' + data[i].StatusID + '>' + data[i].SN + '</td>';
+                            SubmithtmlPage += '<td align="center">' + data[i].ItemNo + '</td>';
+                            if (usertype != "14") {
+                                SubmithtmlPage += '<td><div  class="preserveLineBreaks">' + data[i].STKDES + '</div></td>';
                             }
-                        });
-                        // onClick="selectShipto(this);"
-                        textHtml += "</div>";
-                        $('#showShipto').html(textHtml);
+                            SubmithtmlPage += '<td>' + data[i].Status + '</td>';
+                            if (usertype != "14") {
+                                SubmithtmlPage += '<td>' + data[i].Name + "<br>|" + data[i].Tel + '</td>';
+                            }
+
+                            SubmithtmlPage += '<td>' + data[i].CarMaker + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].CarModel + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].CarYear + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].CarLicense + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].Shop + '</td>';
+                            // PCP : 13022024 Add Shop_tel
+                            SubmithtmlPage += '<td>' + data[i].ShopTel + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].Symptomname + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].CreateDate + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].WarrantyStartDate + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].WarrantyEndDate + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].ClaimNo + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].CustomerNote + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].Note + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].Result + '</td>';
+
+                            if (usertype != "14") {
+                                SubmithtmlPage += '<td>' + data[i].InvoiceNo + '</td>';
+                                SubmithtmlPage += '<td>' + data[i].CreateBy + '</td>';
+                                SubmithtmlPage += '<td>' + data[i].CreateDate + '</td>';
+                                SubmithtmlPage += '<td>' + data[i].UpdateBy + '</td>';
+                                SubmithtmlPage += '<td>' + data[i].UpdateDate + '</td>';
+                                SubmithtmlPage += '<td></td>';
+                            }
+                            SubmithtmlPage += '</tr>';
+                           // $('#_tbinvoicehiscx > tbody:last-child').append(SubmithtmlPage);
+                            $('#fixed-table-container-1  tbody:last-child').append(SubmithtmlPage);
+                        }
+                    } else {
+                        if (dis == "1") {
+                            alert("ไม่มีข้อมูลที่ท่านต้องการค้นหา")
+                            $("#myModal").modal('hide');
+                        }
                     }
-               });
+                    var fixedTable1 = fixTable(document.getElementById('fixed-table-container-1'));
+                }
+            });
+
         }
 
-         $('#b_Status').val("@ClaimStatus");
+        $('#b_Status').val("@ClaimStatus");
         //alert(@Symptom_ID)
         $('#b_symptom').val("@Symptom_ID");
-    //   $("#myModal").modal();
+        //   $("#myModal").modal();
 
         // let lastname = sessionStorage.getItem("hostname");
         let lastname = getlocalhost();
         console.log(lastname);
-    function checklogin(userid, id) {
-        $.ajax({
-            url: '@Url.Action("GetdataSessionlogin", "GetdataCenter")',
-            data: {
-                UsrID: userid,
-                SessionId: id
+        function checklogin(userid, id) {
+            $.ajax({
+                url: '@Url.Action("GetdataSessionlogin", "GetdataCenter")',
+                data: {
+                    UsrID: userid,
+                    SessionId: id
 
-            },
-            type: "POST",
-            dataType: "JSON",
-            success: function (data) {
-                var splitstring = data.StrStstuslogin;
-                //console.log(splitstring);
-                let text = splitstring;
-                const myArray = text.split("|");
-                let mysession = myArray[1];
-                let mystatus = myArray[0];
-                // console.log("mystatus " + mystatus + "//////" + "mysession " + mysession);
-                if (id != mysession) {
-                    $("#texterror").empty();
-                    $("#texterror").text("ขออภัย ท่านทำรายการเกินระยะเวลาที่กำหนด กรุณาเข้าใช้งานใหม่อีกครั้ง");
-                    //  $("#btn_click").trigger("click");
-                    $("#myModal").modal();
-                    //  $('#myModal').modal({ backdrop: 'static', keyboard: false }, 'show');
-                    //$("#myModal").modal();
-                    return false;
-                    //window.location.replace("../Account/LogIn");
-                } else {
-
-                    if (mystatus == "0") {
+                },
+                type: "POST",
+                dataType: "JSON",
+                success: function (data) {
+                    var splitstring = data.StrStstuslogin;
+                    //console.log(splitstring);
+                    let text = splitstring;
+                    const myArray = text.split("|");
+                    let mysession = myArray[1];
+                    let mystatus = myArray[0];
+                    // console.log("mystatus " + mystatus + "//////" + "mysession " + mysession);
+                    if (id != mysession) {
                         $("#texterror").empty();
                         $("#texterror").text("ขออภัย ท่านทำรายการเกินระยะเวลาที่กำหนด กรุณาเข้าใช้งานใหม่อีกครั้ง");
-                        //$("#btn_click").trigger("click");
-                        // $('#myModal').modal({ backdrop: 'static', keyboard: false }, 'show');
+                        //  $("#btn_click").trigger("click");
                         $("#myModal").modal();
+                        //  $('#myModal').modal({ backdrop: 'static', keyboard: false }, 'show');
+                        //$("#myModal").modal();
                         return false;
                         //window.location.replace("../Account/LogIn");
+                    } else {
+
+                        if (mystatus == "0") {
+                            $("#texterror").empty();
+                            $("#texterror").text("ขออภัย ท่านทำรายการเกินระยะเวลาที่กำหนด กรุณาเข้าใช้งานใหม่อีกครั้ง");
+                            //$("#btn_click").trigger("click");
+                            // $('#myModal').modal({ backdrop: 'static', keyboard: false }, 'show');
+                            $("#myModal").modal();
+                            return false;
+                            //window.location.replace("../Account/LogIn");
+                        }
                     }
                 }
+            });
+        }
+        $(document).on("click", "#myModal", function () {
+
+            // $('#myModal3').click(function () {
+            if (usertype == "14") {
+                $("#myModal").modal({ backdrop: "static" });
             }
         });
-    }
-    $(document).on("click", "#myModal", function () {
-
-        // $('#myModal3').click(function () {
-        if (usertype == "14") {
-            $("#myModal").modal({ backdrop: "static" });
-        }
-    });
-    $('#btnlogin').click(function () {
-        //if (usertype == "14") {
+        $('#btnlogin').click(function () {
+            //if (usertype == "14") {
             // window.location.replace("Account/LogIn");
-           // var currentURL = window.location.href;
+            // var currentURL = window.location.href;
             window.location.replace(lastname + "/Account/LogIn");
 
-           // window.location.replace(currentURL + "Account/LogIn");
-      //}
-    });
-
-    if (usertype == "14") {
-        $(window).on('load', function () {
-            //alert("load")
-            checklogin(userid, id)
-        });
-        window.onclick = function () {
-            //alert("onclick")
-            checklogin(userid, id)
-        };
-        $('.navbar-nav').click(function () {
-            // alert("navbar-nav")
-            checklogin(userid, id)
-
-        });
-        $('a').click(function () {
-            //  alert("a")
-            checklogin(userid, id)
-
-        });
-        //$(document).bind('keypress.session', function (ed, e) {
-        //    checklogin(userid, id)
-        //});
-        $(document).bind('mousedown keydown', function (ed, e) {
-
-            checklogin(userid, id)
-        });
-        $(window).scroll(function (e) {
-
-            checklogin(userid, id)
+            // window.location.replace(currentURL + "Account/LogIn");
+            //}
         });
 
-    }
+        if (usertype == "14") {
+            $(window).on('load', function () {
+                //alert("load")
+                checklogin(userid, id)
+            });
+            window.onclick = function () {
+                //alert("onclick")
+                checklogin(userid, id)
+            };
+            $('.navbar-nav').click(function () {
+                // alert("navbar-nav")
+                checklogin(userid, id)
+
+            });
+            $('a').click(function () {
+                //  alert("a")
+                checklogin(userid, id)
+
+            });
+            //$(document).bind('keypress.session', function (ed, e) {
+            //    checklogin(userid, id)
+            //});
+            $(document).bind('mousedown keydown', function (ed, e) {
+
+                checklogin(userid, id)
+            });
+            $(window).scroll(function (e) {
+
+                checklogin(userid, id)
+            });
+
+        }
 
 
 
@@ -1044,298 +1246,102 @@
         var nokey = $("#bid").val();
         $.ajax({
             url: '@Url.Action("GetPathImage", "GetdataCenter")',
-        data: {
-            inWarranty_ID: nokey,
-            infoldertype: "1"
-        },
-        type: "POST",
-        dataType: "JSON",
-        success: function (result) {
+            data: {
+                inWarranty_ID: nokey,
+                infoldertype: "1"
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (result) {
 
-            if (result.Getdata.length > 0) {
-                $("#FilesList tbody").empty();
-                for (var i = 0; i < result.Getdata.length; i++) {
-                    resultObj = eval(result.Getdata);
-                    var markup = "<tr id='" + resultObj[i].val.IMAGE_ID + "'><td><img src='" + resultObj[i].val.PATH + "' id='myImg' style='width: 25%'></td>\
+                if (result.Getdata.length > 0) {
+                    $("#FilesList tbody").empty();
+                    for (var i = 0; i < result.Getdata.length; i++) {
+                        resultObj = eval(result.Getdata);
+                        var markup = "<tr id='" + resultObj[i].val.IMAGE_ID + "'><td><img src='" + resultObj[i].val.PATH + "' id='myImg' style='width: 30%'></td>\
                                   <td>\
                                   </td>\
                                   </tr>"; // Binding the file name
-                    $("#FilesList tbody").append(markup);
-                    //var sfilename = resultObj[i].val.IMAGE_NAME;
-                    //formdata.append(sfilename, resultObj[i]);
+                        $("#FilesList tbody").append(markup);
+                        //var sfilename = resultObj[i].val.IMAGE_NAME;
+                        //formdata.append(sfilename, resultObj[i]);
+
+                    }
+
+                    chkatchtbl();
+                } else {
+                    $("#FilesList tbody").empty();
 
                 }
+            },
 
-                chkatchtbl();
-            } else {
-                $("#FilesList tbody").empty();
+        });
 
-            }
-        },
+        var Claim_ID = "@Claim_ID";
+        $.ajax({
+            url: '@Url.Action("GetPathImage", "GetdataCenter")',
+            data: {
+                inWarranty_ID: Claim_ID,
+                infoldertype: "2"
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (result) {
 
-    });
-
-    var Claim_ID = "@Claim_ID";
-    $.ajax({
-        url: '@Url.Action("GetPathImage", "GetdataCenter")',
-        data: {
-            inWarranty_ID: Claim_ID,
-            infoldertype: "2"
-        },
-        type: "POST",
-        dataType: "JSON",
-        success: function (result) {
-
-            if (result.Getdata.length > 0) {
-                $("#FilesListImageClaim tbody").empty();
-                for (var i = 0; i < result.Getdata.length; i++) {
-                    resultObj = eval(result.Getdata);
-                    var markup = "<tr id='" + resultObj[i].val.IMAGE_ID + "'><td><img src='" + resultObj[i].val.PATH + "' id='myImg' style='width: 25%'></td>\
+                if (result.Getdata.length > 0) {
+                    $("#FilesListImageClaim tbody").empty();
+                    for (var i = 0; i < result.Getdata.length; i++) {
+                        resultObj = eval(result.Getdata);
+                        var markup = "<tr id='" + resultObj[i].val.IMAGE_ID + "'><td><img src='" + resultObj[i].val.PATH + "' id='myImg' style='width: 30%'></td>\
                                   <td>\
                                   </td>\
                                   </tr>"; // Binding the file name
-                    $("#FilesListImageClaim tbody").append(markup);
-                    //var sfilename = resultObj[i].val.IMAGE_NAME;
-                    //formdata.append(sfilename, resultObj[i]);
+                        $("#FilesListImageClaim tbody").append(markup);
+                        //var sfilename = resultObj[i].val.IMAGE_NAME;
+                        //formdata.append(sfilename, resultObj[i]);
+
+                    }
+
+                    chkatchtblImageClaim();
+                } else {
+                    $("#FilesListImageClaim tbody").empty();
 
                 }
+            },
 
-                chkatchtblImageClaim();
-            } else {
-                $("#FilesListImageClaim tbody").empty();
+        });
+        $.ajax({
+            url: '@Url.Action("GetPathImage", "GetdataCenter")',
+            data: {
+                inWarranty_ID: Claim_ID,
+                infoldertype: "3"
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (result) {
 
-            }
-        },
-
-    });
-    $.ajax({
-        url: '@Url.Action("GetPathImage", "GetdataCenter")',
-        data: {
-            inWarranty_ID: Claim_ID,
-            infoldertype: "3"
-        },
-        type: "POST",
-        dataType: "JSON",
-        success: function (result) {
-
-            if (result.Getdata.length > 0) {
-                $("#FilesListImageCarMileage tbody").empty();
-                for (var i = 0; i < result.Getdata.length; i++) {
-                    resultObj = eval(result.Getdata);
-                    var markup = "<tr id='" + resultObj[i].val.IMAGE_ID + "'><td><img src='" + resultObj[i].val.PATH + "' id='myImg' style='width: 25%'></td>\
+                if (result.Getdata.length > 0) {
+                    $("#FilesListImageCarMileage tbody").empty();
+                    for (var i = 0; i < result.Getdata.length; i++) {
+                        resultObj = eval(result.Getdata);
+                        var markup = "<tr id='" + resultObj[i].val.IMAGE_ID + "'><td><img src='" + resultObj[i].val.PATH + "' id='myImg' style='width: 30%'></td>\
                                   <td>\
                                  </td>\
                                   </tr>"; // Binding the file name
-                    $("#FilesListImageCarMileage tbody").append(markup);
-                    //var sfilename = resultObj[i].val.IMAGE_NAME;
-                    //formdata.append(sfilename, resultObj[i]);
-
-                }
-
-                chkatchtblImageCarMileage();
-            } else {
-                $("#FilesListImageCarMileage tbody").empty();
-
-            }
-        },
-
-    });
-    function chkatchtbl() {
-        //alert($('#FilesList tbody').length)
-        if ($('#FilesList tbody').length >= 1) {
-            $("#FilesList").css("visibility", "visible");
-        } else {
-            $("#FilesList").css("visibility", "hidden");
-        }
-    }
-    function chkatchtblImageClaim() {
-        //alert($('#FilesList tbody').length)
-        if ($('#FilesListImageClaim tbody').length >= 1) {
-            $("#FilesListImageClaim").css("visibility", "visible");
-        } else {
-            $("#FilesListImageClaim").css("visibility", "hidden");
-        }
-    }
-    function chkatchtblImageCarMileage() {
-        //alert($('#FilesList tbody').length)
-        if ($('#FilesListImageCarMileage tbody').length >= 1) {
-            $("#FilesListImageCarMileage").css("visibility", "visible");
-        } else {
-            $("#FilesListImageCarMileage").css("visibility", "hidden");
-        }
-    }
-    $().ready(function () {
-        // validate the comment form when it is submitted
-        $("#commentForm").validate();
-
-        // validate signup form on keyup and submit
-        $("#signupForm").validate({
-            rules: {
-                b_CarMileage_now: "required",
-
-
-            },
-            messages: {
-                b_CarMileage_now: "กรุณากรอกเลขไมล์ปัจจุบัน"
-
-
-            }
-        });
-
-
-    });
-    $.validator.setDefaults({
-        submitHandler: function () {
-           // alert("submitted!");
-            var b_CarMaker = $('#b_CarMaker').val();
-            var b_CarModel = $('#b_CarModel').val();
-            var b_CarYear = $('#b_CarYear').val();
-            var b_CarLicense = $('#b_CarLicense').val();
-            var b_CarMileage = $('#b_CarMileage').val();
-            var b_item = $('#b_item').val();
-            var b_CustomerNote = $('#b_CustomerNote').val();
-            var b_SN = $('#b_Sn').val();
-            var b_CarMileage_now = $('#b_CarMileage_now').val();
-            var b_Warranty_ID = $('#bid').val();
-            var b_Claim_ID = $('#b_Claim_ID').val();
-            var leng = $('#FilesList > tbody:last-child').children().length;
-            var lengCarMileage = $('#FilesListCarMileage > tbody:last-child').children().length;
-            if (leng == 1) {
-                alert("กรุณาอัพโหลกด รูป ประกอบพิจารณาเคลม")
-                //$("#textAlertWarningmes").empty();
-                //$("#textAlertWarningmes").text("กรุณา Upload image เพื่อประกอบพิจารณาเคลม");
-                //$("#myModalWarning").modal();
-                 return false;
-            }
-            $.ajax({
-                url: '@Url.Action("AddWarrantyreq", "ClaimRequest")',
-
-                data: {
-                    b_CarMaker: $('#b_CarMaker').val(),
-                    b_CarModel: $('#b_CarModel').val(),
-                    b_CarYear: $('#b_CarYear').val(),
-                    b_CarLicense: $('#b_CarLicense').val(),
-                    b_CarMileage: $('#b_CarMileage').val(),
-                    b_Shop: $('#b_Shop').val(),
-                    b_SN: $('#b_SNno').val(),
-                    b_item: $('#b_item').val(),
-                    b_CarMileage_now: $('#b_CarMileage_now').val(),
-                    b_Warranty_ID: $('#bid').val(),
-                    b_CustomerNote: $('#b_CustomerNote').val(),
-                    b_Symptom_ID: $('#b_symptom').val(),
-                    b_dminNote: $('#b_dminNote').val(),
-                    b_adminstatuse: $('#b_adminstatuse').val(),
-                    b_Claim_ID: $('#b_Claim_ID').val(),
-                },
-                type: "POST",
-                dataType: "JSON",
-                success: function (data) {
-                    //alert(data.W_ID)
-                    // $("#meassagetext").html(data.message);
-
-                    if (data.message == "Y") {
-                        //alert("ลงทะเบียนเรียบร้อย");
-
-
-
-                        formdata.set('inCim_No', data.W_ID);
-
-
-                        $.ajax({
-                            url: '@Url.Action("UploadFiles", "ClaimRequest")',
-                            type: "POST",
-                            contentType: false, // Not to set any content header
-                            processData: false, // Not to process data
-                            //data: formdata,
-                            data: formdata,
-                            async: false,
-                            success: function (result) {
-                                if (result != "") {
-                                    //alert(result);
-                                    // alert("Uploadรูป สินค้าสำเร็จ");
-                                    $("#FilesList tr .delimagsal").trigger("click");
-
-
-                                    formdataCarMileage.set('inCim_No', data.W_ID);
-                                    $.ajax({
-                                        url: '@Url.Action("UploadFilesCarMileage", "ClaimRequest")',
-                                        type: "POST",
-                                        contentType: false, // Not to set any content header
-                                        processData: false, // Not to process data
-                                        //data: formdata,
-                                        data: formdataCarMileage,
-                                        async: false,
-                                        success: function (result) {
-                                            if (result != "") {
-                                                //alert(result);
-
-                                                //alert("Upload รูปไมล์ สินค้าสำเร็จ");
-                                                alert("บันทึกรายการสำเร็จ");
-                                                $("#FilesListCarMileage tr .delimagsalCarMileage").trigger("click");
-
-
-
-                                            }
-                                        },
-                                        error: function (err) {
-                                            alert(err.statusText);
-                                        }
-                                    });
-
-                                }
-                            },
-                            error: function (err) {
-                                alert(err.statusText);
-                            }
-                        });
-
-
-                    } else {
-                        alert(data.message);
-                        return false;
+                        $("#FilesListImageCarMileage tbody").append(markup);
+                        //var sfilename = resultObj[i].val.IMAGE_NAME;
+                        //formdata.append(sfilename, resultObj[i]);
 
                     }
+
+                    chkatchtblImageCarMileage();
+                } else {
+                    $("#FilesListImageCarMileage tbody").empty();
+
                 }
-            });
-        }
-    });
+            },
 
-    var b_Sn = $("#b_Sn").val();
-
-
-
-
-
-
-
-
-    var formdata = new FormData();
-
-    var dataimage = [];
-    $("#fileInput").on("change", function () {
-        var fileInput = document.getElementById('fileInput');
-
-        //Iterating through each files selected in fileInput
-        for (i = 0; i < fileInput.files.length; i++) {
-            var src = "";
-            var sfilename = fileInput.files[i].name;
-            let srandomid = Math.random().toString(36).substring(7);
-            src = URL.createObjectURL(fileInput.files[i]);
-            //formdata.append(sfilename, fileInput.files[i], a1 + "-" + inCim_NoSub);
-            var fileReader = new FileReader();
-            var filterType = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
-
-
-            formdata.append(sfilename, fileInput.files[i]);
-            var markup = "<tr id='" + srandomid + "'><td><img src='" + src + "' style='width: 25%'></td>\
-                                  <td>\
-                                 <button type='button' style='float: right;' class='delimagsal' faxdel=1 ic=" + srandomid + " name=" + sfilename + ">Cancel</button></td>\
-                                  </tr>"; // Binding the file name
-            $("#FilesList tbody").append(markup);
-
-        }
-        chkatchtbl();
-        $('#fileInput').val('');
+        });
         function chkatchtbl() {
             //alert($('#FilesList tbody').length)
             if ($('#FilesList tbody').length >= 1) {
@@ -1344,164 +1350,360 @@
                 $("#FilesList").css("visibility", "hidden");
             }
         }
-        $("#FilesList").on("click", "tr .delimagsal", function () {
-            var Fileid = $(this).attr("ic");
-            var FileName = $(this).attr("name");
-            var faxdel = $(this).attr("faxdel");
-            if (faxdel == "1") {
-                DeleteFile(Fileid, FileName);
+        function chkatchtblImageClaim() {
+            //alert($('#FilesList tbody').length)
+            if ($('#FilesListImageClaim tbody').length >= 1) {
+                $("#FilesListImageClaim").css("visibility", "visible");
             } else {
+                $("#FilesListImageClaim").css("visibility", "hidden");
+            }
+        }
+        function chkatchtblImageCarMileage() {
+            //alert($('#FilesList tbody').length)
+            if ($('#FilesListImageCarMileage tbody').length >= 1) {
+                $("#FilesListImageCarMileage").css("visibility", "visible");
+            } else {
+                $("#FilesListImageCarMileage").css("visibility", "hidden");
+            }
+        }
+        $().ready(function () {
+            // validate the comment form when it is submitted
+            $("#commentForm").validate();
 
+            // validate signup form on keyup and submit
+            $("#signupForm").validate({
+                rules: {
+                    b_CarMileage_now: "required",
+
+
+                },
+                messages: {
+                    b_CarMileage_now: "กรุณากรอกเลขไมล์ปัจจุบัน"
+
+
+                }
+            });
+
+
+        });
+        $.validator.setDefaults({
+            submitHandler: function () {
+                // alert("submitted!");
+                var b_CarMaker = $('#b_CarMaker').val();
+                var b_CarModel = $('#b_CarModel').val();
+                var b_CarYear = $('#b_CarYear').val();
+                var b_CarLicense = $('#b_CarLicense').val();
+                var b_CarMileage = $('#b_CarMileage').val();
+                var b_item = $('#b_item').val();
+                var b_CustomerNote = $('#b_CustomerNote').val();
+                var b_SN = $('#b_Sn').val();
+                var b_CarMileage_now = $('#b_CarMileage_now').val();
+                var b_Warranty_ID = $('#bid').val();
+                var b_Claim_ID = $('#b_Claim_ID').val();
+                var leng = $('#FilesList > tbody:last-child').children().length;
+                var lengCarMileage = $('#FilesListCarMileage > tbody:last-child').children().length;
+                if (leng == 1) {
+                    alert("กรุณาอัพโหลกด รูป ประกอบพิจารณาเคลม")
+                    //$("#textAlertWarningmes").empty();
+                    //$("#textAlertWarningmes").text("กรุณา Upload image เพื่อประกอบพิจารณาเคลม");
+                    //$("#myModalWarning").modal();
+                    return false;
+                }
+                $.ajax({
+                    url: '@Url.Action("AddWarrantyreq", "ClaimRequest")',
+
+                    data: {
+                        b_CarMaker: $('#b_CarMaker').val(),
+                        b_CarModel: $('#b_CarModel').val(),
+                        b_CarYear: $('#b_CarYear').val(),
+                        b_CarLicense: $('#b_CarLicense').val(),
+                        b_CarMileage: $('#b_CarMileage').val(),
+                        b_Shop: $('#b_Shop').val(),
+                        b_SN: $('#b_SNno').val(),
+                        b_item: $('#b_item').val(),
+                        b_CarMileage_now: $('#b_CarMileage_now').val(),
+                        b_Warranty_ID: $('#bid').val(),
+                        b_CustomerNote: $('#b_CustomerNote').val(),
+                        b_Symptom_ID: $('#b_symptom').val(),
+                        b_dminNote: $('#b_dminNote').val(),
+                        b_adminstatuse: $('#b_adminstatuse').val(),
+                        b_Claim_ID: $('#b_Claim_ID').val(),
+                    },
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function (data) {
+                        //alert(data.W_ID)
+                        // $("#meassagetext").html(data.message);
+
+                        if (data.message == "Y") {
+                            //alert("ลงทะเบียนเรียบร้อย");
+
+
+
+                            formdata.set('inCim_No', data.W_ID);
+
+
+                            $.ajax({
+                                url: '@Url.Action("UploadFiles", "ClaimRequest")',
+                                type: "POST",
+                                contentType: false, // Not to set any content header
+                                processData: false, // Not to process data
+                                //data: formdata,
+                                data: formdata,
+                                async: false,
+                                success: function (result) {
+                                    if (result != "") {
+                                        //alert(result);
+                                        // alert("Uploadรูป สินค้าสำเร็จ");
+                                        $("#FilesList tr .delimagsal").trigger("click");
+
+
+                                        formdataCarMileage.set('inCim_No', data.W_ID);
+                                        $.ajax({
+                                            url: '@Url.Action("UploadFilesCarMileage", "ClaimRequest")',
+                                            type: "POST",
+                                            contentType: false, // Not to set any content header
+                                            processData: false, // Not to process data
+                                            //data: formdata,
+                                            data: formdataCarMileage,
+                                            async: false,
+                                            success: function (result) {
+                                                if (result != "") {
+                                                    //alert(result);
+
+                                                    //alert("Upload รูปไมล์ สินค้าสำเร็จ");
+                                                    alert("บันทึกรายการสำเร็จ");
+                                                    $("#FilesListCarMileage tr .delimagsalCarMileage").trigger("click");
+
+
+
+                                                }
+                                            },
+                                            error: function (err) {
+                                                alert(err.statusText);
+                                            }
+                                        });
+
+                                    }
+                                },
+                                error: function (err) {
+                                    alert(err.statusText);
+                                }
+                            });
+
+
+                        } else {
+                            alert(data.message);
+                            return false;
+
+                        }
+                    }
+                });
             }
         });
-        function DeleteFile(Fileid, FileName) {
 
-            formdata.delete(FileName)
-            $("#" + Fileid).remove();
+        var b_Sn = $("#b_Sn").val();
+
+
+
+
+
+
+
+
+        var formdata = new FormData();
+
+        var dataimage = [];
+        $("#fileInput").on("change", function () {
+            var fileInput = document.getElementById('fileInput');
+
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                var src = "";
+                var sfilename = fileInput.files[i].name;
+                let srandomid = Math.random().toString(36).substring(7);
+                src = URL.createObjectURL(fileInput.files[i]);
+                //formdata.append(sfilename, fileInput.files[i], a1 + "-" + inCim_NoSub);
+                var fileReader = new FileReader();
+                var filterType = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+
+
+                formdata.append(sfilename, fileInput.files[i]);
+                var markup = "<tr id='" + srandomid + "'><td><img src='" + src + "' style='width: 25%'></td>\
+                                  <td>\
+                                 <button type='button' style='float: right;' class='delimagsal' faxdel=1 ic=" + srandomid + " name=" + sfilename + ">Cancel</button></td>\
+                                  </tr>"; // Binding the file name
+                $("#FilesList tbody").append(markup);
+
+            }
             chkatchtbl();
-        }
+            $('#fileInput').val('');
+            function chkatchtbl() {
+                //alert($('#FilesList tbody').length)
+                if ($('#FilesList tbody').length >= 1) {
+                    $("#FilesList").css("visibility", "visible");
+                } else {
+                    $("#FilesList").css("visibility", "hidden");
+                }
+            }
+            $("#FilesList").on("click", "tr .delimagsal", function () {
+                var Fileid = $(this).attr("ic");
+                var FileName = $(this).attr("name");
+                var faxdel = $(this).attr("faxdel");
+                if (faxdel == "1") {
+                    DeleteFile(Fileid, FileName);
+                } else {
 
-    });
+                }
+            });
+            function DeleteFile(Fileid, FileName) {
+
+                formdata.delete(FileName)
+                $("#" + Fileid).remove();
+                chkatchtbl();
+            }
+
+        });
 
 
 
-    var formdataCarMileage = new FormData();
+        var formdataCarMileage = new FormData();
 
-    $("#fileInputCarMileage").on("change", function () {
-        var fileInput = document.getElementById('fileInputCarMileage');
+        $("#fileInputCarMileage").on("change", function () {
+            var fileInput = document.getElementById('fileInputCarMileage');
 
-        //Iterating through each files selected in fileInput
-        for (i = 0; i < fileInput.files.length; i++) {
-            var src = "";
-            var sfilename = fileInput.files[i].name;
-            let srandomid = Math.random().toString(36).substring(7);
-            src = URL.createObjectURL(fileInput.files[i]);
-            //formdata.append(sfilename, fileInput.files[i], a1 + "-" + inCim_NoSub);
-            var fileReader = new FileReader();
-            var filterType = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                var src = "";
+                var sfilename = fileInput.files[i].name;
+                let srandomid = Math.random().toString(36).substring(7);
+                src = URL.createObjectURL(fileInput.files[i]);
+                //formdata.append(sfilename, fileInput.files[i], a1 + "-" + inCim_NoSub);
+                var fileReader = new FileReader();
+                var filterType = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
 
 
 
-            formdataCarMileage.append(sfilename, fileInputCarMileage.files[i]);
-            var markup = "<tr id='" + srandomid + "'><td><img src='" + src + "' style='width: 25%'></td>\
+                formdataCarMileage.append(sfilename, fileInputCarMileage.files[i]);
+                var markup = "<tr id='" + srandomid + "'><td><img src='" + src + "' style='width: 25%'></td>\
                                   <td>\
                                  <button type='button' style='float: right;' class='delimagsalCarMileage'  faxdel=1 ic=" + srandomid + " name=" + sfilename + ">Cancel</button></td>\
                                   </tr>"; // Binding the file name
-            $("#FilesListCarMileage tbody").append(markup);
-
-        }
-        chkatchtblCarMileage();
-        $('#fileInputCarMileage').val('');
-        function chkatchtblCarMileage() {
-            //alert($('#FilesList tbody').length)
-            if ($('#FilesListCarMileage tbody').length >= 1) {
-                $("#FilesListCarMileage").css("visibility", "visible");
-            } else {
-                $("#FilesListCarMileage").css("visibility", "hidden");
-            }
-        }
-        $("#FilesListCarMileage").on("click", "tr .delimagsalCarMileage", function () {
-            var Fileid = $(this).attr("ic");
-            var FileName = $(this).attr("name");
-            var faxdel = $(this).attr("faxdel");
-            if (faxdel == "1") {
-                DeleteFileCarMileage(Fileid, FileName);
-            } else {
+                $("#FilesListCarMileage tbody").append(markup);
 
             }
-        });
-        function DeleteFileCarMileage(Fileid, FileName) {
-
-            formdataCarMileage.delete(FileName)
-            $("#" + Fileid).remove();
             chkatchtblCarMileage();
-        }
-    });
-
-
-    $("#b_des").click(function () {
-        if ($('#b_Sn').val() == "") {
-            alert("กรุณากรอก หมายเลขซีเรียล");
-            return false;
-        }
-        $.ajax({
-            url: '@Url.Action("Getdata_Sales_History_SN", "GetdataCenter")',
-            data: {
-
-                b_SN: $('#b_Sn').val(),
-
-            },
-            type: "POST",
-            dataType: "JSON",
-            success: function (data) {
-                //alert(data.W_ID)
-                // $("#meassagetext").html(data.message);
-
-                if (data.Description == "") {
-                    alert("ไม่พบหมายเลขซีเรียลในระบบ กรุณาลองอีกครั้ง")
+            $('#fileInputCarMileage').val('');
+            function chkatchtblCarMileage() {
+                //alert($('#FilesList tbody').length)
+                if ($('#FilesListCarMileage tbody').length >= 1) {
+                    $("#FilesListCarMileage").css("visibility", "visible");
                 } else {
-                    $("#b_Description").val(data.Description);
+                    $("#FilesListCarMileage").css("visibility", "hidden");
                 }
             }
-
-        });
-    });
-    $("#btnuploadsales").click(function () {
-
-        formdata.set('inCim_No', "2");
-
-
-        $.ajax({
-            url: '@Url.Action("UploadFiles", "ClaimRequest")',
-            type: "POST",
-            contentType: false, // Not to set any content header
-            processData: false, // Not to process data
-            //data: formdata,
-            data: formdata,
-            async: false,
-            success: function (result) {
-                if (result != "") {
-                    alert(result);
-                    $("#FilesList tr .delimagsal").trigger("click");
-
-
-
+            $("#FilesListCarMileage").on("click", "tr .delimagsalCarMileage", function () {
+                var Fileid = $(this).attr("ic");
+                var FileName = $(this).attr("name");
+                var faxdel = $(this).attr("faxdel");
+                if (faxdel == "1") {
+                    DeleteFileCarMileage(Fileid, FileName);
+                } else {
 
                 }
-            },
-            error: function (err) {
-                alert(err.statusText);
+            });
+            function DeleteFileCarMileage(Fileid, FileName) {
+
+                formdataCarMileage.delete(FileName)
+                $("#" + Fileid).remove();
+                chkatchtblCarMileage();
             }
         });
-    });
-    $("#btnuploadCarMileage").click(function () {
-
-        formdata.set('inCim_No', "2");
 
 
-        $.ajax({
-            url: '@Url.Action("UploadFiles", "ClaimRequest")',
-            type: "POST",
-            contentType: false, // Not to set any content header
-            processData: false, // Not to process data
-            //data: formdata,
-            data: formdata,
-            async: false,
-            success: function (result) {
-                if (result != "") {
-                    alert(result);
-                    $("#FilesListCarMileage tr .delimagsal").trigger("click");
+        $("#b_des").click(function () {
+            if ($('#b_Sn').val() == "") {
+                alert("กรุณากรอก หมายเลขซีเรียล");
+                return false;
+            }
+            $.ajax({
+                url: '@Url.Action("Getdata_Sales_History_SN", "GetdataCenter")',
+                data: {
 
+                    b_SN: $('#b_Sn').val(),
 
+                },
+                type: "POST",
+                dataType: "JSON",
+                success: function (data) {
+                    //alert(data.W_ID)
+                    // $("#meassagetext").html(data.message);
 
-
+                    if (data.Description == "") {
+                        alert("ไม่พบหมายเลขซีเรียลในระบบ กรุณาลองอีกครั้ง")
+                    } else {
+                        $("#b_Description").val(data.Description);
+                    }
                 }
-            },
-            error: function (err) {
-                alert(err.statusText);
-            }
+
+            });
         });
-    });
+        $("#btnuploadsales").click(function () {
+
+            formdata.set('inCim_No', "2");
+
+
+            $.ajax({
+                url: '@Url.Action("UploadFiles", "ClaimRequest")',
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                //data: formdata,
+                data: formdata,
+                async: false,
+                success: function (result) {
+                    if (result != "") {
+                        alert(result);
+                        $("#FilesList tr .delimagsal").trigger("click");
+
+
+
+
+                    }
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        });
+        $("#btnuploadCarMileage").click(function () {
+
+            formdata.set('inCim_No', "2");
+
+
+            $.ajax({
+                url: '@Url.Action("UploadFiles", "ClaimRequest")',
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                //data: formdata,
+                data: formdata,
+                async: false,
+                success: function (result) {
+                    if (result != "") {
+                        alert(result);
+                        $("#FilesListCarMileage tr .delimagsal").trigger("click");
+
+
+
+
+                    }
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        });
         $(document).on('click', '#myImg', function () {
             var modal = document.getElementById('myModalzoom');
             var img = document.getElementById('myImg');
@@ -1526,6 +1728,5 @@
     </script>
 
 </body>
+
 </html>
-
-

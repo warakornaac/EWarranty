@@ -38,6 +38,9 @@
     var Tel = ViewBag.Tel;
     var LineID = ViewBag.LineID;
     var EMail = ViewBag.EMail;
+    var Shop = ViewBag.Shop;
+    var ShopTel = ViewBag.ShopTel;
+    var ClaimNo = ViewBag.ClaimNo;
     List<EWarranty.Models.GroupClass.DefineCode> List_Sympto = ViewBag.List_Sympto;
     List<EWarranty.Models.GroupClass.DefineCode> List = ViewBag.Status;
 
@@ -50,7 +53,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>E-Warranty Claim</title>
-
+    <script src="~/fixed-table-master/fixed-table.js"></script>
+    <link href="~/fixed-table-master/fixed-table.css" rel="stylesheet" />
 
     <style>
         #toc_container p.toc_title {
@@ -65,6 +69,7 @@
             border-radius: 20px 20px 0 100px;
             box-shadow: 0 2px 4px rgb(0 0 0 /.44);
         }
+
         #myImg {
             border-radius: 5px;
             cursor: pointer;
@@ -457,6 +462,17 @@
                                 <form class="cmxform" id="signupForm" method="post" action="">
                                     <fieldset>
                                         <div class="row">
+                                            @if (ClaimNo != "")
+                                            {
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">หมายเลขเคลม</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="b_ClaimNo" name="b_ClaimNo" value="@ClaimNo" disabled="disabled" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
                                             <div class="col-md-6">
                                                 <div class="form-group row">
 
@@ -482,7 +498,6 @@
                                                 </div>
                                             }
                                         </div>
-
 
                                         @if (userType != "14")
                                         {
@@ -587,7 +602,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">เลขไมล์ปัจจุบัน*</label>
+                                                    <label class="col-sm-3 col-form-label"><span class="red-star">เลขไมล์ปัจจุบัน* </span></label>
                                                     <div class="col-sm-9">
                                                         <input type="text" class="form-control" id="b_CarMileage_now" name="b_CarMileage_now" value="@MileageClaim" required />
                                                     </div>
@@ -638,11 +653,32 @@
 
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        @*PCP : 14022024 Add Shop & ShopTel *@
 
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">อาการ*</label>
+                                                    <label class="col-sm-3 col-form-label">ร้านค้าที่ติดตั้ง</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="b_shop" name="b_shop" value="@Shop" disabled="disabled" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">เบอร์โทรศัพท์ร้านค้าที่ติดตั้ง</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="b_Shop" name="b_Shop" value="@ShopTel" disabled="disabled" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label"><span class="red-star">อาการ* </span> </label>
                                                     <div class="col-sm-9">
 
                                                         <select class="form-control" id="b_symptom" name="b_symptom">
@@ -673,7 +709,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">โน้ตเพิ่มเติม(ลูกค้า)*</label>
+                                                    <label class="col-sm-3 col-form-label"><span class="red-star">โน้ตเพิ่มเติม(ลูกค้า)* </span> </label>
                                                     <div class="col-sm-9">
 
                                                         <textarea rows="4" cols="80" class="form-control" id="b_CustomerNote" name="b_CustomerNote">@CustomerNote</textarea>
@@ -713,96 +749,100 @@
 
                                                 </div>
                                             </div>
-                                            </div>
-                                            @*<div class="col-lg-4 mx-auto">
-
+                                        </div>
+                                        @*<div class="col-lg-4 mx-auto">
 
                                             </div>*@
-                                            <div class="row" style="background-color: #5f9ea029;">
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-
-                                                        <p class="row toc_title">อัพโหลด รูปสินค้า </p>
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-
-                                                                <br />            <br />
-                                                                <input id="fileInput" type="file" multiple class="form-control" accept="image/*" enctype="multipart/form-data" capture="camera">
-                                                                <br />            <br />
-
-                                                                <table class="table" id="EditFilesList" style="visibility:hidden">
-                                                                    <tr>
-                                                                        <th>
-                                                                            Attachment(s)
-                                                                        </th>
-                                                                        <th>
-                                                                            Action
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                                <input type="button" id="btnuploadsales" value="Upload" style="float:right;display:none" />
-
-                                                            </div>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-12" style="padding-left: 1;padding-bottom: 8px;">
+                                                <span class="label label-warning red-star red-star" style="color: red; font-size: 13px; white-space: normal; line-height:1.5;"> *หมายเหตุ : การอัพโหลดรูปภาพให้ถูกต้องครบถ้วน มีผลกับการพิจารณาเคลมประกัน</span>
                                             </div>
-                                            <div class="row" style="background-color: #5f9ea029;">
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-
-                                                        <p class="row toc_title">อัพโหลด รูปไมล์</p>
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-
-                                                                <br />            <br />
-                                                                <input id="fileInputCarMileage" type="file" multiple class="form-control" accept="image/*" enctype="multipart/form-data" capture="camera">
-                                                                <br />            <br />
-
-                                                                <table class="table" id="EditFilesListCarMileage" style="visibility:hidden">
-                                                                    <tr>
-                                                                        <th>
-                                                                            Attachment(s)
-                                                                        </th>
-                                                                        <th>
-                                                                            Action
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                                <input type="button" id="btnuploadCarMileage" value="Upload" style="float:right;display:none" />
-
-                                                            </div>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 mx-auto text-center">
-
+                                        </div>
+                                        <div class="row" style="background-color: #5f9ea029;">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
-                                                    @*<button class="btn btn-primary submit-btn btn-block" id="b-cf-reg">ลงทะเบียน</button>*@
-                                                    <input class="submit" type="submit" value="ส่งคำร้อง" style="max-width: 260px;">
+
+                                                    <p class="row toc_title font-weight-bold write_label">อัพโหลด รูปสินค้าประกอบการเคลม </p>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+
+                                                            <br />            <br />
+                                                            <input id="fileInput" type="file" multiple class="form-control" accept="image/*" enctype="multipart/form-data" capture="camera">
+                                                            <br />            <br />
+
+                                                            <table class="table" id="EditFilesList" style="visibility:hidden">
+                                                                <tr>
+                                                                    <th>
+                                                                        Attachment(s)
+                                                                    </th>
+                                                                    <th>
+                                                                        Action
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <input type="button" id="btnuploadsales" value="Upload" style="float:right;display:none" />
+
+                                                        </div>
+                                                    </div>
+
+
+
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12" style="padding-left: 1;padding-bottom: 8px;">
+                                                <span class="label label-warning red-star red-star" style="color: red; font-size: 13px; white-space: normal; line-height: 1.5;"> *หมายเหตุ : การอัพโหลดรูปภาพให้ถูกต้องครบถ้วน มีผลกับการพิจารณาเคลมประกัน</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="background-color: #5f9ea029;">
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <p class="row toc_title font-weight-bold write_label">อัพโหลด รูปเลขไมล์</p>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+
+                                                            <br />            <br />
+                                                            <input id="fileInputCarMileage" type="file" multiple class="form-control" accept="image/*" enctype="multipart/form-data" capture="camera">
+                                                            <br />            <br />
+
+                                                            <table class="table" id="EditFilesListCarMileage" style="visibility:hidden">
+                                                                <tr>
+                                                                    <th>
+                                                                        Attachment(s)
+                                                                    </th>
+                                                                    <th>
+                                                                        Action
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <input type="button" id="btnuploadCarMileage" value="Upload" style="float:right;display:none" />
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mx-auto text-center">
+
+                                            <div class="form-group">
+                                                @*<button class="btn btn-primary submit-btn btn-block" id="b-cf-reg">ลงทะเบียน</button>*@
+                                                <input class="submit" type="submit" value="ส่งคำร้อง" style="max-width: 260px;">
+                                            </div>
+                                        </div>
                                     </fieldset>
                                 </form>
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>
@@ -812,7 +852,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between pb-3">
-                            <h4 class="card-title mb-0">รูปลงทะเบียน</h4>
+                            <h4 class="card-title mb-0">รูปสินค้าที่ลงทะเบียน</h4>
 
                         </div>
                         <div class="table-responsive">
@@ -833,7 +873,7 @@
             <div class="col-md-4 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-0">รูปสินค้าประกอบเคลม</h4>
+                        <h4 class="card-title mb-0">รูปสินค้าประกอบการเคลม</h4>
                         <div class="table-responsive">
                             <table class="table" id="FilesListImageClaim" style="visibility:hidden">
                                 <tr>
@@ -871,6 +911,57 @@
                 </div>
             </div>
         </div>
+        @*ประวัติการเคลม*@
+        <div class="card" id="divDataClaimLog" style="display: none;">
+            <h5 class="card-header">ประวัติการเคลม</h5>
+            <div class="card-body" style="padding: 0px 1px;">
+                <div id="fixed-table-container-1" class="fixed-table-container" style="z-index: 1;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>เคลมครั้งที่</th>
+                                <th>หมายเลขซีเรียล</th>
+                                <th>รหัสสินค้า</th>
+                                @if (userType != "14")
+                                {
+                                    <th>รายละเอียดสินค้า</th>
+                                }
+                                <th>สถานะ</th>
+                                @if (userType != "14")
+                                {
+                                    <th>ลูกค้า/เบอร์โทร</th>
+                                }
+                                <th>ยี่ห้อ</th>
+                                <th>รุ่นรถ</th>
+                                <th>ปี</th>
+                                <th>ทะเบียนรถ</th>
+                                <th>ร้านค้าที่ติดตั้ง</th>
+                                <th>เบอร์โทรร้านค้าที่ติดตั้ง</th>
+                                <th>อาการ</th>
+                                <th>วันที่แจ้งเคลม</th>
+                                <th>วันที่ลงทะเบียน</th>
+                                <th>วันที่สิ้นสุดรับประกัน</th>
+                                <th>เลขที่เคลม</th>
+                                <th>โน็ต(ลูกค้า)</th>
+                                <th>ผลการพิจารณา</th>
+                                <th>โน้ต(Admin)</th>
+                                @if (Session["UserType"].ToString() != "14")
+                                {
+                                    <th>เลขที่ใบเสร็จ</th>
+                                    <th>สร้างโดย</th>
+                                    <th>วันที่สร้าง</th>
+                                    <th>แก้ไขโดย</th>
+                                    <th>วันที่แก้ไข</th>
+                                    <th>อื่นๆ</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @*จบประวัติการเคลม*@
     </div>
     <div class="modal" id="myModal" style="background-color: black;">
 
@@ -937,6 +1028,83 @@
     // let lastname = sessionStorage.getItem("hostname");
     let lastnameUrl = getlocalhost();
         console.log(lastnameUrl);
+    //ดึงประวัติ
+    setTimeout(function () {
+        GetDataClaimLog();
+    }, 2000);
+
+    //ดึงประวัติการเคลม
+    function GetDataClaimLog(status) {
+        var b_Sn = $("#b_SNno").val();
+        $.ajax({
+            url: '@Url.Action("GetDataClaimLog", "ClaimView")',
+            data: {
+                b_Sn: b_Sn,
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (data) {
+                console.log(data)
+                // $('#_tbinvoicehiscx > tbody:last-child').html("");
+                $('#fixed-table-container-1 tbody:last-child').html("");
+                if (data.length > 0) {
+                    $("#divDataClaimLog").css("display", "block");
+                    console.log(data.length)
+                    var SubmithtmlPage = '';
+                    for (var i = 0; i < data.length; i++) {
+                        var warrantyExpire = "";
+                        warrantyExpire = data[i].WarrantyExpire;
+                        chkstatus = data[i].StatusID;
+                        SubmithtmlPage = '<tr style="cursor: pointer;" >'; SubmithtmlPage += '<td>' + data[i].ClaimRound + '</td>';
+                        SubmithtmlPage += '<td style="ccursor: pointer;text-decoration: underline;text-decoration-color: blue;font-weight: bold;"  stksn=' + data[i].Warranty_ID + ' sta=' + data[i].StatusID + '>' + data[i].SN + '</td>';
+                        SubmithtmlPage += '<td align="center">' + data[i].ItemNo + '</td>';
+                        if (usertype != "14") {
+                            SubmithtmlPage += '<td><div  class="preserveLineBreaks">' + data[i].STKDES + '</div></td>';
+                        }
+                        SubmithtmlPage += '<td>' + data[i].Status + '</td>';
+                        if (usertype != "14") {
+                            SubmithtmlPage += '<td>' + data[i].Name + "<br>|" + data[i].Tel + '</td>';
+                        }
+
+                        SubmithtmlPage += '<td>' + data[i].CarMaker + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].CarModel + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].CarYear + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].CarLicense + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].Shop + '</td>';
+                        // PCP : 13022024 Add Shop_tel
+                        SubmithtmlPage += '<td>' + data[i].ShopTel + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].Symptomname + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].CreateDate + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].WarrantyStartDate + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].WarrantyEndDate + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].ClaimNo + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].CustomerNote + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].Note + '</td>';
+                        SubmithtmlPage += '<td>' + data[i].Result + '</td>';
+
+                        if (usertype != "14") {
+                            SubmithtmlPage += '<td>' + data[i].InvoiceNo + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].CreateBy + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].CreateDate + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].UpdateBy + '</td>';
+                            SubmithtmlPage += '<td>' + data[i].UpdateDate + '</td>';
+                            SubmithtmlPage += '<td></td>';
+                        }
+                        SubmithtmlPage += '</tr>';
+                        // $('#_tbinvoicehiscx > tbody:last-child').append(SubmithtmlPage);
+                        $('#fixed-table-container-1  tbody:last-child').append(SubmithtmlPage);
+                    }
+                } else {
+                    if (dis == "1") {
+                        alert("ไม่มีข้อมูลที่ท่านต้องการค้นหา")
+                        $("#myModal").modal('hide');
+                    }
+                }
+                var fixedTable1 = fixTable(document.getElementById('fixed-table-container-1'));
+            }
+        });
+
+    }
     function checklogin(userid, id) {
         $.ajax({
             url: '@Url.Action("GetdataSessionlogin", "GetdataCenter")',

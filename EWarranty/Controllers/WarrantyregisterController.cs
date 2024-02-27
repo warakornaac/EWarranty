@@ -149,7 +149,7 @@ namespace EWarranty.Controllers
             return Json(countError);
         }
        
-        public JsonResult AddWarrantyregister(string b_CarMaker, string b_SN, string b_CarModel, string b_CarYear, string b_CarLicense, string b_CarMileage, string b_Shop)
+        public JsonResult AddWarrantyregister(string b_CarMaker, string b_SN, string b_CarModel, string b_CarYear, string b_CarLicense, string b_CarMileage, string b_Shop, string b_ShopTel)
         {
 
 
@@ -161,22 +161,21 @@ namespace EWarranty.Controllers
             SqlConnection Connection = new SqlConnection(connectionString);
             try
             {
-                Connection.Open();
+                 Connection.Open();
 
-                var command = new SqlCommand("P_RegisterWarranty_customer_ewaranty", Connection);
-                command.CommandType = CommandType.StoredProcedure;
+                 var command = new SqlCommand("P_RegisterWarranty_customer_ewaranty", Connection);
+                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@inUsrID", Session["UserID"]);
+                 command.Parameters.AddWithValue("@inUsrID", Session["UserID"]);
                  command.Parameters.AddWithValue("@inSN", b_SN);
                  command.Parameters.AddWithValue("@inCarMaker", b_CarMaker);
                  command.Parameters.AddWithValue("@inCarModel", b_CarModel);
                  command.Parameters.AddWithValue("@inarYear", b_CarYear);
                  command.Parameters.AddWithValue("@inCarLicense", b_CarLicense);
                  command.Parameters.AddWithValue("@inCarMileage", b_CarMileage);
-                command.Parameters.AddWithValue("@inShop", b_Shop);
-                command.Parameters.AddWithValue("@inWarranty_ID", "0");
-				
-             
+                 command.Parameters.AddWithValue("@inShop", b_Shop);
+                 command.Parameters.AddWithValue("@inShopTel", b_ShopTel);
+                 command.Parameters.AddWithValue("@inWarranty_ID", "0");
                 SqlParameter returnValuedoc = new SqlParameter("@outGenstatus", SqlDbType.NVarChar, 100);
                 returnValuedoc.Direction = System.Data.ParameterDirection.Output;
                 command.Parameters.Add(returnValuedoc);

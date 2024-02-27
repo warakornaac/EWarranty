@@ -61,6 +61,9 @@ namespace EWarranty.Controllers
                 string Tel = string.Empty;
                 string LineID = string.Empty;
                 string EMail = string.Empty;
+                string Shop = string.Empty;
+                string ShopTel = string.Empty;
+                string ClaimNo = string.Empty;
                 Docdisplay = Request.QueryString["SnNUM"];
                 List<EWarranty.Models.GroupClass.DefineCode> List_Sympto = new List<EWarranty.Models.GroupClass.DefineCode>();
                 List<EWarranty.Models.GroupClass.DefineCode> List = new List<EWarranty.Models.GroupClass.DefineCode>();
@@ -119,7 +122,8 @@ namespace EWarranty.Controllers
                         CarYear = dr["Car Year"].ToString();
                         CarLicense = dr["Car License"].ToString();
                         CarMileage = dr["Car Mileage"].ToString();
-                        // Shop = dr["Shop"].ToString(),
+                        Shop = dr["Shop"].ToString();
+                        ShopTel = dr["ShopTel"].ToString();
                         // Status = dr["Status"].ToString(),
                         WarrantyStartDate = dr["Warranty Start Date"].ToString();
                         WarrantyEndDate = dr["Warranty End Date"].ToString();
@@ -151,6 +155,8 @@ namespace EWarranty.Controllers
                         Tel = dr["Tel"].ToString();
                         LineID = dr["LineID"].ToString();
                         EMail = dr["EMail"].ToString();
+                        ClaimNo = dr["Claim_no"].ToString();
+
                     }
                     dr.Close();
                     dr.Dispose();
@@ -237,6 +243,9 @@ namespace EWarranty.Controllers
                 ViewBag.Tel = Tel;
                 ViewBag.LineID = LineID;
                 ViewBag.EMail = EMail;
+                ViewBag.Shop = Shop;
+                ViewBag.ShopTel = ShopTel;
+                ViewBag.ClaimNo = ClaimNo;
             }
             return View();
         }

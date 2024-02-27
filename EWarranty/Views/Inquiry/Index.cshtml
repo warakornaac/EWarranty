@@ -103,7 +103,7 @@
                                 @if (userType == "15")
                                 {
                                     <div class="col-sm-1 text-center" style="padding-top: 5px;">
-                                        <p class="page-title"> Advance</p>
+                                        <p class="page-title"> ค้นหาขั้นสูง</p>
                                         <input type="checkbox" value="Y" id="advanceSearch" style="transform: scale(1.9);">
                                     </div>
                                 }
@@ -202,6 +202,9 @@
                                                         @*<th>No.</th>*@
                                                         <th>ต้องการ</th>
                                                         <th>หมายเลขซีเรียล</th>
+                                                        <th>เคลมครั้งที่</th>
+                                                        <th>เลขที่เคลม</th>
+
 
                                                         <th>รหัสสินค้า</th>
                                                         @if (userType != "14")
@@ -217,10 +220,12 @@
                                                         <th>รุ่นรถ</th>
                                                         <th>ปี</th>
                                                         <th>ทะเบียนรถ</th>
-                                                        <th>ร้านค้า</th>
+                                                        <th>ร้านค้าที่ติดตั้ง</th>
+                                                        <th>เบอร์โทรร้านค้าที่ติดตั้ง</th>
                                                         <th>วันที่แจ้งเคลม</th>
                                                         <th>วันที่ลงทะเบียน</th>
                                                         <th>วันที่สิ้นสุดรับประกัน</th>
+
 
                                                         @if (Session["UserType"].ToString() != "14")
                                                         {
@@ -235,7 +240,6 @@
                                                             <th>สร้างโดย</th>
                                                             <th>วันที่สร้าง</th>
                                                             <th>แก้ไขโดย</th>
-
                                                             <th>วันที่แก้ไข</th>
                                                             <th>อื่นๆ</th>
                                                         }
@@ -518,7 +522,7 @@
             var b_typeid = $("#b_userType").val();
             var b_Cuscode = '';
             var b_advanceSearch = $("#advanceSearch").is(":checked");//มีเฉพาะสิทธิ์ dealer
-            if (!b_advanceSearch) { //ไม่คลิก
+            if (!b_advanceSearch && b_typeid == 15) { //ไม่คลิก
                 if ($("#b_Cuscode").val() != "" && typeof($("#b_Cuscode").val()) !== "undefined") {
                     var b_Cuscode = $("#b_Cuscode").val().trim(); //มีเฉพาะสิทธิ์ dealer
                 }
@@ -541,7 +545,6 @@
                     $('#fixed-table-container-1 tbody:last-child').html("");
                     if (data.length > 0) {
                         console.log(data.length)
-
                         var chkstatus = "0";
                         var varbutton = "";
                         var SubmithtmlPage = '';
@@ -552,7 +555,7 @@
                             if (b_typeid == "14") { //end user
                                 if (chkstatus == "1" || chkstatus == "5" || chkstatus == "8") { //ลงทะเบียนเรียบร้อย, ไม่ผ่าน, ขอข้อมูลเพิ่ม
                                     if (warrantyExpire == '7') {//หมดระยะเวลารับประกัน
-                                        varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '  varbut ="2"  class="btn btn-secondary" disabled>แจ้งเคลมแล้ว</button></td>';
+                                        varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '  varbut ="2"  class="btn btn-secondary" disabled>หมดวลารับประกัน</button></td>';
                                     } else {
                                         varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '  varbut ="2"  class="btn btn-warning">แจ้งเคลม</button></td>';
                                     }
@@ -564,7 +567,7 @@
                                     if (data[i].CreateBy == userid) { //คนลงทะเบียนสามารถแจ้งเคลมได้
                                         varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '  varbut ="2"  class="btn btn-warning">แจ้งเคลม</button></td>';
                                     } else {
-                                        varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '   varbut ="2"  class="btn btn-warning" disabled>แจ้งเคลมแล้ว</button></td>';
+                                        varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + ' id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + '   varbut ="2"  class="btn btn-warning" disabled>แจ้งเคลม</button></td>';
                                     }
                                 } else if (chkstatus == "2" || chkstatus == "3") { // กำลังพิจารณา
                                     varbutton = '<td><button type="button" stksn=' + data[i].Warranty_ID + '  id="clickno1" varbut ="1" class="btn btn-info" data-dismiss="modal">ดูรายละเอียด</button>&nbsp;<button type="button" stksn=' + data[i].Warranty_ID + ' varbut ="3"  class="btn btn-warning">ตรวจสอบ</button></td>';
@@ -579,7 +582,20 @@
                             // SubmithtmlPage += '<td >' + data[i].No + '</td>';
                             //   SubmithtmlPage += '<td style="text-align: -webkit-center;padding-top: 4px;background-color: #bbc;min-width: 80px;border: 1px solid #222;"><input type="checkbox" id="blahA" value="1"/></td>';
                             SubmithtmlPage += '<td style="ccursor: pointer;text-decoration: underline;text-decoration-color: blue;font-weight: bold;"  stksn=' + data[i].Warranty_ID + ' sta=' + data[i].StatusID + '>' + data[i].SN + '</td>';
-
+                            if(chkstatus == "1"){ //สถานะลงทะเบียน
+                                SubmithtmlPage += '<td>-</td>';
+                            } else {
+                                if (data[i].ClaimRound == 0){
+                                    SubmithtmlPage += '<td>1</td>';
+                                } else {
+                                    if(chkstatus == "2"){
+                                        SubmithtmlPage += '<td>' + (Number(data[i].ClaimRound) + 1) + '</td>';
+                                    } else {
+                                        SubmithtmlPage += '<td>' + (data[i].ClaimRound) + '</td>';
+                                    }
+                                }
+                            }
+                            SubmithtmlPage += '<td>' + data[i].ClaimNo + '</td>';
 
                             SubmithtmlPage += '<td>' + data[i].ItemNo + '</td>';
                             if (b_typeid != "14") {
@@ -596,12 +612,14 @@
                             SubmithtmlPage += '<td>' + data[i].CarYear + '</td>';
                             SubmithtmlPage += '<td>' + data[i].CarLicense + '</td>';
                             SubmithtmlPage += '<td>' + data[i].Shop + '</td>';
+                            // PCP : 13022024 Add Shop_tel
+                            SubmithtmlPage += '<td>' + data[i].ShopTel + '</td>';
                             SubmithtmlPage += '<td>' + data[i].CreateDate + '</td>';
                             SubmithtmlPage += '<td>' + data[i].WarrantyStartDate + '</td>';
                             SubmithtmlPage += '<td>' + data[i].WarrantyEndDate + '</td>';
 
-                            if (b_typeid != "14") {
 
+                            if (b_typeid != "14") {
                                 if (b_typeid != "15") {
                                     SubmithtmlPage += '<td">' + data[i].ExpectedReceiptDate + '</td>';
                                     SubmithtmlPage += '<td>' + data[i].InvoiceDate + '</td>';

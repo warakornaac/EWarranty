@@ -113,7 +113,7 @@ namespace EWarranty.Controllers
             return View();
         }
 
-        public JsonResult EditRegister(string b_name, string b_lastname, string b_address1, string b_address2, string b_district, string b_amphoe, string b_province, string b_zipcode, string b_tel, string b_lineid, string b_email)
+        public JsonResult EditRegister(string b_name, string b_lastname, string b_address1, string b_district, string b_amphoe, string b_province, string b_zipcode, string b_tel, string b_lineid, string b_email)
         {
             string message = string.Empty;
             string no = string.Empty;
@@ -129,7 +129,7 @@ namespace EWarranty.Controllers
                 command.Parameters.AddWithValue("@inname", b_name);
                 command.Parameters.AddWithValue("@inlastname", b_lastname);
                 command.Parameters.AddWithValue("@inaddress1", b_address1);
-                command.Parameters.AddWithValue("@inaddress2", b_address2);
+                //command.Parameters.AddWithValue("@inaddress2", b_address2);
                 command.Parameters.AddWithValue("@indistrict", b_district);
                 command.Parameters.AddWithValue("@inamphoe", b_amphoe);
                 command.Parameters.AddWithValue("@inprovince", b_province);

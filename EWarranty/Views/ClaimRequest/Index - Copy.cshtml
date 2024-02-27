@@ -31,17 +31,13 @@
     var ReplacementSN = ViewBag.ReplacementSN;
     var ClaimStatus = ViewBag.ClaimStatus;
     var CustomerNote = ViewBag.CustomerNote;
-    CustomerNote = CustomerNote.Replace("\n", "  ");
-
     var Name = ViewBag.Name;
     var LastNameuser = ViewBag.LastName;
     var Tel = ViewBag.Tel;
     var LineID = ViewBag.LineID;
     var EMail = ViewBag.EMail;
     var Shop = ViewBag.Shop;
-    var ShopTel = ViewBag.ShopTel;
     var StatusId = ViewBag.StatusId;
-    var ClaimNo = ViewBag.ClaimNo;
     List<EWarranty.Models.GroupClass.DefineCode> List_Sympto = ViewBag.List_Sympto;
     List<EWarranty.Models.GroupClass.DefineCode> List = ViewBag.Status;
 }
@@ -70,7 +66,7 @@
         }
 
         .toc_title {
-            background-color: #007bff;
+            background-color: #5668a9;
             color: #110909;
             padding: 10px !important;
             border-radius: 20px 20px 0 100px;
@@ -385,22 +381,16 @@
                                 <div class="col-12 grid-margin">
                                     <div class="card">
                                         <div class="card-body">
-                                            <p class="text-danger"> กรุณากรอกข้อมูลของท่านตาม * ให้ครบถ้วน </p>
+                                            <p> กรุณากรอกข้อมูลของท่านตาม * ให้ครบถ้วน </p>
                                             <form class="cmxform" id="signupForm" method="get" action="">
                                                 <fieldset>
                                                     <div class="row">
-                                                        @*<div class="col-md-6">
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-3 col-form-label">เลขที่เคลม</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="b_ClaimNo" name="b_ClaimNo" value="@ClaimNo" disabled="disabled" />
-                                                                </div>
-                                                            </div>
-                                                        </div>*@
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
+
                                                                 <label class="col-sm-3 col-form-label">หมายเลขซีเรียล</label>
                                                                 <div class="col-sm-9">
+
                                                                     <input type="text" class="form-control" id="b_SNno" name="b_SNno" value="@SN" disabled="disabled" />
                                                                 </div>
                                                             </div>
@@ -458,7 +448,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
-                                                                <label class="col-sm-3 col-form-label"> <span class="red-star">เลขไมล์ปัจจุบัน* </span></label>
+                                                                <label class="col-sm-3 col-form-label">เลขไมล์ปัจจุบัน*</label>
                                                                 <div class="col-sm-9">
                                                                     <input type="number" class="form-control" id="b_CarMileage_now" name="b_CarMileage_now" min="0" required />
 
@@ -466,7 +456,16 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">ร้านค้า</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="b_shop" name="b_shop" value="@Shop" disabled="disabled" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
@@ -509,32 +508,11 @@
 
                                                         </div>
                                                     </div>
-
-                                                    @* PCP Add Shop Tel 1402024 *@
                                                     <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-3 col-form-label">ร้านค้าที่ติดตั้ง</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="b_shop" name="b_shop" value="@Shop" disabled="disabled" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-3 col-form-label">เบอร์โทรศัพท์ร้านค้าที่ติดตั้ง</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="b_shop" name="b_shop" value="@ShopTel" disabled="disabled" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    @* PCP Add Shop Tel 1402024 *@
 
-                                                    <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
-                                                                <label class="col-sm-3 col-form-label"> <span class="red-star">อาการ* </span> </label>
+                                                                <label class="col-sm-3 col-form-label">อาการ*</label>
                                                                 <div class="col-sm-9">
                                                                     <select class="form-control" id="b_symptom" name="b_symptom">
                                                                         <option value="0" selected="selected">เลือกอาการแจ้งเคลม </option>
@@ -562,16 +540,10 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12" style="padding-left: 1;padding-bottom: 8px;">
-                                                            <span class="label label-warning red-star red-star" style="color: red; font-size: 13px; white-space: normal; line-height: 1.5;"> *หมายเหตุ : การอัพโหลดรูปภาพให้ถูกต้องครบถ้วน มีผลกับการพิจารณาเคลมประกัน</span>
-                                                        </div>
-                                                    </div>
-
                                                     <div class="row" style="background-color: #5f9ea029;">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <p class="row toc_title font-weight-bold write_label">อัพโหลด รูปสินค้าประกอบการเคลม </p>
+                                                                <p class="row toc_title">อัพโหลด รูปสินค้า </p>
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <br />            <br />
@@ -594,17 +566,10 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12" style="padding-left: 1; padding-bottom: 8px; padding-top: 15px;">
-                                                            <span class="label label-warning red-star red-star" style="color: red; font-size: 13px; white-space: normal; line-height: 1.5;"> *หมายเหตุ : การอัพโหลดรูปภาพให้ถูกต้องครบถ้วน มีผลกับการพิจารณาเคลมประกัน</span>
-                                                        </div>
-                                                    </div>
-
                                                     <div class="row" style="background-color: #5f9ea029;">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <p class="row toc_title font-weight-bold write_label">อัพโหลด รูปเลขไมล์ปัจจุบัน</p>
+                                                                <p class="row toc_title">อัพโหลด รูปไมล์</p>
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <br />            <br />
@@ -643,21 +608,10 @@
                                 <div class="col-12 grid-margin">
                                     <div class="card">
                                         <div class="card-body">
-                                            <p class="text-danger"> กรุณากรอกข้อมูลของท่านตาม * ให้ครบถ้วน </p>
+                                            <p> กรุณากรอกข้อมูลของท่านตาม * ให้ครบถ้วน </p>
                                             <form class="cmxform" id="signupForm" method="post" action="">
                                                 <fieldset>
                                                     <div class="row">
-                                                        @if (ClaimNo != "")
-                                                        {
-                                                            <div class="col-md-6">
-                                                                <div class="form-group row">
-                                                                    <label class="col-sm-3 col-form-label">เลขที่เคลม</label>
-                                                                    <div class="col-sm-9">
-                                                                        <input type="text" class="form-control" id="b_ClaimNo" name="b_ClaimNo" value="@ClaimNo" disabled="disabled" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        }
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
 
@@ -668,8 +622,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
 
@@ -680,6 +632,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
 
@@ -690,8 +644,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
 
@@ -702,6 +654,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="row">
 
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
@@ -773,20 +727,16 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @*PCP Add Shop & Shop Tel : 14022024
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">ร้านค้าที่ติดตั้ง</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="b_shop" name="b_shop" value="@Shop" disabled="disabled" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                 </div>
-                                PCP Add Shop & Shop Tel : 14022024 *@
-
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">ร้านค้า</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="b_shop" name="b_shop" value="@Shop" disabled="disabled" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
@@ -809,6 +759,7 @@
 
                                                     </div>
                                                     <div class="row">
+
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
                                                                 <label class="col-sm-3 col-form-label">วันที่ลงทะเบียน</label>
@@ -828,31 +779,8 @@
 
                                                         </div>
                                                     </div>
-                                                    @*PCP Add Shop & Shop Tel : 14022024 *@
                                                     <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-3 col-form-label">ร้านค้าที่ติดตั้ง</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="b_Shop" name="b_Shop" value="@Shop" disabled="disabled" />
-                                                                </div>
-                                                            </div>
 
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-3 col-form-label">เบอร์โทรศัพท์ร้านค้าที่ติดตั้ง</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="b_Shop" name="b_Shop" value="@ShopTel" disabled="disabled" />
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    @*PCP Add Shop & Shop Tel : 14022024 *@
-
-
-                                                    <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
                                                                 <label class="col-sm-3 col-form-label">อาการ*</label>
@@ -947,122 +875,73 @@
                             }
 
                             @*@if (userType != "14" )
-        {*@
+                            {*@
+                                
+                                <div class="row">
+                                    <div class="col-md-4 grid-margin stretch-card">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between pb-3">
+                                                    <h4 class="card-title mb-0">รูปลงทะเบียน</h4>
 
-                            <div class="row">
-                                <div class="col-md-4 grid-margin stretch-card">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title mb-0">รูปสินค้าที่ลงทะเบียน</h4>
-                                            <div class="table-responsive">
-                                                <table class="table" id="FilesListRegister" style="visibility:hidden">
-                                                    <tr>
-                                                        <th>
-                                                            Attachment(s)
-                                                        </th>
-                                                        <th>
-                                                            Action
-                                                        </th>
-                                                    </tr>
-                                                </table>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table" id="FilesList" style="visibility:hidden">
+                                                        <tr>
+                                                            <th>
+                                                                Attachment(s)
+                                                            </th>
+                                                            <th>
+                                                                Action
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 grid-margin stretch-card">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title mb-0">รูปสินค้าประกอบเคลม</h4>
+                                                <div class="table-responsive">
+                                                    <table class="table" id="FilesListImageClaim" style="visibility:hidden">
+                                                        <tr>
+                                                            <th>
+                                                                Attachment(s)
+                                                            </th>
+                                                            <th>
+                                                                Action
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 grid-margin stretch-card">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title mb-0">รูปเลขไมล์</h4>
+                                                <div class="table-responsive">
+                                                    <table class="table" id="FilesListImageCarMileage" style="visibility:hidden">
+                                                        <tr>
+                                                            <th>
+                                                                Attachment(s)
+                                                            </th>
+                                                            <th>
+                                                                Action
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 grid-margin stretch-card">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title mb-0">รูปสินค้าประกอบการเคลม</h4>
-                                            <div class="table-responsive">
-                                                <table class="table" id="FilesListImageClaim" style="visibility:hidden">
-                                                    <tr>
-                                                        <th>
-                                                            Attachment(s)
-                                                        </th>
-                                                        <th>
-                                                            Action
-                                                        </th>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 grid-margin stretch-card">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title mb-0">รูปเลขไมล์</h4>
-                                            <div class="table-responsive">
-                                                <table class="table" id="FilesListImageCarMileage" style="visibility:hidden">
-                                                    <tr>
-                                                        <th>
-                                                            Attachment(s)
-                                                        </th>
-                                                        <th>
-                                                            Action
-                                                        </th>
-                                                    </tr>
-                                                </table>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             @* } *@
-
-                            @*ประวัติการเคลม*@
-                            <div class="card" id="divDataClaimLog" style="display: none;">
-                                <h5 class="card-header">ประวัติการเคลม</h5>
-                                <div class="card-body" style="padding: 0px 1px;">
-                                    <div id="fixed-table-container-1" class="fixed-table-container" style="z-index: 1;">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>เคลมครั้งที่</th>
-                                                    <th>หมายเลขซีเรียล</th>
-                                                    <th>รหัสสินค้า</th>
-                                                    @if (userType != "14")
-                                                    {
-                                                        <th>รายละเอียดสินค้า</th>
-                                                    }
-                                                    <th>สถานะ</th>
-                                                    @if (userType != "14")
-                                                    {
-                                                        <th>ลูกค้า/เบอร์โทร</th>
-                                                    }
-                                                    <th>ยี่ห้อ</th>
-                                                    <th>รุ่นรถ</th>
-                                                    <th>ปี</th>
-                                                    <th>ทะเบียนรถ</th>
-                                                    <th>ร้านค้าที่ติดตั้ง</th>
-                                                    <th>เบอร์โทรร้านค้าที่ติดตั้ง</th>
-                                                    <th>อาการ</th>
-                                                    <th>วันที่แจ้งเคลม</th>
-                                                    <th>วันที่ลงทะเบียน</th>
-                                                    <th>วันที่สิ้นสุดรับประกัน</th>
-                                                    <th>เลขที่เคลม</th>
-                                                    <th>โน็ต(ลูกค้า)</th>
-                                                    <th>ผลการพิจารณา</th>
-                                                    <th>โน้ต(Admin)</th>
-                                                    @if (Session["UserType"].ToString() != "14")
-                                                    {
-                                                        <th>เลขที่ใบเสร็จ</th>
-                                                        <th>สร้างโดย</th>
-                                                        <th>วันที่สร้าง</th>
-                                                        <th>แก้ไขโดย</th>
-                                                        <th>วันที่แก้ไข</th>
-                                                        <th>อื่นๆ</th>
-                                                    }
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            @*จบประวัติการเคลม*@
                         </div>
                     </div>
                 </div>
@@ -1154,108 +1033,28 @@
     <script src="~/Scripts/localhost.js"></script>
     <script type="text/javascript">
     var statusID = @StatusId;
-    var customerNote = "@CustomerNote";
 
     $('#b_Status').val("@ClaimStatus");
 
     disabled();
     $('#b_results').val("@Result");
-
-    $('#b_CustomerNote').val(customerNote.trim());
+    $('#b_CustomerNote').val("@CustomerNote");
     //   $("#myModal").modal();
     var id = '@Request.RequestContext.HttpContext.Session["ID"]';
     var userid = '@Request.RequestContext.HttpContext.Session["UserID"]';
     var usertype = '@Request.RequestContext.HttpContext.Session["UserType"]';
 
-    //console.log("userid = " + userid);
-    //ดึงประวัติ
-    setTimeout(function () {
-        GetDataClaimLog();
-    }, 2000);
+    console.log("userid = " + userid);
 
     // let lastname = sessionStorage.getItem("hostname");
     let lastname = getlocalhost();
     console.log(lastname);
     $('#b_dminNote').val("@Note");
     //ถ้าไม่ใส่สถานะลงทะเบียน, ส่งพิจารณา ปิดอาการไม่ให้เลือก
-    //alert(statusID);
-    if (statusID != "1" && statusID != "5"/*|| (statusID != "2" && usertype != "14")*/) { //1=ลงทะเบียนเรียบร้อย, 5=ไม่ผ่านการอนุมัติ
+    if (statusID != "1" && statusID != "2") {
     // alert(statusID);
         $('#b_symptom').val("@Symptom_ID");
         $('#b_symptom').prop('disabled', true);
-        }
-
-    //ดึงประวัติการเคลม
-    function GetDataClaimLog(status) {
-        var b_Sn = $("#b_SNno").val();
-        $.ajax({
-            url: '@Url.Action("GetDataClaimLog", "ClaimView")',
-            data: {
-                b_Sn: b_Sn,
-            },
-            type: "POST",
-            dataType: "JSON",
-            success: function (data) {
-                console.log(data)
-                // $('#_tbinvoicehiscx > tbody:last-child').html("");
-                $('#fixed-table-container-1 tbody:last-child').html("");
-                if (data.length > 0) {
-                    $("#divDataClaimLog").css("display", "block");
-                    console.log(data.length)
-                    var SubmithtmlPage = '';
-                    for (var i = 0; i < data.length; i++) {
-                        var warrantyExpire = "";
-                        warrantyExpire = data[i].WarrantyExpire;
-                        chkstatus = data[i].StatusID;
-                        SubmithtmlPage = '<tr style="cursor: pointer;" >'; SubmithtmlPage += '<td>' + data[i].ClaimRound + '</td>';
-                        SubmithtmlPage += '<td style="ccursor: pointer;text-decoration: underline;text-decoration-color: blue;font-weight: bold;"  stksn=' + data[i].Warranty_ID + ' sta=' + data[i].StatusID + '>' + data[i].SN + '</td>';
-                        SubmithtmlPage += '<td align="center">' + data[i].ItemNo + '</td>';
-                        if (usertype != "14") {
-                            SubmithtmlPage += '<td><div  class="preserveLineBreaks">' + data[i].STKDES + '</div></td>';
-                        }
-                        SubmithtmlPage += '<td>' + data[i].Status + '</td>';
-                        if (usertype != "14") {
-                            SubmithtmlPage += '<td>' + data[i].Name + "<br>|" + data[i].Tel + '</td>';
-                        }
-
-                        SubmithtmlPage += '<td>' + data[i].CarMaker + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].CarModel + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].CarYear + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].CarLicense + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].Shop + '</td>';
-                        // PCP : 13022024 Add Shop_tel
-                        SubmithtmlPage += '<td>' + data[i].ShopTel + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].Symptomname + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].CreateDate + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].WarrantyStartDate + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].WarrantyEndDate + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].ClaimNo + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].CustomerNote + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].Note + '</td>';
-                        SubmithtmlPage += '<td>' + data[i].Result + '</td>';
-
-                        if (usertype != "14") {
-                            SubmithtmlPage += '<td>' + data[i].InvoiceNo + '</td>';
-                            SubmithtmlPage += '<td>' + data[i].CreateBy + '</td>';
-                            SubmithtmlPage += '<td>' + data[i].CreateDate + '</td>';
-                            SubmithtmlPage += '<td>' + data[i].UpdateBy + '</td>';
-                            SubmithtmlPage += '<td>' + data[i].UpdateDate + '</td>';
-                            SubmithtmlPage += '<td></td>';
-                        }
-                        SubmithtmlPage += '</tr>';
-                        // $('#_tbinvoicehiscx > tbody:last-child').append(SubmithtmlPage);
-                        $('#fixed-table-container-1  tbody:last-child').append(SubmithtmlPage);
-                    }
-                } else {
-                    if (dis == "1") {
-                        alert("ไม่มีข้อมูลที่ท่านต้องการค้นหา")
-                        $("#myModal").modal('hide');
-                    }
-                }
-                var fixedTable1 = fixTable(document.getElementById('fixed-table-container-1'));
-            }
-        });
-
     }
     function checklogin(userid, id) {
         $.ajax({
@@ -1732,8 +1531,10 @@
             url: '@Url.Action("UpdateWarrantyreq", "ClaimRequest")',
 
             data: {
+
                 b_SN: $('#b_SNno').val(),
                 b_Warranty_ID: $('#bid').val(),
+
                 b_dminNote: $('#b_dminNote').val(),
                 b_adminstatus: $('#b_Status').val(),
                 b_Claim_ID: $('#b_Claim_ID').val(),
@@ -1747,31 +1548,14 @@
                 var sn_no = $('#b_SNno').val();
                 if (data.message == "Y") {
                     alert("บันทึกรายการสำเร็จ");
+
                     if ($('#b_Status').val() == '4') {//ถ้าเลือกเป็น 4=ผ่านการอนุมัติ ให้มี pop up จะไปหน้าทดแทนเลยไหม
-                        //let text = "ลูกค้าต้องการทดแทนสินค้าตอนนี้หรือไม่ ?";
-                        //if (confirm(text) == true) {//หน้าทดแทน
-                        //    window.location.replace(lastname + "/Replacement/Index?SnNUM=" + btoa($('#bid').val()));
-                        //} else {//หน้า view
-                        //    window.location.replace(lastname + "/ClaimView/Index?SnNUM=" + btoa($('#bid').val()));
-                        //}
-                        //
-                        Swal.fire({
-                            icon: 'question',
-                            title: 'ลูกค้าต้องการทดแทนสินค้าตอนนี้หรือไม่',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'ใช่',
-                            cancelButtonText: 'ไม่ใช่'
-                        }).then((result) => {
-                            if (result.value) { //ทดแทน
-                                window.location.replace(lastname + "/Replacement/Index?SnNUM=" + btoa($('#bid').val()));
-                            } else { //หน้า view
-                                window.location.replace(lastname + "/ClaimView/Index?SnNUM=" + btoa($('#bid').val()));
-                            }
-                        });
-                    } else {
-                        window.location.replace(lastname + "/Inquiry/Index");
+                        let text = "ต้องการทดแทนสินค้าหรือไม่ ?";
+                        if (confirm(text) == true) {//หน้าทดแทน
+                            window.location.replace(lastname + "/Replacement/Index?SnNUM=" + btoa($('#bid').val()));
+                        } else {//หน้า view 
+                            window.location.replace(lastname + "/ClaimView/Index?SnNUM=" + btoa($('#bid').val()));
+                        }
                     }
                 } else {
                     alert(data.message);
@@ -1888,11 +1672,11 @@
         var modal = document.getElementById('myModalzoom');
         modal.style.display = "none";
     });
-        //alert(usertype + " // " + statusID);
-        if ((usertype == "14" && statusID == "1") || (usertype != "15" && statusID == "1") || (usertype == "1" || usertype == "2") || (usertype == "15") || (statusID == "5")) {
-            //alert("usertype = " + usertype+  "statusID = " + statusID);
+
+        if ((usertype == "14" && statusID == "1") || (usertype != "15" && statusID == "1") || (usertype == "1" || usertype == "2") || (usertype == "15")) {
+        //alert("usertype = " + usertype+  "statusID = " + statusID);
             var nokey = $("#bid").val();
-            @*$.ajax({
+            $.ajax({
                 url: '@Url.Action("GetPathImage", "GetdataCenter")',
                 data: {
                     inWarranty_ID: nokey,
@@ -1923,42 +1707,9 @@
                     }
                 },
 
-            });*@
-            //รูปสินค้าที่ลงทะเบียน
+            });
+
             var Claim_ID = "@Claim_ID";
-              $.ajax({
-            url: '@Url.Action("GetPathImage", "GetdataCenter")',
-            data: {
-                inWarranty_ID: nokey,
-                infoldertype: "1"
-            },
-            type: "POST",
-            dataType: "JSON",
-            success: function (result) {
-
-                if (result.Getdata.length > 0) {
-                    $("#FilesListRegister tbody").empty();
-                    for (var i = 0; i < result.Getdata.length; i++) {
-                        resultObj = eval(result.Getdata);
-                        var markup = "<tr id='" + resultObj[i].val.IMAGE_ID + "'><td><img src='" + resultObj[i].val.PATH + "' id='myImg' style='width: 25%'></td>\
-                                  <td>\
-                                  </td>\
-                                  </tr>"; // Binding the file name
-                        $("#FilesListRegister tbody").append(markup);
-                        //var sfilename = resultObj[i].val.IMAGE_NAME;
-                        //formdata.append(sfilename, resultObj[i]);
-
-                    }
-
-                    chkatchtblRegister();
-                } else {
-                    $("#FilesListRegister tbody").empty();
-
-                }
-            },
-
-        });
-            //รูปสินค้าประกอบการเคลม
             $.ajax({
                 url: '@Url.Action("GetPathImage", "GetdataCenter")',
                 data: {
@@ -1989,8 +1740,8 @@
 
                     }
                 },
+
             });
-            //รูปเลขไมล์
             $.ajax({
                 url: '@Url.Action("GetPathImage", "GetdataCenter")',
                 data: {
@@ -2031,14 +1782,6 @@
             $("#FilesList").css("visibility", "visible");
         } else {
             $("#FilesList").css("visibility", "hidden");
-        }
-    }
-     function chkatchtblRegister() {
-        //alert($('#FilesList tbody').length)
-        if ($('#FilesListRegister tbody').length >= 1) {
-            $("#FilesListRegister").css("visibility", "visible");
-        } else {
-            $("#FilesListRegister").css("visibility", "hidden");
         }
     }
     function chkatchtblImageClaim() {

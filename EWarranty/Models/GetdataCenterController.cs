@@ -113,7 +113,7 @@ namespace EWarranty.Models
                     Model = dr["Model"].ToString(),
                     ItemNo = dr["Item No"].ToString(),
                     Company = dr["Company"].ToString(),
-                  
+
 
                 });
             }
@@ -132,7 +132,7 @@ namespace EWarranty.Models
             var command = new SqlCommand("P_Get_Symptom", Connection);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@item", Name);
-         
+
             Connection.Open();
             SqlDataReader dr = command.ExecuteReader();
             while (dr.Read())
@@ -140,13 +140,13 @@ namespace EWarranty.Models
 
                 List.Add(new EWarranty.Models.GroupClass.DefineCode()
                 {
-                    
+
                     Symptom_ID = dr["[Symptom_ID"].ToString(),
                     Type = dr["Type"].ToString(),
                     Code = dr["Code"].ToString(),
                     Desc_Thai = dr["Desc_Thai"].ToString(),
                     Desc_Eng = dr["Desc_Eng"].ToString(),
-                 
+
 
                 });
             }
@@ -196,9 +196,6 @@ namespace EWarranty.Models
         }
         public JsonResult Getdata_Sales_History_SN(string b_SN)
         {
-
-
-
             string message = string.Empty;
             string Description = string.Empty;
             string ItemNo = string.Empty;
@@ -228,7 +225,7 @@ namespace EWarranty.Models
                 returnSTKDES.Direction = System.Data.ParameterDirection.Output;
                 command.Parameters.Add(returnSTKDES);
 
-                DE0027067command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
                 message = returnValuedoc.Value.ToString();
                 Description = returnSTKDES.Value.ToString();
                 ItemNo = returnItemNo.Value.ToString();
@@ -297,9 +294,9 @@ namespace EWarranty.Models
                     ID = dr["Symptom_ID"].ToString(),
                     CODE = dr["Code"].ToString(),
                     TYPE = dr["Type"].ToString(),
-                    Desc_Thai=dr["Desc_Thai"].ToString(),
+                    Desc_Thai = dr["Desc_Thai"].ToString(),
                     Desc_Eng = dr["Desc_Eng"].ToString(),
-                    
+
                 });
             }
             dr.Close();
@@ -325,10 +322,10 @@ namespace EWarranty.Models
             }
 
             List<EWarranty.Models.GroupClass.Inquiry_Customer> List = new List<EWarranty.Models.GroupClass.Inquiry_Customer>();
-           
+
             var connectionString = ConfigurationManager.ConnectionStrings["CLAIM_ConnectionString"].ConnectionString;
             SqlConnection Connection = new SqlConnection(connectionString);
-           
+
             var command = new SqlCommand("P_Search_Inquiry_customer_ewaranty", Connection);
             command.CommandType = CommandType.StoredProcedure;
 
@@ -348,37 +345,40 @@ namespace EWarranty.Models
                 List.Add(new EWarranty.Models.GroupClass.Inquiry_Customer()
                 {
                     No = dr["No"].ToString(),
-                    Warranty_ID=dr["Warranty_ID"].ToString(),
-                    UsrID=dr["UsrID"].ToString(),
-                    SN=dr["SN"].ToString(),
-                    CarMaker=dr["Car Maker"].ToString(),
-                    CarModel=dr["Car Model"].ToString(),
-                    CarYear=dr["Car Year"].ToString(),
-                    CarLicense=dr["Car License"].ToString(),
-                    CarMileage=dr["Car Mileage"].ToString(),
-                    Shop=dr["Shop"].ToString(),
-                    Status=dr["Status"].ToString(),
-                    WarrantyStartDate=dr["Warranty Start Date"].ToString(),
-                    WarrantyEndDate=dr["Warranty End Date"].ToString(),
-                    SNReplacement=dr["SN Replacement"].ToString(),
-                    SNReplacementDate=dr["SN Replacement Date"].ToString(),
-                    InvoiceNo=dr["Invoice No"].ToString(),
-                    CUSCOD=dr["CUSCOD"].ToString(),
-                    ItemNo=dr["Item No"].ToString(),
-                    InvoiceDate=dr["Invoice Date"].ToString(),
-                    SalesOrder=dr["Sales Order"].ToString(),
-                    STKDES=dr["STKDES"].ToString(),
-                    CUSNAM=dr["CUSNAM"].ToString(),
-                    SLMCOD=dr["SLMCOD"].ToString(),
+                    Warranty_ID = dr["Warranty_ID"].ToString(),
+                    UsrID = dr["UsrID"].ToString(),
+                    SN = dr["SN"].ToString(),
+                    CarMaker = dr["Car Maker"].ToString(),
+                    CarModel = dr["Car Model"].ToString(),
+                    CarYear = dr["Car Year"].ToString(),
+                    CarLicense = dr["Car License"].ToString(),
+                    CarMileage = dr["Car Mileage"].ToString(),
+                    Shop = dr["Shop"].ToString(),
+                    ShopTel = dr["ShopTel"].ToString(),
+                    Status = dr["Status"].ToString(),
+                    WarrantyStartDate = dr["Warranty Start Date"].ToString(),
+                    WarrantyEndDate = dr["Warranty End Date"].ToString(),
+                    ClaimNo = dr["Claim_no"].ToString(),
+                    SNReplacement = dr["SN Replacement"].ToString(),
+                    SNReplacementDate = dr["SN Replacement Date"].ToString(),
+                    InvoiceNo = dr["Invoice No"].ToString(),
+                    CUSCOD = dr["CUSCOD"].ToString(),
+                    ItemNo = dr["Item No"].ToString(),
+                    InvoiceDate = dr["Invoice Date"].ToString(),
+                    SalesOrder = dr["Sales Order"].ToString(),
+                    STKDES = dr["STKDES"].ToString(),
+                    CUSNAM = dr["CUSNAM"].ToString(),
+                    SLMCOD = dr["SLMCOD"].ToString(),
                     StatusID = dr["StatusID"].ToString(),
                     WarrantyExpire = dr["WarrantyExpire"].ToString(),
-                    ExpectedReceiptDate=dr["Expected Receipt Date"].ToString(),
+                    ExpectedReceiptDate = dr["Expected Receipt Date"].ToString(),
                     Name = dr["Name"].ToString(),
                     Tel = dr["Tel"].ToString(),
-                    CreateBy=dr["Create By"].ToString(),
-					CreateDate=dr["Create Date"].ToString(),
+                    CreateBy = dr["Create By"].ToString(),
+                    CreateDate = dr["Create Date"].ToString(),
                     UpdateBy = dr["Update By"].ToString(),
-                    UpdateDate= dr["Update Date"].ToString(),
+                    UpdateDate = dr["Update Date"].ToString(),
+                    ClaimRound = dr["claim_round"].ToString(),
                 });
             }
             dr.Close();
@@ -388,17 +388,17 @@ namespace EWarranty.Models
             return Json(List, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetdateSNCode(string Name)
-       {
-         
+        {
+
             List<string> SN = new List<string>();
-          
+
 
             var connectionString = ConfigurationManager.ConnectionStrings["CLAIM_ConnectionString"].ConnectionString;
             SqlConnection Connection = new SqlConnection(connectionString);
             var command = new SqlCommand("P_Search_SN_customer_ewaranty", Connection);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@inSearch", Name);
-           
+
             Connection.Open();
             SqlDataReader dr = command.ExecuteReader();
             while (dr.Read())
@@ -439,7 +439,7 @@ namespace EWarranty.Models
             command.ExecuteNonQuery();
 
             message = returnValuedoc.Value.ToString();
-          
+
             command.Dispose();
             Connection.Close();
             //}
@@ -454,9 +454,9 @@ namespace EWarranty.Models
             EWarranty.Models.GroupClass.ImageFiles model = null;
             Connection.Open();
             // var root = @"\Warranty\ImgUpload\";
-              //infoldertype =1 UploadedImage
-	          //infoldertype =2 ImageClaim
-	          //infoldertype =3 ImageCarMileage
+            //infoldertype =1 UploadedImage
+            //infoldertype =2 ImageClaim
+            //infoldertype =3 ImageCarMileage
             var root = "";
             if (infoldertype == "1")
             {

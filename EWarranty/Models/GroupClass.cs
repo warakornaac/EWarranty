@@ -62,7 +62,7 @@ namespace EWarranty.Models
             public string Email { get; set; }
 
 
-            
+
         }
         public class ProductViewModel
         {
@@ -89,38 +89,83 @@ namespace EWarranty.Models
         }
         public class Inquiry_Customer
         {
-             public string No { get; set; }
-             public string  Warranty_ID  { get; set; }
-             public string  UsrID  { get; set; }
-             public string  SN  { get; set; }
-             public string  CarMaker  { get; set; }
-             public string  CarModel  { get; set; }
-             public string  CarYear  { get; set; }
-             public string  CarLicense  { get; set; }
-             public string  CarMileage  { get; set; }
-             public string  Shop  { get; set; }
-             public string  Status  { get; set; }
-             public string  WarrantyStartDate  { get; set; }
-             public string  WarrantyEndDate  { get; set; }
-             public string  SNReplacement  { get; set; }
-             public string  SNReplacementDate  { get; set; }
-             public string  InvoiceNo  { get; set; }
-             public string  CUSCOD  { get; set; }
-             public string  ItemNo  { get; set; }
-             public string  InvoiceDate  { get; set; }
-             public string  SalesOrder  { get; set; }
-             public string  STKDES  { get; set; }
-             public string  CUSNAM  { get; set; }
-             public string  SLMCOD  { get; set; }
-             public string  ExpectedReceiptDate  { get; set; }
-             public string StatusID { get; set; }
-             public string WarrantyExpire { get; set; }
-             public string Name { get; set; }
-             public string Tel { get; set; }
-             public string CreateBy{ get; set; }
-			 public string CreateDate{ get; set; }
-             public string  UpdateBy{ get; set; }
-             public string UpdateDate { get; set; }
+            public string No { get; set; }
+            public string Warranty_ID { get; set; }
+            public string UsrID { get; set; }
+            public string SN { get; set; }
+            public string CarMaker { get; set; }
+            public string CarModel { get; set; }
+            public string CarYear { get; set; }
+            public string CarLicense { get; set; }
+            public string CarMileage { get; set; }
+            public string Shop { get; set; }
+            public string ShopTel { get; set; }
+            public string Status { get; set; }
+            public string WarrantyStartDate { get; set; }
+            public string WarrantyEndDate { get; set; }
+            public string ClaimNo { get; set; }
+            public string SNReplacement { get; set; }
+            public string SNReplacementDate { get; set; }
+            public string InvoiceNo { get; set; }
+            public string CUSCOD { get; set; }
+            public string ItemNo { get; set; }
+            public string InvoiceDate { get; set; }
+            public string SalesOrder { get; set; }
+            public string STKDES { get; set; }
+            public string CUSNAM { get; set; }
+            public string SLMCOD { get; set; }
+            public string ExpectedReceiptDate { get; set; }
+            public string StatusID { get; set; }
+            public string WarrantyExpire { get; set; }
+            public string Name { get; set; }
+            public string Tel { get; set; }
+            public string CreateBy { get; set; }
+            public string CreateDate { get; set; }
+            public string UpdateBy { get; set; }
+            public string UpdateDate { get; set; }
+            public string ClaimRound { get; set; }
+        }
+        public class Inquiry_Claim_Log
+        {
+            public string ClaimRound { get; set; }
+            public string No { get; set; }
+            public string Warranty_ID { get; set; }
+            public string UsrID { get; set; }
+            public string SN { get; set; }
+            public string CarMaker { get; set; }
+            public string CarModel { get; set; }
+            public string CarYear { get; set; }
+            public string CarLicense { get; set; }
+            public string CarMileage { get; set; }
+            public string Shop { get; set; }
+            public string ShopTel { get; set; }
+            public string Status { get; set; }
+            public string WarrantyStartDate { get; set; }
+            public string WarrantyEndDate { get; set; }
+            public string ClaimNo { get; set; }
+            public string SNReplacement { get; set; }
+            public string SNReplacementDate { get; set; }
+            public string InvoiceNo { get; set; }
+            public string CUSCOD { get; set; }
+            public string ItemNo { get; set; }
+            public string InvoiceDate { get; set; }
+            public string SalesOrder { get; set; }
+            public string STKDES { get; set; }
+            public string CUSNAM { get; set; }
+            public string SLMCOD { get; set; }
+            public string ExpectedReceiptDate { get; set; }
+            public string StatusID { get; set; }
+            public string WarrantyExpire { get; set; }
+            public string Name { get; set; }
+            public string Tel { get; set; }
+            public string CreateBy { get; set; }
+            public string CreateDate { get; set; }
+            public string UpdateBy { get; set; }
+            public string UpdateDate { get; set; }
+            public string CustomerNote { get; set; }
+            public string Symptomname { get; set; }
+            public string Note { get; set; }
+            public string Result { get; set; }
         }
         public class DefineCode
         {
@@ -140,10 +185,10 @@ namespace EWarranty.Models
         public class ItemMaker
         {
             public string Maker { get; set; }
-			public string Model{ get; set; }
-			public string ItemNo{ get; set; }
-			public string Company{ get; set; }
-        
+            public string Model { get; set; }
+            public string ItemNo { get; set; }
+            public string Company { get; set; }
+
         }
         // Class Image Files 
         public class ImageFiles
@@ -161,27 +206,33 @@ namespace EWarranty.Models
 
         }
 
-        public class Userregister 
-        { 
-             public string UsrID  { get; set; }
-			 public string Name  { get; set; }
-			 public string LastName { get; set; }
-			 public string Password { get; set; }
-             public string UsrTyp { get; set; }
-			 public string Address01 { get; set; }
-			 public string Address02 { get; set; }
-			 public string Province{ get; set; }
-			 public string Postcode { get; set; }
-			 public string EMail { get; set; }
-			 public string Tel  { get; set; }
-		 	 public string LineID { get; set; }
-			 public string Logon { get; set; }
-			 public string LastLogOn { get; set; }
-			 public string SessionId { get; set; }
-			 public string pwdLastSet { get; set; }
-			 public string Insertdate { get; set; }
-			 public string LoginFail { get; set; }
-			 public string Online { get; set; }
+        public class Userregister
+        {
+            public string UsrID { get; set; }
+            public string Name { get; set; }
+            public string LastName { get; set; }
+            public string Password { get; set; }
+            public string UsrTyp { get; set; }
+            public string Address01 { get; set; }
+            public string Address02 { get; set; }
+            public string Province { get; set; }
+            public string Postcode { get; set; }
+            public string EMail { get; set; }
+            public string Tel { get; set; }
+            public string LineID { get; set; }
+            public string Logon { get; set; }
+            public string LastLogOn { get; set; }
+            public string SessionId { get; set; }
+            public string pwdLastSet { get; set; }
+            public string Insertdate { get; set; }
+            public string LoginFail { get; set; }
+            public string Online { get; set; }
+        }
+        public class ListShopPartner
+        {
+            public string Name { get; set; }
+            public string Address { get; set; }
+            public string Telephone { get; set; }
         }
     }
 }

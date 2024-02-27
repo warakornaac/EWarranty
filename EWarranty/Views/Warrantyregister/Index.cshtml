@@ -123,7 +123,7 @@
         }
 
         .toc_title {
-            background-color: #5668a9;
+            background-color: #007bff;
             color: #110909;
             padding: 10px !important;
             border-radius: 20px 20px 0 100px;
@@ -244,10 +244,6 @@
     </script>
 
 
-
-
-
-
 </head>
 
 
@@ -256,45 +252,45 @@
     @*<div class="container-scroller">*@
     @*<div class="container-fluid page-body-wrapper full-page-wrapper" style="margin-right: auto !important; margin-left: auto !important;">*@
 
-        @*<div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">*@
+    @*<div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">*@
 
-        @*<div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">*@
-        <div class="content-wrapper">
+    @*<div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">*@
+    <div class="content-wrapper">
 
-            <div class="row">
-                <div class="col-lg-12 mx-auto">
-                    <h2 class="text-center mb-4">
-                        ลงทะเบียนสินค้า
-                    </h2>
-                    <div class="auto-form-wrapperx">
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <h2 class="text-center mb-4">
+                    ลงทะเบียนสินค้า
+                </h2>
+                <div class="auto-form-wrapperx">
 
-                        <div class="col-12 grid-margin">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="text-danger"> กรุณากรอกข้อมูลของท่านตาม * ให้ครบถ้วน </p>
-                                    <form class="cmxform" id="signupForm" method="get" action="">
-                                        <fieldset>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">หมายเลขซีเรียล*</label>
-                                                        <div class="col-sm-5 col-md-6 col-lg-6">
-                                                            <input type="text" class="form-control" onkeydown="search(this)" oninput="this.value = this.value.toUpperCase()" id="b_Sn" name="b_Sn" />
-                                                            @*<input type="text" class="form-control" id="b_Sn" name="b_Sn" oninput="this.value = this.value.toUpperCase()" />*@
-                                                        </div>
-                                                        <div class="col-sm-3 col-md-2">
-                                                            @*<p id="b_des" style="cursor: pointer; text-decoration: underline; text-decoration-color: blue; font-size: 2vmin; font-weight: bold;">กดดูรายละเอียดสินค้า</p>*@
-                                                            <button type="submit" class="input-group-text btn btn-info" id="b_des" style="cursor: pointer; margin-top: 6px; margin-left: -15px;"><i class="bi bi-search me-2"></i>ดูรายละเอียดสินค้า</button>
-                                                        </div>
-
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="text-danger"> กรุณากรอกข้อมูลของท่านตาม * ให้ครบถ้วน</p>
+                                <form class="cmxform" id="signupForm" method="get" action="">
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">หมายเลขซีเรียล <span class="red-star">*</span></label>
+                                                    <div class="col-sm-5 col-md-6 col-lg-6">
+                                                        <input type="text" class="form-control" oninput="this.value = this.value.toUpperCase()" id="b_Sn" name="b_Sn" />
+                                                        @*<input type="text" class="form-control" id="b_Sn" name="b_Sn" oninput="this.value = this.value.toUpperCase()" />*@
                                                     </div>
-                                                    @*<div class="input-group mb-3">
-                                                            <input type="text" class="form-control form-control-lg"  placeholder="S/N" onkeydown="search(this)" oninput="this.value = this.value.toUpperCase()" id="b_Sn" name="b_Sn" />
-                                                            <button type="submit" class="input-group-text btn-success" id="b_des" style="cursor: pointer; text-decoration: underline; text-decoration-color: blue;"><i class="bi bi-search me-2"></i>กดดูรายละเอียดสินค้า</button>
-                                                        </div>*@
+                                                    <div class="col-sm-3 col-md-2">
+                                                        @*<p id="b_des" style="cursor: pointer; text-decoration: underline; text-decoration-color: blue; font-size: 2vmin; font-weight: bold;">กดดูรายละเอียดสินค้า</p>*@
+                                                        <button type="submit" class="input-group-text btn btn-info" id="b_des" style="cursor: pointer; margin-top: 6px; margin-left: -15px;"><i class="bi bi-search me-2"></i>ดูรายละเอียดสินค้า</button>
+                                                    </div>
+
+                                                </div>
+                                                @*<div class="input-group mb-3">
+                                                        <input type="text" class="form-control form-control-lg"  placeholder="S/N" onkeydown="search(this)" oninput="this.value = this.value.toUpperCase()" id="b_Sn" name="b_Sn" />
+                                                        <button type="submit" class="input-group-text btn-success" id="b_des" style="cursor: pointer; text-decoration: underline; text-decoration-color: blue;"><i class="bi bi-search me-2"></i>กดดูรายละเอียดสินค้า</button>
+                                                    </div>*@
 
 
-                                                    @*<div class="form-group">
+                                                @*<div class="form-group">
                                                         <span> S/N* </span>
                                                         <span>
                                                             <div class="input-group mb-3">
@@ -303,197 +299,253 @@
                                                             </div>
                                                         </span>
                                                     </div>*@
-                                                </div>
+                                            </div>
 
-                                                @if (userType != "14")
-                                                {
-                                                    <div class="col-md-6">
-                                                        <div class="form-group row">
-                                                           @* PCP : 090124 <label class="col-sm-3 col-form-label">Item No.</label> *@
-                                                            <label class="col-sm-3 col-form-label">รหัสสินค้า</label>
-                                                            <div class="col-9">
-                                                                <input type="text" class="form-control" id="b_itemno" name="b_itemno" disabled="disabled" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
+                                            @if (userType != "14")
+                                            {
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">รายละเอียดสินค้า</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" class="form-control" id="b_Description" name="b_Description" disabled="disabled" />
+                                                        @* PCP : 090124 <label class="col-sm-3 col-form-label">Item No.</label> *@
+                                                        <label class="col-sm-3 col-form-label">รหัสสินค้า</label>
+                                                        <div class="col-9">
+                                                            <input type="text" class="form-control" id="b_itemno" name="b_itemno" disabled="disabled" />
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">รายละเอียดสินค้า</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="b_Description" name="b_Description" disabled="disabled" />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-
-                                                        <label class="col-sm-3 col-form-label">ยี่ห้อรถ*</label>
-                                                        <div class="col-sm-9">
-                                                            @*<input type="text" class="form-control" id="b_CarMaker" name="b_CarMaker" required />*@
-                                                            <select class="form-control" id="b_CarMaker" name="b_CarMaker" required></select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">รุ่นรถ*</label>
-                                                        <div class="col-sm-9">
-                                                            <select class="form-control" id="b_CarModel" name="b_CarModel" required></select>
-
-                                                        </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">ยี่ห้อรถ <span class="red-star">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        @*<input type="text" class="form-control" id="b_CarMaker" name="b_CarMaker" required />*@
+                                                        <select class="form-control" id="b_CarMaker" name="b_CarMaker" required></select>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label" for="password">ปี*</label>
-                                                        <div class="col-sm-9">
-                                                            @*<input type="text" class="form-control" id="b_CarYear" name="b_CarYear" required />*@
-                                                            <select class="form-control" id="b_CarYear" name="b_CarYear" required>
-                                                                <option value="">เลือกปี</option>
-                                                                <script language="javascript">
-                                                                                for (var i = 1990; i <= @Year; i++) {
-                                                                                    document.write("<option value=\"" + i + "\">" + i + "</option>\n");
-                                                                                }
-                                                                </script>
-                                                            </select>
-
-                                                        </div>
-
-
-                                                    </div>
-
-                                                </div>
-
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">
-                                                            ทะเบียนรถ*
-                                                        </label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" class="form-control" id="b_carlicense" name="b_CarLicense" required />
-                                                            @*<input type="text" class="form-control" id="b_CarLicense" name="b_CarLicense" required onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" />*@
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">เลขไมล์ปัจจุบัน* </label>
-                                                        <div class="col-sm-9">
-                                                            <input type="number" class="form-control" id="b_CarMileage" name="b_CarMileage" required />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">ร้านค้า*</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" class="form-control" id="b_Shop" name="b_Shop" required />
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        @* PCP : 090124  <label class="col-sm-3 col-form-label">Car Maker/Model</label> *@
-                                                        <label class="col-sm-3 col-form-label">ผู้ผลิต/โมเดล</label>
-                                                        <div class="col-sm-9">
-
-                                                            <div id="fixed-table-container-1" class="fixed-table-container" style="z-index: 1; height: 200px;">
-                                                                <table>
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>
-                                                                                ผู้ผลิต
-                                                                            </th>
-                                                                            <th>
-                                                                                โมเดล
-                                                                            </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody></tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">รุ่นรถ <span class="red-star">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control" id="b_CarModel" name="b_CarModel" required></select>
 
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        @*ยี่ห้แรถ รุ่นรถอื่นๆ*@
+                                        <div class="row" id="divCarOther" style="display: none;">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">ยี่ห้อรถ OTHER <span class="red-star">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="b_CarMakerOther" name="b_CarMakerOther" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">รุ่นรถ OTHER <span class="red-star">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="b_CarModelOther" name="b_CarModelOther" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                            <div class="row" id="toc_container" style="background-color: #5f9ea029;">
+                                        <div class="row">
+                                            <div class="col-md-6" style="padding-top: 7px;">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">ปีรถ <span class="red-star">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        @*<input type="text" class="form-control" id="b_CarYear" name="b_CarYear" required />*@
+                                                        <select class="form-control" id="b_CarYear" name="b_CarYear" required>
+                                                            <option value="">เลือกปี</option>
+                                                            <script language="javascript">
+                                                                for (var i = 1990; i <= @Year; i++) {
+                                                                    document.write("<option value=\"" + i + "\">" + i + "</option>\n");
+                                                                }
+                                                            </script>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label"> ทะเบียนรถ  <span class="red-star">*</span> </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="b_carlicense" name="b_CarLicense" required />
+                                                        @*<input type="text" class="form-control" id="b_CarLicense" name="b_CarLicense" required onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" />*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">เลขไมล์ปัจจุบัน <span class="red-star">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="number" class="form-control" id="b_CarMileage" name="b_CarMileage" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">ร้านค้าที่ติดตั้ง <span class="red-star">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="b_Shop" name="b_Shop" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">เบอร์โทรร้านค้าที่ติดตั้ง </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="b_ShopTel" name="b_ShopTel" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    PCP : 130224  <label class="col-sm-3 col-form-label">Car Maker/Model</label>
+                                                                    <label class="col-sm-3 col-form-label">ผู้ผลิต/โมเดล</label>
+                                                                    <div class="col-sm-9">
 
-                                                <div class="col-md-12">
-                                                    @* PCP : 090124 <p class="row toc_title font-weight-bold">Upload รูปใบเสร็จ/ไมล์ </p> *@
-                                                    <p class="row toc_title font-weight-bold">อัพโหลดรูปใบเสร็จ/ไมล์ </p>
-                                                    <div class="form-group">
-                                                        <form id="uploader">
-                                                            <div class="row">
-                                                                <div class="col-sm-6">
-
-                                                                    <br />            <br />
-                                                                    <input id="fileInput" type="file" onchange="getFilesReady(event);" multiple class="form-control" accept="image/*;capture=camera"> 
-
-                                <br />            <br />
-
-                                <table class="table" id="FilesList" style="visibility:hidden">
-                                    <tr>
-                                        <th>
-                                            Attachment(s)
-                                        </th>
-                                        <th>
-                                            Action
-                                        </th>
-                                    </tr>
-                                </table>
-                                <input type="button" id="btnuploadsales" value="Upload" style="float:right;display:none" />
-
-                            </div>
-                        </div>
-                    </form>
-                    <span id="image_loader"></span>
-
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 mx-auto text-center" >
-                <div class="form-group">
-                    @*<button class="btn btn-primary submit-btn btn-block" id="b-cf-reg">ลงทะเบียน</button>*@
-                                                                    <input class="submit" type="submit" value="ลงทะเบียน" style="max-width: 300px;">
+                                                                    <div id="fixed-table-container-1" class="fixed-table-container" style="z-index: 1; height: 200px;">
+                                                                        <table>
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>
+                                                                                        ผู้ผลิต
+                                                                                    </th>
+                                                                                    <th>
+                                                                                        โมเดล
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody></tbody>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                         <div class="row">
+                                            <div class="col-md-8 text-left" style="padding-left: 1; padding-bottom: 8px; padding-top: 15px;">
+                                                <span class="label label-warning red-star red-star" style="color: red; font-size: 13px; white-space: normal; line-height: 1.5;"> *หมายเหตุ : การอัพโหลดรูปภาพให้ถูกต้องครบถ้วน มีผลกับการพิจารณาเคลมประกัน</span>
+                                            </div>
+                                            <div class="col-md-4 text-right" onclick="showExampleImage();" style="cursor: pointer;">
+                                                <i class="fa fa-picture-o fa-lg text-primary"  style="margin-top: 10px;"></i>&nbsp;<span class="text-primary" style="font-size: 14px;">รูปตัวอย่างคลิก</span>
+                                            </div>
+                                        </div>
+                                        @*รูปตัวอย่าง*@
+                                        <div class="row" style=" padding: 5px 0px 5px 10px; display: none;" id="divExampleImage">
+                                            <div class="card">
+                                                <div class="card-body" style="padding: 1px;">
+                                                    <div class="col-md-4">
+                                                        <div class="thumbnail" style="border: 0;">
+                                                            <a href="@Url.Content("~/Image/mile.png")" target="_blank">
+                                                                <img src="@Url.Content("~/Image/mile.png")" class="thumbnail" alt="Lights" style="width:70%">
+                                                                <div class="caption text-center">
+                                                                    <p>เลขไมล์</p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="thumbnail" style="border: 0;">
+                                                            <a href="@Url.Content("~/Image/battery_side_top.png")" target="_blank">
+                                                                <img src="@Url.Content("~/Image/battery_side_top.png")" class="thumbnail" alt="Nature" style="width: 40%">
+                                                                <div class="caption text-center">
+                                                                    <p>สินค้าหลังจากติดตั้ง</p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="thumbnail" style="border: 0;">
+                                                            <a href="@Url.Content("~/Image/battery_side_label.png")" target="_blank">
+                                                                <img src="@Url.Content("~/Image/battery_side_label.png")" class="thumbnail" alt="Fjords" style="width: 40%">
+                                                                <div class="caption text-center">
+                                                                    <p>สินค้าหลังจากติดตั้ง</p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </fieldset>
-                                    </form>
-                                </div>
+                                        </div>
+
+                                        <div class="row" id="toc_container" style="background-color: #5f9ea029;">
+                                            <div class="col-md-12">
+                                                @* PCP : 090124 <p class="row toc_title font-weight-bold">Upload รูปใบเสร็จ/ไมล์ </p> *@
+                                                <p class="row toc_title font-weight-bold write_label">อัพโหลดรูปภาพ ( 1.ใบเสร็จ  2.เลขไมล์ และ 3. สินค้าหลังจากติดตั้ง )</p>
+                                                <div class="form-group">
+                                                    <form id="uploader">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+
+                                                                <br />            <br />
+                                                                <input id="fileInput" type="file" onchange="getFilesReady(event);" multiple class="form-control" accept="image/*;capture=camera">
+
+                                                                <br />            <br />
+
+                                                                <table class="table" id="FilesList" style="visibility:hidden">
+                                                                    <tr>
+                                                                        <th>
+                                                                            Attachment(s)
+                                                                        </th>
+                                                                        <th>
+                                                                            Action
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <input type="button" id="btnuploadsales" value="Upload" style="float:right;display:none" />
+
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <span id="image_loader"></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 mx-auto text-center">
+                                                <div class="form-group">
+                                                    @*<button class="btn btn-primary submit-btn btn-block" id="b-cf-reg">ลงทะเบียน</button>*@
+                                                    <input class="submit" type="submit" value="ลงทะเบียน" style="max-width: 250px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- content-wrapper ends -->
+    </div>
+    <!-- content-wrapper ends -->
     @*</div>*@
     <!-- page-body-wrapper ends -->
     @*</div>*@
@@ -565,15 +617,13 @@
     var userid = '@Request.RequestContext.HttpContext.Session["UserID"]';
     var usertype = '@Request.RequestContext.HttpContext.Session["UserType"]';
      // let lastname = sessionStorage.getItem("hostname");
-      let lastname = getlocalhost();
-      console.log(lastname);
+    let lastname = getlocalhost();
     function checklogin(userid, id) {
         $.ajax({
             url: '@Url.Action("GetdataSessionlogin", "GetdataCenter")',
             data: {
                 UsrID: userid,
                 SessionId: id
-
             },
             type: "POST",
             dataType: "JSON",
@@ -610,13 +660,24 @@
         });
     }
 
-        $('#b_carlicense').keypress(function (e) {
+    $('#b_carlicense').keypress(function (e) {
         var txt = String.fromCharCode(e.which)
         var pattern = /^[aA-zZ0-9\- \u0E00-\u0E7F ]+$/;
         if (!(pattern.test(txt) || e.keyCode == 8)) {
             return false;
         }
     });
+
+    function showExampleImage() {
+        var x = document.getElementById("divExampleImage");
+        if (x.style.display === "none") {
+            //$("#divExampleImage").toggleClass("fa-caret-down fa-caret-up");
+            $("#divExampleImage").show("fast");
+        } else {
+            //$("#divExampleImage").toggleClass("fa-caret-up fa-caret-down");
+            $("#divExampleImage").hide("fast");
+        }
+    }
 
     $(document).on("click", "#myModal", function () {
 
@@ -736,7 +797,6 @@
                 Name: _var,
                 sty: '1'
             },
-
             type: "POST",
             dataType: "JSON",
             success: function (data) {
@@ -746,18 +806,25 @@
                 select.children().remove();
                 select.append($("<option>").val("").text("เลือกรุ่นรถ"));
                 $(data).each(function (index, item) {
-
                     select.append($("<option custyp=" + item.Code + ">").val(item.Code).text(item.Code));
-
                 });
                 $('.selectpicker').selectpicker('refresh');
-                //$('.selectpicker').selectpicker('val', '');
-                // $("#Model").val("");
             }
         });
-
-
-
+        //ยี่ห้อรถอื่นๆ
+        console.log("_var = " + _var);
+        if (_var == "OTHER") {
+            $("#divCarOther").css("display", "block");
+            setTimeout(function () {
+                $("#b_CarModel").val("OTHER").change();
+                $("#b_CarModel").attr("disabled", true);
+            }, 600);
+        } else {
+            $("#b_CarModel").attr("disabled", false);
+            $("#divCarOther").css("display", "none");
+            $("#b_CarMakerOther").val("");
+            $("#b_CarModelOther").val("");
+        }
         // getcatalog(maker, Model, submodel, company, catalogue, brand, _productgroup, _productline, textfree, itemsegment);
     });
 
@@ -793,6 +860,8 @@
             // alert("submitted!");
             var b_CarMaker = $('#b_CarMaker').val();
             var b_CarModel = $('#b_CarModel').val();
+            var b_CarMakerOther = $('#b_CarMakerOther').val();
+            var b_CarModelOther = $('#b_CarModelOther').val();
             var b_CarYear = $('#b_CarYear').val();
             var b_CarLicense = $('#b_carlicense').val();
             var b_CarMileage = $('#b_CarMileage').val();
@@ -805,24 +874,40 @@
                 alert("ไม่พบหมายเลขซีเรียลในระบบ กรุณาลองใหม่อีกครั้ง");
                 return false;
             }
-            if (leng == 1) {
-                alert("กรุณาอัพโหลด รูป เพื่อลงทะเบียน")
+            if (leng <= 3) {
+                alert("กรุณาอัพโหลดรูปเพื่อใช้ลงทะเบียนอย่างน้อย 3 รูป")
                 //$("#textAlertWarningmes").empty();
                 //$("#textAlertWarningmes").text("กรุณา Upload image เพื่อประกอบพิจารณาเคลม");
                 //$("#myModalWarning").modal();
                 return false;
             }
+            //check ถ้าเลือกเป็นยี่ห้ออื่นๆ
+            if (b_CarMaker == "OTHER") {
+                if (b_CarMakerOther == "" || b_CarMakerOther == null) {
+                    alert("กรุณากรอกยี่ห้อรถ");
+                    return false;
+                }
+                if (b_CarModelOther == "" || b_CarModelOther == null) {
+                    alert("กรุณากรอกรุ่นรถ");
+                    return false;
+                }
+                b_CarMaker = b_CarMakerOther;
+                b_CarModel = b_CarModelOther;
+            }
+            //console.log("b_CarMaker = " + b_CarMaker);
+            //console.log("b_CarModel = " + b_CarModel);
+            //return false;
             $("#overlay").fadeIn(300);
-
             $.ajax({
                 url: '@Url.Action("AddWarrantyregister", "Warrantyregister")',
                 data: {
-                    b_CarMaker: $('#b_CarMaker').val(),
-                    b_CarModel: $('#b_CarModel').val(),
+                    b_CarMaker: b_CarMaker,
+                    b_CarModel: b_CarModel,
                     b_CarYear: $('#b_CarYear').val(),
                     b_CarLicense: $('#b_carlicense').val(),
                     b_CarMileage: $('#b_CarMileage').val(),
                     b_Shop: $('#b_Shop').val(),
+                    b_ShopTel: $('#b_ShopTel').val(),
                     b_SN: $('#b_Sn').val().replace(/\s+/g, ''),
 
                 },
@@ -1081,6 +1166,7 @@
 
     function getdesitem() {
         var snNo = $('#b_Sn').val().replace(/\s+/g, '') || '';
+        var snNoCharacterLast
         console.log(snNo);
         if (snNo.length < 9) {
             alert("กรุณากรอกหมายเลขซีเรียล ให้ครบ (CHXXXXXXX)");
@@ -1089,7 +1175,15 @@
         if (snNo == "") {
             alert("กรุณากรอก หมายเลขซีเรียล");
             return false;
+        } else {
+            snNoCharacterLast = snNo.slice(-2);
+            if (snNoCharacterLast == "-2") {
+                snNo = snNo.substring(0, snNo.length - 2);
+                $('#b_Sn').val(snNo)
+            }
         }
+        //console.log(snNo);
+        //console.log("snNoCharacterLast = " + snNoCharacterLast);
         $.ajax({
             url: '@Url.Action("Getdata_Sales_History_SN", "GetdataCenter")',
                 data: {

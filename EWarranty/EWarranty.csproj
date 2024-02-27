@@ -125,6 +125,7 @@
     <Compile Include="Controllers\MultipleUploadController.cs" />
     <Compile Include="Controllers\QRCodeUsageController.cs" />
     <Compile Include="Controllers\ReplacementController.cs" />
+    <Compile Include="Controllers\ShopPartnerController.cs" />
     <Compile Include="Controllers\WarrantyregisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -4726,6 +4727,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\EditRegisterDealer\index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShopPartner\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

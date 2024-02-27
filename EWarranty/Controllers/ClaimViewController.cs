@@ -62,8 +62,10 @@ namespace EWarranty.Controllers
                 string LineID = string.Empty;
                 string EMail = string.Empty;
                 string Shop = string.Empty;
+                string ShopTel = string.Empty;
                 string Cuscode = string.Empty;
                 string Shipto = string.Empty;
+                string ClaimNo = string.Empty;
                 Docdisplay = Request.QueryString["SnNUM"];
                 List<EWarranty.Models.GroupClass.DefineCode> List_Sympto = new List<EWarranty.Models.GroupClass.DefineCode>();
                 List<EWarranty.Models.GroupClass.DefineCode> List = new List<EWarranty.Models.GroupClass.DefineCode>();
@@ -123,6 +125,7 @@ namespace EWarranty.Controllers
                         CarLicense = dr["Car License"].ToString();
                         CarMileage = dr["Car Mileage"].ToString();
                         Shop = dr["Shop"].ToString();
+                        ShopTel = dr["ShopTel"].ToString();
                         // Status = dr["Status"].ToString(),
                         WarrantyStartDate = dr["Warranty Start Date"].ToString();
                         WarrantyEndDate = dr["Warranty End Date"].ToString();
@@ -156,6 +159,8 @@ namespace EWarranty.Controllers
                         EMail = dr["EMail"].ToString();
                         Cuscode = dr["CusCode"].ToString();
                         Shipto = dr["ShipTo"].ToString();
+                        ClaimNo = dr["Claim_no"].ToString();
+
                     }
                     dr.Close();
                     dr.Dispose();
@@ -242,10 +247,75 @@ namespace EWarranty.Controllers
                 ViewBag.LineID = LineID;
                 ViewBag.EMail = EMail;
                 ViewBag.Shop = Shop;
+                ViewBag.ShopTel = ShopTel;
                 ViewBag.Cuscode = Cuscode;
                 ViewBag.Shipto = Shipto;
+                ViewBag.ClaimNo = ClaimNo;
+
             }
             return View();
+        }
+        public JsonResult GetDataClaimLog(string b_SN)
+        {
+            List<EWarranty.Models.GroupClass.Inquiry_Claim_Log> List = new List<EWarranty.Models.GroupClass.Inquiry_Claim_Log>();
+            var connectionString = ConfigurationManager.ConnectionStrings["CLAIM_ConnectionString"].ConnectionString;
+            SqlConnection Connection = new SqlConnection(connectionString);
+            var command = new SqlCommand("P_Search_Inquiry_claim_log", Connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@in_SN", b_SN);
+            Connection.Open();
+
+            SqlDataReader dr = command.ExecuteReader();
+            while (dr.Read())
+            {
+
+                List.Add(new EWarranty.Models.GroupClass.Inquiry_Claim_Log()
+                {
+                    ClaimRound = dr["claim_round"].ToString(),
+                    Warranty_ID = dr["Warranty_ID"].ToString(),
+                    UsrID = dr["UsrID"].ToString(),
+                    SN = dr["SN"].ToString(),
+                    CarMaker = dr["Car Maker"].ToString(),
+                    CarModel = dr["Car Model"].ToString(),
+                    CarYear = dr["Car Year"].ToString(),
+                    CarLicense = dr["Car License"].ToString(),
+                    CarMileage = dr["Car Mileage"].ToString(),
+                    Shop = dr["Shop"].ToString(),
+                    ShopTel = dr["ShopTel"].ToString(),
+                    Status = dr["Status"].ToString(),
+                    WarrantyStartDate = dr["Warranty Start Date"].ToString(),
+                    WarrantyEndDate = dr["Warranty End Date"].ToString(),
+                    ClaimNo = dr["Claim_no"].ToString(),
+                    SNReplacement = dr["SN Replacement"].ToString(),
+                    SNReplacementDate = dr["SN Replacement Date"].ToString(),
+                    InvoiceNo = dr["Invoice No"].ToString(),
+                    CUSCOD = dr["CUSCOD"].ToString(),
+                    ItemNo = dr["Item No"].ToString(),
+                    InvoiceDate = dr["Invoice Date"].ToString(),
+                    SalesOrder = dr["Sales Order"].ToString(),
+                    STKDES = dr["STKDES"].ToString(),
+                    CUSNAM = dr["CUSNAM"].ToString(),
+                    SLMCOD = dr["SLMCOD"].ToString(),
+                    StatusID = dr["StatusID"].ToString(),
+                    WarrantyExpire = dr["WarrantyExpire"].ToString(),
+                    ExpectedReceiptDate = dr["Expected Receipt Date"].ToString(),
+                    Name = dr["Name"].ToString(),
+                    Tel = dr["Tel"].ToString(),
+                    CreateBy = dr["Create By"].ToString(),
+                    CreateDate = dr["Create Date"].ToString(),
+                    UpdateBy = dr["Update By"].ToString(),
+                    UpdateDate = dr["Update Date"].ToString(),
+                    CustomerNote = dr["CustomerNote"].ToString(),
+                    Symptomname = dr["Symptomname"].ToString(),
+                    Note = dr["Note"].ToString(),
+                    Result = dr["Result"].ToString(),
+                });
+            }
+            dr.Close();
+            dr.Dispose();
+            command.Dispose();
+            Connection.Close();
+            return Json(List, JsonRequestBehavior.AllowGet);
         }
 
 

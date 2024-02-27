@@ -2,7 +2,16 @@
     var user = ViewBag.UserId;
     var userType = ViewBag.UserType;
     var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
-}
+    var userTypeName = String.Empty;
+    if (userType == "14")
+    {
+        userTypeName = "User";
+    } else if (userType == "15") {
+        userTypeName = "Dealer";
+    } else {
+        userTypeName = "Admin";
+    }
+} 
 <html>
 <head>
     <!-- Required meta tags -->
@@ -32,6 +41,8 @@
     <script src="~/Scripts/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="~/Scripts/jquery-ui.css">
     <link href="~/BootstrapTemplate/src/assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert2/sweetalert2.min.js"></script>
+    <link href="~/Scripts/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <style>
         @@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,500;0,600;1,500&display=swap");
 
@@ -69,7 +80,11 @@
                     <div class="d-flex py-2">
                         <span class="img-sm rounded-circle bg-warning text-white text-avatar"><i class="fa fa-user text-dark"></i></span>
                         <div class="wrapper ml-2" style="vertical-align: middle;padding-top: 10px;">
-                            <p class="mb-n1 font-weight-semibold">Login : @user</p>
+                            <p class="mb-n1 font-weight-semibold">
+                                Login :
+                                @user
+                                <span class="text-primary">(@userTypeName)</span>
+                            </p>
                             @*<small>E-mail:test1@gmail.com</small>*@
                         </div>
                         @*<small class="text-muted ml-auto">4 Hours ago</small>*@
@@ -87,58 +102,58 @@
                 <!-- Page Title Header Starts-->
                 @if (userType == "14") //end user
                 {
-                   <!-- <div class="row page-title-header">
-                        <div class="col-12">
-                            <div class="page-header">
-                                <h4 class="page-title"></h4>
-                                <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
-                                    <ul class="quick-links">
-                                        <li><a id="Inquiryid" href="~/Inquiry/Index">ตรวจสอบสถานะ</a></li>
-                                        <li><a id="regid" href="~/Warrantyregister/Index">ลงทะเบียนสินค้า</a></li>
-                                        @*<li><a href="~/ClaimRequest/Index">แจ้งเคลมสินค้า</a></li>*@
-                                        <li><a id="regeditid"></a></li>
-                                    </ul>
-                                    <ul class="quick-links ml-auto">
-                                        <li><a id="regeditid" href="~/EditWarrantyregister/Index">แก้ไขข้อมูลส่วนตัว</a></li>
-                                        @*<li><a id="changeid" href="~/Account/Changepassword" >เปลี่ยนรหัสผ่าน</a></li>*@
-                                        <li><a  href="~/Account/LogIn" >ออกจากระบบ</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- <div class="row page-title-header">
+                         <div class="col-12">
+                             <div class="page-header">
+                                 <h4 class="page-title"></h4>
+                                 <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+                                     <ul class="quick-links">
+                                         <li><a id="Inquiryid" href="~/Inquiry/Index">ตรวจสอบสถานะ</a></li>
+                                         <li><a id="regid" href="~/Warrantyregister/Index">ลงทะเบียนสินค้า</a></li>
+                                         @*<li><a href="~/ClaimRequest/Index">แจ้งเคลมสินค้า</a></li>*@
+                                         <li><a id="regeditid"></a></li>
+                                     </ul>
+                                     <ul class="quick-links ml-auto">
+                                         <li><a id="regeditid" href="~/EditWarrantyregister/Index">แก้ไขข้อมูลส่วนตัว</a></li>
+                                         @*<li><a id="changeid" href="~/Account/Changepassword" >เปลี่ยนรหัสผ่าน</a></li>*@
+                                         <li><a  href="~/Account/LogIn" >ออกจากระบบ</a></li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
 
-                    </div>-->
+                     </div>-->
                     <div class="row page-title-header">
                         <div class="col-12">
                             <div class="page-header" style="margin: 0px !important;">
                                 <h4 class="page-title"></h4>
                                 <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
-                                  
+
                                     <ul class="quick-links ml-auto">
                                         <li><a href="~/Menubar/Index">กลับสู่หน้าหลัก</a></li>
                                         @{
-                                            if(controllerName == "ClaimView" || controllerName == "ClaimRequest" || controllerName == "ClaimEdit")
+                                            if (controllerName == "ClaimView" || controllerName == "ClaimRequest" || controllerName == "ClaimEdit")
                                             {
                                                 <li><a href="~/Inquiry/Index">ตรวจสอบสถานะ</a></li>
                                             }
                                         }
                                         @*<li><a id="changeid" href="~/Account/Changepassword" >เปลี่ยนรหัสผ่าน</a></li>*@
-                                        <li><a  href="~/Account/LogIn" >ออกจากระบบ</a></li>
+                                        <li><a href="~/Account/LogIn">ออกจากระบบ</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-    }
-    else
-    {
-                     <div class="row page-title-header">
+                }
+                else
+                {
+                    <div class="row page-title-header">
                         <div class="col-12">
                             <div class="page-header" style="margin: 0px !important;">
                                 <h4 class="page-title"></h4>
                                 <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
-                                  
+
                                     <ul class="quick-links ml-auto">
                                         <li><a href="~/Menubar/Index">กลับสู่หน้าหลัก</a></li>
                                         @{
@@ -155,45 +170,45 @@
                         </div>
 
                     </div>
-                   <!-- <div class="row page-title-header">
-                        <div class="col-12">
-                            <div class="page-header">
-                                <h4 class="page-title"></h4>
-                                <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
-                                    <ul class="quick-links">
-                                        <li><a id="Inquiryid" href="~/Inquiry/Index">ตรวจสอบสถานะ</a></li>
-                                        <li><a id="regid" href="~/Warrantyregister/Index">ลงทะเบียนสินค้า</a></li>
-                                        @*<li><a href="~/ClaimRequest/Index">แจ้งเคลมสินค้า</a></li>*@
-                                        <li><a id="regeditid"></a></li>
-                                    </ul>
-                                   
-                                    <ul class="quick-links ml-auto">
-                                       
-                                        <li><a id="regeditid" href="~/EditWarrantyregister/Index">แก้ไขข้อมูลส่วนตัว</a></li>
-                                      
-                                        <li><a href="~/Account/LogIn">ออกจากระบบ</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- <div class="row page-title-header">
+                         <div class="col-12">
+                             <div class="page-header">
+                                 <h4 class="page-title"></h4>
+                                 <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+                                     <ul class="quick-links">
+                                         <li><a id="Inquiryid" href="~/Inquiry/Index">ตรวจสอบสถานะ</a></li>
+                                         <li><a id="regid" href="~/Warrantyregister/Index">ลงทะเบียนสินค้า</a></li>
+                                         @*<li><a href="~/ClaimRequest/Index">แจ้งเคลมสินค้า</a></li>*@
+                                         <li><a id="regeditid"></a></li>
+                                     </ul>
 
-                    </div>-->
+                                     <ul class="quick-links ml-auto">
+
+                                         <li><a id="regeditid" href="~/EditWarrantyregister/Index">แก้ไขข้อมูลส่วนตัว</a></li>
+
+                                         <li><a href="~/Account/LogIn">ออกจากระบบ</a></li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+
+                     </div>-->
                 }
             </div>
             @*<div class="container-fluid">*@
-              <div>
+            <div>
 
-                <div >
+                <div>
                     @*<div class="content-wrapper d-flex ">*@
                     @RenderBody()
 
                 </div>
                 <!-- content-wrapper ends -->
             </div>
-           
+
         </div>
         <!-- content-wrapper ends -->
-        
+
     </div>
     <!-- partial:partials/_footer.html -->
     <footer class="footer">
@@ -203,8 +218,8 @@
         </div>
     </footer>
     <!-- partial -->
-   
-   
+
+
 </body>
 </html>
 

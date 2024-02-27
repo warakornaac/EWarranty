@@ -39,6 +39,14 @@ namespace EWarranty.Controllers
 
         }
         [HttpGet]
+        public ActionResult Logout()
+        {
+            //Session.Clear();
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Login", "Account");
+        }
+        [HttpGet]
         public ActionResult CheckLoginExternal()
         {
             return View();
@@ -469,7 +477,7 @@ namespace EWarranty.Controllers
             }
         }
 
-        public JsonResult AddRegister(string b_name, string b_lastname, string b_password, string b_cfpassword, string b_address1, string b_address2, string b_district, string b_amphoe, string b_province, string b_zipcode, string b_tel, string b_lineid, string b_email, string b_userId, string b_displayName)
+        public JsonResult AddRegister(string b_name, string b_lastname, string b_password, string b_cfpassword, string b_address1, string b_district, string b_amphoe, string b_province, string b_zipcode, string b_tel, string b_lineid, string b_email, string b_userId, string b_displayName)
         {
 
             string message = string.Empty;
@@ -486,7 +494,7 @@ namespace EWarranty.Controllers
                 command.Parameters.AddWithValue("@inlastname", b_lastname);
                 command.Parameters.AddWithValue("@inpassword", b_password);
                 command.Parameters.AddWithValue("@inaddress1", b_address1);
-                command.Parameters.AddWithValue("@inaddress2", b_address2);
+               // command.Parameters.AddWithValue("@inaddress2", b_address2);
                 command.Parameters.AddWithValue("@indistrict", b_district);
                 command.Parameters.AddWithValue("@inamphoe", b_amphoe);
                 command.Parameters.AddWithValue("@inprovince", b_province);
@@ -609,7 +617,7 @@ namespace EWarranty.Controllers
 
             return Json(new { message }, JsonRequestBehavior.AllowGet);
         }
-
+        
         public JsonResult SearchDataDealer(string textSearch)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["CLAIM_ConnectionString"].ConnectionString;
