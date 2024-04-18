@@ -124,6 +124,7 @@ namespace EWarranty.Models
             public string UpdateBy { get; set; }
             public string UpdateDate { get; set; }
             public string ClaimRound { get; set; }
+            public string ClaimDate { get; set; }
         }
         public class Inquiry_Claim_Log
         {

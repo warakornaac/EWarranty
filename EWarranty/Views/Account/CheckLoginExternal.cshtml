@@ -110,12 +110,12 @@
                                     //พาไปหน้า
                                     if (result.page != null && result.page != '') {
                                         if (result.page == "register") { //หน้าลงทะเบียน
-                                            window.location.assign("@domainName" + "/e-Warranty_test/Warrantyregister/Index");
+                                            window.location.assign("@domainName" + "/e-Warranty/Warrantyregister/Index");
                                         } else if (page == "inquiry") {//หน้าตรวจสอบสถานะ
-                                            window.location.assign("@domainName" + "/e-Warranty_test/Inquiry/Index");
+                                            window.location.assign("@domainName" + "/e-Warranty/Inquiry/Index");
                                         }
                                     } else {//สมัครสมาชิก
-                                        window.location.assign("@domainName" + "/e-Warranty_test/Account/Register");
+                                        window.location.assign("@domainName" + "/e-Warranty/Account/Register");
                                     }
                                 }
                             },
@@ -160,12 +160,12 @@
             document.getElementById("page").innerHTML = '<b>Page:</b> ' + page;
             if (page != null && page != '') {
                 if (page == "register") { //หน้าลงทะเบียน
-                    window.location.assign("https://mst.aac.co.th/e-Warranty_Test/Warrantyregister/Index");
+                    window.location.assign("https://mst.aac.co.th/e-Warranty/Warrantyregister/Index");
                 } else if (page == "inquiry") {//หน้าตรวจสอบสถานะ
-                    window.location.assign("https://mst.aac.co.th/e-Warranty_Test/Inquiry/Index");
+                    window.location.assign("https://mst.aac.co.th/e-Warranty/Inquiry/Index");
                 }
             } else {
-                window.location.assign("https://mst.aac.co.th/e-Warranty_Test");
+                window.location.assign("https://mst.aac.co.th/e-Warranty");
             }
         }
 

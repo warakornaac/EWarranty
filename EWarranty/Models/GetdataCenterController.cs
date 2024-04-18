@@ -320,15 +320,11 @@ namespace EWarranty.Models
                 S_User = Customerid;
 
             }
-
             List<EWarranty.Models.GroupClass.Inquiry_Customer> List = new List<EWarranty.Models.GroupClass.Inquiry_Customer>();
-
             var connectionString = ConfigurationManager.ConnectionStrings["CLAIM_ConnectionString"].ConnectionString;
             SqlConnection Connection = new SqlConnection(connectionString);
-
             var command = new SqlCommand("P_Search_Inquiry_customer_ewaranty", Connection);
             command.CommandType = CommandType.StoredProcedure;
-
             command.Parameters.AddWithValue("@in_SN", b_SN);
             command.Parameters.AddWithValue("@in_Status", Status);
             command.Parameters.AddWithValue("@in_Customername", Customername);
@@ -337,7 +333,6 @@ namespace EWarranty.Models
             command.Parameters.AddWithValue("@in_Cuscode", Cuscode);
             command.Parameters.AddWithValue("@in_User", User);
             Connection.Open();
-
             SqlDataReader dr = command.ExecuteReader();
             while (dr.Read())
             {
@@ -379,6 +374,7 @@ namespace EWarranty.Models
                     UpdateBy = dr["Update By"].ToString(),
                     UpdateDate = dr["Update Date"].ToString(),
                     ClaimRound = dr["claim_round"].ToString(),
+                    ClaimDate = dr["Claim Date"].ToString(),
                 });
             }
             dr.Close();

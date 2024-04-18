@@ -979,7 +979,7 @@
                             var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
                             var currentURL = loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
                             //window.location.replace("../../Menubar/Index");
-                            window.location.assign("@domainName" + "/e-Warranty_test/Menubar/Index");
+                            window.location.assign("@domainName" + "/e-Warranty/Menubar/Index");
 
                         } else {
                             alert(data.message);
@@ -1036,7 +1036,7 @@
                                     console.log("Page = " + result.page);
                                     //return false;
                                     //พาไปเมนูหลัก
-                                    window.location.assign("@domainName" + "/e-Warranty_test/Menubar/Index");
+                                    window.location.assign("@domainName" + "/e-Warranty/Menubar/Index");
                                 }
                             },
                             error: function (ex) {
